@@ -1,75 +1,75 @@
 import {build} from 'aurelia-cli';
-// @if feat.babel
+// @if babel
 import gulp from 'gulp';
 import project from '../aurelia.json';
-// @if feat.less || feat.stylus
+// @if less || stylus
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
 // @endif
-// @if feat.less
+// @if less
 import less from 'gulp-less';
 // @endif
-// @if feat.sass
+// @if sass
 import sass from 'gulp-dart-sass';
 // @endif
-// @if feat.stylus
+// @if stylus
 import stylus from 'gulp-stylus';
 // @endif
-// @if feat['postcss-basic'] || feat['postcss-typical']
+// @if postcss-basic || postcss-typical
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
 // @endif
-// @if feat['postcss-typical']
+// @if postcss-typical
 import cssnano from 'cssnano';
 import postcssUrl from 'postcss-url';
 // @endif
 // @endif
-// @if feat.typescript
+// @if typescript
 import * as gulp from 'gulp';
 import * as project from '../aurelia.json';
-// @if feat.less || feat.stylus
+// @if less || stylus
 import * as plumber from 'gulp-plumber';
 import * as notify from 'gulp-notify';
 // @endif
-// @if feat.less
+// @if less
 import * as less from 'gulp-less';
 // @endif
-// @if feat.sass
+// @if sass
 import * as sass from 'gulp-dart-sass';
 // @endif
-// @if feat.stylus
+// @if stylus
 import * as stylus from 'gulp-stylus';
 // @endif
-// @if feat['postcss-basic'] || feat['postcss-typical']
+// @if postcss-basic || postcss-typical
 import * as postcss from 'gulp-postcss';
 import * as autoprefixer from 'autoprefixer';
 // @endif
-// @if feat['postcss-typical']
+// @if postcss-typical
 import * as cssnano from 'cssnano';
 import * as postcssUrl from 'postcss-url';
 // @endif
 // @endif
 
 export default function processCSS() {
-  return gulp.src(project.cssProcessor.source, {sourcemaps: true/* @if !feat.less && !feat.sass && !feat.stylus */, since: gulp.lastRun(processCSS)/* @endif */})
-    // @if feat.less || feat.stylus
+  return gulp.src(project.cssProcessor.source, {sourcemaps: true/* @if !less && !sass && !stylus */, since: gulp.lastRun(processCSS)/* @endif */})
+    // @if less || stylus
     .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
     // @endif
-    // @if feat.less
+    // @if less
     .pipe(less())
     // @endif
-    // @if feat.sass
+    // @if sass
     .pipe(sass.sync().on('error', sass.logError))
     // @endif
-    // @if feat.stylus
+    // @if stylus
     .pipe(stylus())
     // @endif
-    // @if feat['postcss-basic']
+    // @if postcss-basic
     .pipe(postcss([
       autoprefixer()
     ]))
     // @endif
-    // @if feat['postcss-typical']
+    // @if postcss-typical
     .pipe(postcss([
       autoprefixer(),
       postcssUrl({url: 'inline', encodeType: 'base64'}),
@@ -79,28 +79,28 @@ export default function processCSS() {
     .pipe(build.bundle());
 }
 
-// @if feat.plugin
+// @if plugin
 export function pluginCSS(dest) {
   return function processPluginCSS() {
     return gulp.src(project.plugin.source.css)
-      // @if feat.less || feat.stylus
+      // @if less || stylus
       .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
       // @endif
-      // @if feat.less
+      // @if less
       .pipe(less())
       // @endif
-      // @if feat.sass
+      // @if sass
       .pipe(sass.sync().on('error', sass.logError))
       // @endif
-      // @if feat.stylus
+      // @if stylus
       .pipe(stylus())
       // @endif
-      // @if feat['postcss-basic']
+      // @if postcss-basic
       .pipe(postcss([
         autoprefixer()
       ]))
       // @endif
-      // @if feat['postcss-typical']
+      // @if postcss-typical
       .pipe(postcss([
         autoprefixer(),
         postcssUrl({url: 'inline', encodeType: 'base64'}),

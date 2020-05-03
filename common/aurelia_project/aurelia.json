@@ -10,12 +10,12 @@
     "bindingBehaviors": "resources/binding-behaviors"
   },
   "transpiler": {
-    // @if feat.babel
+    // @if babel
     "id": "babel",
     "fileExtension": ".js",
     // @endif
 
-    // @if feat.typescript
+    // @if typescript
     "id": "typescript",
     "fileExtension": ".ts",
     // @endif

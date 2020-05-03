@@ -1,9 +1,9 @@
 import { runCLI } from '@jest/core';
-// @if feat.babel
+// @if babel
 import path from 'path';
 import packageJson from '../../package.json';
 // @endif
-// @if feat.typescript
+// @if typescript
 import * as path from 'path';
 import * as packageJson from '../../package.json';
 // @endif
@@ -17,7 +17,7 @@ export default (cb) => {
     Object.assign(options, { watchAll: true});
   }
 
-  // @if feat.babel
+  // @if babel
   process.env.BABEL_TARGET = 'node';
   // @endif
 

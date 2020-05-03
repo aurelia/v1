@@ -1,7 +1,7 @@
 import {App} from '../../src/app';
 
 class RouterStub {
-  // @if feat.typescript
+  // @if typescript
   routes;
 
   // @endif
@@ -33,10 +33,10 @@ describe('the App module', () => {
   });
 
   it('should have a welcome route', () => {
-    // @if feat.karma
+    // @if karma
     expect(sut.router.routes).toContain({
     // @endif
-    // @if feat.jest
+    // @if jest
     expect(sut.router.routes).toContainEqual({
     // @endif
       route: ['', 'welcome'], name: 'welcome',  moduleId: './welcome', nav: true, title: 'Welcome'
@@ -44,10 +44,10 @@ describe('the App module', () => {
   });
 
   it('should have a users route', () => {
-    // @if feat.karma
+    // @if karma
     expect(sut.router.routes).toContain({
     // @endif
-    // @if feat.jest
+    // @if jest
     expect(sut.router.routes).toContainEqual({
     // @endif
       route: 'users', name: 'users', moduleId: './users', nav: true, title: 'Github Users'
@@ -55,10 +55,10 @@ describe('the App module', () => {
   });
 
   it('should have a child router route', () => {
-    // @if feat.karma
+    // @if karma
     expect(sut.router.routes).toContain({
     // @endif
-    // @if feat.jest
+    // @if jest
     expect(sut.router.routes).toContainEqual({
     // @endif
       route: 'child-router', name: 'child-router', moduleId: './child-router', nav: true, title: 'Child Router'

@@ -1,6 +1,6 @@
 {
   "transpiler": {
-    // @if feat.babel
+    // @if babel
     "options": {
       "plugins": [
         ["@babel/plugin-transform-modules-amd", {"loose": true}]
@@ -8,17 +8,17 @@
     },
 
     "source": [
-      // @if feat.plugin
+      // @if plugin
       "dev-app/**/*.js",
       // @endif
       "src/**/*.js"
     ],
     // @endif
 
-    // @if feat.typescript
+    // @if typescript
     "dtsSource": ["./types/**/*.d.ts"],
     "source": [
-      // @if feat.plugin
+      // @if plugin
       "dev-app/**/*.ts",
       // @endif
       "src/**/*.ts"
@@ -27,43 +27,43 @@
   },
   "markupProcessor": {
     "source": [
-      // @if feat.plugin
+      // @if plugin
       "dev-app/**/*.html",
       // @endif
       "src/**/*.html"
     ],
   },
   "cssProcessor": {
-    // @if ! (feat.less || feat.sass || feat.stylus)
+    // @if ! (less || sass || stylus)
     "source": [
-      // @if feat.plugin
+      // @if plugin
       "dev-app/**/*.css",
       // @endif
       "src/**/*.css"
     ],
     // @endif
 
-    // @if feat.less
+    // @if less
     "source": [
-      // @if feat.plugin
+      // @if plugin
       "dev-app/**/*.less",
       // @endif
       "src/**/*.less"
     ],
     // @endif
 
-    // @if feat.sass
+    // @if sass
     "source": [
-      // @if feat.plugin
+      // @if plugin
       "dev-app/**/*.scss",
       // @endif
       "src/**/*.scss"
     ],
     // @endif
 
-    // @if feat.stylus
+    // @if stylus
     "source": [
-      // @if feat.plugin
+      // @if plugin
       "dev-app/**/*.styl",
       // @endif
       "src/**/*.styl"
@@ -72,18 +72,18 @@
   },
   "jsonProcessor": {
     "source": [
-      // @if feat.plugin
+      // @if plugin
       "dev-app/**/*.json",
       // @endif
       "src/**/*.json"
     ],
   },
-  // @if feat.karma
+  // @if karma
   "unitTestRunner": {
-    // @if feat.babel
+    // @if babel
     "source": "test/unit/**/*.js",
     // @endif
-    // @if feat.typescript
+    // @if typescript
     "source": "test/unit/**/*.ts",
     // @endif
   },
@@ -92,7 +92,7 @@
   },
   // @endif
   "platform": {
-    // @if feat.web
+    // @if web
     "port": 9000,
     "host": "localhost",
     "open": false,
@@ -101,7 +101,7 @@
     "output": "scripts",
     // @endif
 
-    // @if feat['dotnet-core']
+    // @if dotnet-core
     "port": 5000,
     "host": "localhost",
     "index": "wwwroot/index.html",
@@ -112,7 +112,7 @@
   },
   "build": {
     "targets": [
-      // @if feat.web
+      // @if web
       {
         "port": 9000,
         "index": "index.html",
@@ -121,7 +121,7 @@
       },
       // @endif
 
-      // @if feat['dotnet-core']
+      // @if dotnet-core
       {
         "port": 5000,
         "index": "wwwroot/index.html",
@@ -148,13 +148,13 @@
         "name": "vendor-bundle.js",
         "prepend": [
           "node_modules/promise-polyfill/dist/polyfill.min.js",
-          // @if feat.requirejs
+          // @if requirejs
           "node_modules/requirejs/require.js"
           // @endif
-          // @if feat.alameda
+          // @if alameda
           "node_modules/alameda/alameda.js"
           // @endif
-          // @if feat.systemjs
+          // @if systemjs
           "node_modules/systemjs/dist/system.js"
           // @endif
         ],
@@ -166,10 +166,10 @@
             "name": "aurelia-testing",
             "env": "dev"
           },
-          // @if feat.requirejs || feat.alameda
+          // @if requirejs || alameda
           "text",
           // @endif
-          // @if feat.systemjs
+          // @if systemjs
           {
             "name": "text",
             "path": "../node_modules/systemjs-plugin-text",
@@ -180,10 +180,10 @@
       }
     ],
     "loader": {
-      // @if feat.requirejs || feat.alameda
+      // @if requirejs || alameda
       "type": "require",
       // @endif
-      // @if feat.systemjs
+      // @if systemjs
       "type": "system",
       // @endif
       "configTarget": "vendor-bundle.js",

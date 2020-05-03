@@ -6,7 +6,7 @@
     "karma-jasmine": "",
     "karma-sourcemap-loader": "",
 
-    // @if feat.webpack
+    // @if webpack
     "karma-coverage": "",
     "karma-mocha-reporter": "",
     "karma-webpack": "",
@@ -15,11 +15,11 @@
     "jest-matchers": "",
     // @endif
 
-    // @if feat.babel
+    // @if babel
     "karma-babel-preprocessor": "",
     // @endif
 
-    // @if feat.typescript
+    // @if typescript
     "karma-typescript-preprocessor": "",
     "@types/jasmine": "",
     // @endif

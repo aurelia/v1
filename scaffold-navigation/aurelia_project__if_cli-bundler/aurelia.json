@@ -9,10 +9,10 @@
       }
     ],
     "copyFiles": {
-      // @if feat.web
+      // @if web
       "node_modules/@fortawesome/fontawesome-free/webfonts/*": "@fortawesome/fontawesome-free/webfonts",
       // @endif
-      // @if feat['dotnet-core']
+      // @if dotnet-core
       "node_modules/@fortawesome/fontawesome-free/webfonts/*": "wwwroot/@fortawesome/fontawesome-free/webfonts",
       // @endif
     }

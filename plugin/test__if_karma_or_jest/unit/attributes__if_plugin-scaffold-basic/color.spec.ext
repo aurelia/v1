@@ -15,10 +15,10 @@ describe('color attribute', () => {
     let model = {color: 'green'};
 
     component = StageComponent
-      // @if feat.karma
+      // @if karma
       .withResources('resources/attributes/color')
       // @endif
-      // @if feat.jest
+      // @if jest
       .withResources('attributes/color')
       // @endif
       .inView('<p color.bind="color"></p>')

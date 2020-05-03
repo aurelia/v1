@@ -8,7 +8,7 @@ import project from '../aurelia.json';
 import fs from 'fs';
 import through from 'through2';
 import { CLIOptions, build, Configuration } from 'aurelia-cli';
-// @if feat.plugin
+// @if plugin
 import * as gulpSourcemaps from 'gulp-sourcemaps';
 // @endif
 
@@ -56,7 +56,7 @@ export default gulp.series(
   buildJavaScript
 );
 
-// @if feat.plugin
+// @if plugin
 export function buildPluginJavaScript(dest, format) {
   return function processPluginJavaScript() {
     let opts = {};

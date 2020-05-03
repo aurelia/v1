@@ -3,14 +3,14 @@ import {Project, ProjectItem, CLIOptions, UI} from 'aurelia-cli';
 
 @inject(Project, CLIOptions, UI)
 export default class TaskGenerator {
-  // @if feat.babel
+  // @if babel
   constructor(project, options, ui) {
     this.project = project;
     this.options = options;
     this.ui = ui;
   }
   // @endif
-  // @if feat.typescript
+  // @if typescript
   constructor(private project: Project, private options: CLIOptions, private ui: UI) { }
   // @endif
 
@@ -24,10 +24,10 @@ export default class TaskGenerator {
     let functionName = this.project.makeFunctionName(name);
 
     this.project.tasks.add(
-      // @if feat.babel
+      // @if babel
       ProjectItem.text(`${fileName}.js`, this.generateSource(functionName))
       // @endif
-      // @if feat.typescript
+      // @if typescript
       ProjectItem.text(`${fileName}.ts`, this.generateSource(functionName))
       // @endif
     );
@@ -37,7 +37,7 @@ export default class TaskGenerator {
   }
 
   generateSource(functionName) {
-// @if feat.babel
+// @if babel
     return `import gulp from 'gulp';
 import project from '../aurelia.json';
 
@@ -47,7 +47,7 @@ export default function ${functionName}() {
 }
 `;
 // @endif
-// @if feat.typescript
+// @if typescript
     return `import * as gulp from 'gulp';
 import * as project from '../aurelia.json';
 

@@ -1,8 +1,8 @@
 export class App {
-  // @if feat.babel
+  // @if babel
   message = 'Hello World!';
   // @endif
-  // @if feat.typescript
+  // @if typescript
   public message = 'Hello World!';
   // @endif
 }

@@ -35,10 +35,10 @@ describe('primaryClick binding behavior', () => {
     let model = {hit};
 
     component = StageComponent
-      // @if feat.karma
+      // @if karma
       .withResources('resources/binding-behaviors/primary-click')
       // @endif
-      // @if feat.jest
+      // @if jest
       .withResources('binding-behaviors/primary-click')
       // @endif
       .inView('<button click.trigger="hit() & primaryClick"></button>')

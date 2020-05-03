@@ -1,14 +1,14 @@
-// @if feat.babel
+// @if babel
 // regenerator-runtime is to support async/await syntax in ESNext.
 // If you target latest browsers (have native support), or don't use async/await, you can remove regenerator-runtime.
 import 'regenerator-runtime/runtime';
 // @endif
-// @if feat.typescript
+// @if typescript
 import {Aurelia} from 'aurelia-framework';
 // @endif
 import environment from './environment';
 
-export function configure(aurelia/* @if feat.typescript **: Aurelia/* @endif */) {
+export function configure(aurelia/* @if typescript **: Aurelia/* @endif */) {
   aurelia.use
     .standardConfiguration()
     // load the plugin ../src

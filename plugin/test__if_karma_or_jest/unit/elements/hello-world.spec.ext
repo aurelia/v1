@@ -15,10 +15,10 @@ describe('hello-world element', () => {
     let model = {message: 'from me'};
 
     component = StageComponent
-      // @if feat.karma
+      // @if karma
       .withResources('resources/elements/hello-world')
       // @endif
-      // @if feat.jest
+      // @if jest
       .withResources('elements/hello-world')
       // @endif
       .inView('<hello-world message.bind="message"></hello-world>')

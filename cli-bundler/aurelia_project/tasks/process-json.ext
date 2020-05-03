@@ -1,8 +1,8 @@
-// @if feat.babel
+// @if babel
 import gulp from 'gulp';
 import project from '../aurelia.json';
 // @endif
-// @if feat.typescript
+// @if typescript
 import * as gulp from 'gulp';
 import * as project from '../aurelia.json';
 // @endif
@@ -13,7 +13,7 @@ export default function processJson() {
     .pipe(build.bundle());
 }
 
-// @if feat.plugin
+// @if plugin
 export function pluginJson(dest) {
   return function processPluginJson() {
     return gulp.src(project.plugin.source.json)

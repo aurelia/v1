@@ -7,7 +7,7 @@ import * as project from '../aurelia.json';
 import * as fs from 'fs';
 import * as through from 'through2';
 import { CLIOptions, build, Configuration } from 'aurelia-cli';
-// @if feat.plugin
+// @if plugin
 import * as gulpSourcemaps from 'gulp-sourcemaps';
 // @endif
 
@@ -43,7 +43,7 @@ export default gulp.series(
   buildTypeScript
 );
 
-// @if feat.plugin
+// @if plugin
 export function buildPluginJavaScript(dest, format) {
   // when format is missing, default is ESM as we turned off "modules": false in .babelrc.js
   return function processPluginJavaScript() {

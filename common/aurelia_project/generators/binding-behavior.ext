@@ -3,14 +3,14 @@ import {Project, ProjectItem, CLIOptions, UI} from 'aurelia-cli';
 
 @inject(Project, CLIOptions, UI)
 export default class BindingBehaviorGenerator {
-  // @if feat.babel
+  // @if babel
   constructor(project, options, ui) {
     this.project = project;
     this.options = options;
     this.ui = ui;
   }
   // @endif
-  // @if feat.typescript
+  // @if typescript
   constructor(private project: Project, private options: CLIOptions, private ui: UI) { }
   // @endif
 
@@ -24,10 +24,10 @@ export default class BindingBehaviorGenerator {
     let className = this.project.makeClassName(name);
 
     this.project.bindingBehaviors.add(
-      // @if feat.babel
+      // @if babel
       ProjectItem.text(`${fileName}.js`, this.generateSource(className))
       // @endif
-      // @if feat.typescript
+      // @if typescript
       ProjectItem.text(`${fileName}.ts`, this.generateSource(className))
       // @endif
     );

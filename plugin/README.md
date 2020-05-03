@@ -30,7 +30,7 @@ src/binding-behaviors
 
 Note the folder structure is only to help you organising the files, it's not a requirement of Aurelia. You can manually create new element (or other thing) anywhere in `src/`.
 
-After you added some new file, you need to register it in `src/index./* @if feat.babel **js/* @endif *//* @if feat.typescript **ts/* @endif */`. Like this:
+After you added some new file, you need to register it in `src/index./* @if babel **js/* @endif *//* @if typescript **ts/* @endif */`. Like this:
 ```js
 config.globalResources([
   // ...
@@ -44,7 +44,7 @@ The usage of `PLATFORM.moduleName` wrapper is mandatory. It's needed for your pl
 
 In dev app, when you need to import something from the inner plugin (for example, importing a class for dependency injection), use special name `"resources"` to reference the inner plugin.
 
-// @if feat.babel
+// @if babel
 ```js
 import {inject} from 'aurelia-framework';
 // "resources" refers the inner plugin src/index.js
@@ -58,7 +58,7 @@ export class App {
 }
 ```
 // @endif
-// @if feat.typescript
+// @if typescript
 ```js
 import {autoinject} from 'aurelia-framework';
 // "resources" refers the inner plugin src/index.ts
@@ -73,7 +73,7 @@ export class App {
 
 ## Manage dependencies
 
-By default, this plugin has no "dependencies" in package.json. Theoretically this plugin depends on at least `aurelia-pal` because `src/index./* @if feat.babel **js/* @endif *//* @if feat.typescript **ts/* @endif */` imports it. It could also depends on more core Aurelia package like `aurelia-binding` or `aurelia-templating` if you build advanced components that reference them.
+By default, this plugin has no "dependencies" in package.json. Theoretically this plugin depends on at least `aurelia-pal` because `src/index./* @if babel **js/* @endif *//* @if typescript **ts/* @endif */` imports it. It could also depends on more core Aurelia package like `aurelia-binding` or `aurelia-templating` if you build advanced components that reference them.
 
 Ideally you need to carefully add those `aurelia-pal` (`aurelia-binding`...) to "dependencies" in package.json. But in practice you don't have to. Because every app that consumes this plugin will have full Aurelia core packages installed.
 
@@ -89,7 +89,7 @@ If your plugin depends on other npm package, like `lodash` or `jquery`, **you ha
 
 Run `au build-plugin`. This will transpile all files from `src/` folder to `dist/native-modules/` and `dist/commonjs/`.
 
-For example, `src/index./* @if feat.babel */js/* @endif *//* @if feat.typescript */ts/* @endif */` will become `dist/native-modules/index.js` and `dist/commonjs/index.js`.
+For example, `src/index./* @if babel */js/* @endif *//* @if typescript */ts/* @endif */` will become `dist/native-modules/index.js` and `dist/commonjs/index.js`.
 
 Note all other files in `dev-app/` folder are for the dev app, they would not appear in the published npm package.
 
@@ -108,7 +108,7 @@ npm i gitlab:your_github_username//* @echo projectName */
 npm i https:/github.com/your_github_username//* @echo projectName */.git
 ```
 
-Then load the plugin in app's `main./* @if feat.babel **js/* @endif *//* @if feat.typescript **ts/* @endif */` like this.
+Then load the plugin in app's `main./* @if babel **js/* @endif *//* @if typescript **ts/* @endif */` like this.
 ```js
 aurelia.use.plugin('/* @echo projectName */');
 // for webpack user, use PLATFORM.moduleName wrapper

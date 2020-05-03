@@ -1,9 +1,9 @@
 import {Server as Karma} from 'karma';
 import {CLIOptions} from 'aurelia-cli';
-// @if feat.babel
+// @if babel
 import path from 'path';
 // @endif
-// @if feat.typescript
+// @if typescript
 import * as path from 'path';
 // @endif
 

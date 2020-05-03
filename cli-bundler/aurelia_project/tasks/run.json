@@ -12,7 +12,7 @@
       "description": "Open the default browser at the application location.",
       "type": "boolean"
     },
-    // @if feat.babel
+    // @if babel
     {
       "name": "auto-install",
       "description": "auto install missing npm package using npm or yarn (set by aurelia.json packageManager, or existence of yarn.lock file).",

@@ -7,14 +7,14 @@
     "url": "???"
   },
   "license": "MIT",
-  // @if ! feat.plugin
+  // @if ! plugin
   "dependencies": {
     "aurelia-bootstrapper": "",
     "aurelia-animator-css": ""
   },
   // @endif
   "devDependencies": {
-    // @if feat.plugin
+    // @if plugin
     "aurelia-bootstrapper": "",
     "aurelia-animator-css": "",
     // @endif
@@ -26,11 +26,11 @@
     "vinyl-fs": "",
     "promise-polyfill": "",
 
-    // @if feat.babel
+    // @if babel
     "regenerator-runtime": "",
     // @endif
   },
-  // @if feat['postcss-basic'] || feat['postcss-typical']
+  // @if postcss-basic || postcss-typical
   "browserslist": [
     "defaults"
   ],

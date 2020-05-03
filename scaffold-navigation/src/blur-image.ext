@@ -1,5 +1,5 @@
 /* eslint-disable */
-// @if feat.babel
+// @if babel
 import {inject} from 'aurelia-framework';
 
 @inject(Element)
@@ -10,7 +10,7 @@ export class BlurImageCustomAttribute {
 
   valueChanged(newImage) {
 // @endif
-// @if feat.typescript
+// @if typescript
 import {autoinject} from 'aurelia-framework';
 
 @autoinject

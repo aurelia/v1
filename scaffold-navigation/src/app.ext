@@ -1,15 +1,15 @@
-// @if feat.webpack
+// @if webpack
 import {PLATFORM} from 'aurelia-pal';
 // @endif
-// @if feat.typescript
+// @if typescript
 import {Router, RouterConfiguration} from 'aurelia-router';
 // @endif
 
 export class App {
-  // @if feat.babel
+  // @if babel
   configureRouter(config, router) {
   // @endif
-  // @if feat.typescript
+  // @if typescript
   public router: Router;
 
   public configureRouter(config: RouterConfiguration, router: Router): Promise<void> | PromiseLike<void> | void {
@@ -19,10 +19,10 @@ export class App {
       {
         route: ['', 'welcome'],
         name: 'welcome',
-        // @if feat.webpack
+        // @if webpack
         moduleId: PLATFORM.moduleName('./welcome'),
         // @endif
-        // @if feat['cli-bundler']
+        // @if cli-bundler
         moduleId: './welcome',
         // @endif
         nav: true,
@@ -31,10 +31,10 @@ export class App {
       {
         route: 'users',
         name: 'users',
-        // @if feat.webpack
+        // @if webpack
         moduleId: PLATFORM.moduleName('./users'),
         // @endif
-        // @if feat['cli-bundler']
+        // @if cli-bundler
         moduleId: './users',
         // @endif
         nav: true,
@@ -43,10 +43,10 @@ export class App {
       {
         route: 'child-router',
         name: 'child-router',
-        // @if feat.webpack
+        // @if webpack
         moduleId: PLATFORM.moduleName('./child-router'),
         // @endif
-        // @if feat['cli-bundler']
+        // @if cli-bundler
         moduleId: './child-router',
         // @endif
         nav: true,

@@ -1,4 +1,4 @@
-// @if feat.typescript
+// @if typescript
 import {browser, element, by, By, $, $$, ExpectedConditions} from 'aurelia-protractor-plugin/protractor';
 
 // @endif
@@ -8,20 +8,20 @@ export class PageObjectWelcome {
   }
 
   setFirstname(value) {
-    // @if feat.babel
+    // @if babel
     return element(by.valueBind('firstName')).clear().sendKeys(value);
     // @endif
-    // @if feat.typescript
+    // @if typescript
     let firstName = element(by.valueBind('firstName'));
     return firstName.clear().then(() => firstName.sendKeys(value));
     // @endif
   }
 
   setLastname(value) {
-    // @if feat.babel
+    // @if babel
     return element(by.valueBind('lastName')).clear().sendKeys(value);
     // @endif
-    // @if feat.typescript
+    // @if typescript
     let lastName = element(by.valueBind('lastName'));
     return lastName.clear().then(() => lastName.sendKeys(value));
     // @endif

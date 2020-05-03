@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const project = require('./aurelia_project/aurelia.json');
 const { AureliaPlugin, ModuleDependenciesPlugin } = require('aurelia-webpack-plugin');
-// @if feat['scaffold-navigation']
+// @if scaffold-navigation
 const { ProvidePlugin } = require('webpack');
 // @endif
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -25,13 +25,13 @@ const baseUrl = '/';
 
 const cssRules = [
   { loader: 'css-loader' },
-  // @if feat['postcss-basic']
+  // @if postcss-basic
   {
     loader: 'postcss-loader',
     options: { plugins: () => [require('autoprefixer')()] }
   }
   // @endif
-  // @if feat['postcss-typical']
+  // @if postcss-typical
   {
     loader: 'postcss-loader',
     options: { plugins: () => [
@@ -42,7 +42,7 @@ const cssRules = [
   // @endif
 ];
 
-// @if feat.sass
+// @if sass
 const sassRules = [
   {
     loader: "sass-loader",
@@ -57,10 +57,10 @@ const sassRules = [
 
 module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, host } = {}) => ({
   resolve: {
-    // @if feat.typescript
+    // @if typescript
     extensions: ['.ts', '.js'],
     // @endif
-    // @if feat.babel
+    // @if babel
     extensions: ['.js'],
     // @endif
     modules: [srcDir, 'node_modules'],
@@ -102,10 +102,10 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
       hidePathInfo: true, // prevents the path from being used in the filename when using maxSize
       chunks: "initial",
       // sizes are compared against source before minification
-      // @if feat.http1
+      // @if http1
       maxSize: 200000, // splits chunks if bigger than 200k, adjust as required (maxSize added in webpack v4.15)
       // @endif
-      // @if feat.http2
+      // @if http2
       maxInitialRequests: Infinity, // Default is 3, make this unlimited if using HTTP/2
       maxAsyncRequests: Infinity, // Default is 5, make this unlimited if using HTTP/2
       minSize: 10000, // chunk is only created if it would be bigger than minSize, adjust as required
@@ -129,7 +129,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
         //   enforce: true
         // },
 
-        // @if feat.http1
+        // @if http1
         // This is the HTTP/1.1 optimised cacheGroup configuration
         vendors: { // picks up everything from node_modules as long as the sum of node modules is larger than minSize
           test: /[\\/]node_modules[\\/]/,
@@ -155,7 +155,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
           minSize: 10000  // use smaller minSize to avoid too much potential bundle bloat due to module duplication.
         }
         // @endif
-        // @if feat.http2
+        // @if http2
         // This is the HTTP/2 optimised cacheGroup configuration
         // generic 'initial/sync' vendor node module splits: separates out larger modules
         vendorSplit: { // each node module as separate chunk file if module is bigger than minSize
@@ -248,7 +248,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
         // because Aurelia would try to require it again in runtime
         use: cssRules
       },
-      // @if feat.less
+      // @if less
       {
         test: /\.less$/i,
         use: extractCss ? [{
@@ -263,7 +263,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
         issuer: /\.html?$/i
       },
       // @endif
-      // @if feat.stylus
+      // @if stylus
       {
         test: /\.styl$/i,
         use: extractCss ? [{
@@ -278,7 +278,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
         issuer: /\.html?$/i
       },
       // @endif
-      // @if feat.sass
+      // @if sass
       {
         test: /\.scss$/,
         use: extractCss ? [{
@@ -294,13 +294,13 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
       },
       // @endif
       { test: /\.html$/i, loader: 'html-loader' },
-      // @if feat.babel
+      // @if babel
       {
         test: /\.js$/i, loader: 'babel-loader', exclude: nodeModulesDir,
         options: tests ? { sourceMap: 'inline', plugins: ['istanbul'] } : {}
       },
       // @endif
-      // @if feat.typescript
+      // @if typescript
       { test: /\.ts$/, loader: "ts-loader" },
       // @endif
       // embed small images and fonts as Data Urls and larger ones as files:
@@ -312,7 +312,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
       { test: /environment\.json$/i, use: [
         {loader: "app-settings-loader", options: {env: production ? 'production' : 'development' }},
       ]},
-      // @if feat.typescript
+      // @if typescript
       ...when(tests, {
         test: /\.[jt]s$/i, loader: 'istanbul-instrumenter-loader',
         include: srcDir, exclude: [/\.(spec|test)\.[jt]s$/i],
@@ -324,7 +324,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
   plugins: [
     ...when(!tests, new DuplicatePackageCheckerPlugin()),
     new AureliaPlugin(),
-    // @if feat['scaffold-navigation']
+    // @if scaffold-navigation
     new ProvidePlugin({
       'jQuery': 'jquery',
       '$': 'jquery',
@@ -337,13 +337,13 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
     }),
     new HtmlWebpackPlugin({
       template: 'index.ejs',
-      // @if feat['htmlmin-min']
+      // @if htmlmin-min
       minify: production ? {
         removeComments: true,
         collapseWhitespace: true
       } : undefined,
       // @endif
-      // @if feat['htmlmin-max']
+      // @if htmlmin-max
       minify: production ? {
         removeComments: true,
         collapseWhitespace: true,

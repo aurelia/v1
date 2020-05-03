@@ -1,10 +1,10 @@
 import 'aurelia-polyfills';
 import {Options} from 'aurelia-loader-nodejs';
 import {globalize} from 'aurelia-pal-nodejs';
-// @if feat.babel
+// @if babel
 import path from 'path';
 // @endif
-// @if feat.typescript
+// @if typescript
 import * as path from 'path';
 // @endif
 Options.relativeToDir = path.join(__dirname, 'unit');

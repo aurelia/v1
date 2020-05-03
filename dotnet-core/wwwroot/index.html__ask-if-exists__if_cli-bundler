@@ -7,10 +7,10 @@
   </head>
 
   <body aurelia-app="main">
-<!-- @if feat.requirejs || feat.alameda -->
+<!-- @if requirejs || alameda -->
     <script src="scripts/vendor-bundle.js" data-main="aurelia-bootstrapper"></script>
 <!-- @endif -->
-<!-- @if feat.systemjs -->
+<!-- @if systemjs -->
     <script src="scripts/vendor-bundle.js"></script>
     <script>SystemJS.import("aurelia-bootstrapper").catch(function(err) { console.log(err); })</script>
 <!-- @endif -->

@@ -10,13 +10,13 @@
     "hmr": false,
     "open": false,
 
-    // @if feat.web
+    // @if web
     "port": 8080,
     "host": "localhost",
     "output": "dist",
     // @endif
 
-    // @if feat['dotnet-core']
+    // @if dotnet-core
     "port": 5000,
     "host": "localhost",
     "output": "wwwroot/dist",

@@ -8,7 +8,7 @@
     "build": "au build-plugin",
     "watch": "au build-plugin --watch",
     "prepare": "npm run build",
-    // @if feat.karma || feat.jest
+    // @if karma || jest
     "pretest": "au lint",
     "preversion": "au test",
     // @endif

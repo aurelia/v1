@@ -16,10 +16,10 @@ const config  = {
   baseUrl: `http://${host}:${port}/`,
 
   specs: [
-// @if feat.babel
+// @if babel
     'e2e/**/*.e2e.js'
 // @endif
-// @if feat.typescript
+// @if typescript
     'e2e/**/*.e2e.ts'
 // @endif
   ],
@@ -63,12 +63,12 @@ const config  = {
   },
 
   onPrepare: function() {
-// @if feat.babel
+// @if babel
     process.env.BABEL_TARGET = 'node';
     process.env.IN_PROTRACTOR = 'true';
     require('@babel/register');
 // @endif
-// @if feat.typescript
+// @if typescript
     require('ts-node').register({ compilerOptions: { module: 'commonjs' }, disableWarnings: true, fast: true });
 // @endif
   },

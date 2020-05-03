@@ -1,16 +1,16 @@
-// @if feat.babel
+// @if babel
 import cypress from 'cypress';
 import config from '../../cypress.config';
 // @endif
-// @if feat.typescript
+// @if typescript
 import * as cypress from 'cypress';
 import * as config from '../../cypress.config';
 // @endif
 import { CLIOptions } from 'aurelia-cli';
-// @if feat["cli-bundler"]
+// @if cli-bundler
 import { serve as runAppServer, shutdownAppServer } from './run';
 // @endif
-// @if feat.webpack
+// @if webpack
 import { default as runAppServer, shutdownAppServer } from './run';
 // @endif
 

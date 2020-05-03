@@ -1,13 +1,13 @@
 import {PageObjectWelcome} from './welcome.po';
 import {PageObjectSkeleton} from './skeleton.po';
 import {config} from '../protractor.conf';
-// @if feat.typescript
+// @if typescript
 import {browser, element, by, By, $, $$, ExpectedConditions} from 'aurelia-protractor-plugin/protractor';
 // @endif
 
 describe('aurelia skeleton app', function() {
-  let poWelcome/* @if feat.typescript **: PageObjectWelcome/* @endif */;
-  let poSkeleton/* @if feat.typescript **: PageObjectSkeleton/* @endif */;
+  let poWelcome/* @if typescript **: PageObjectWelcome/* @endif */;
+  let poSkeleton/* @if typescript **: PageObjectSkeleton/* @endif */;
 
 
   beforeEach(async () => {

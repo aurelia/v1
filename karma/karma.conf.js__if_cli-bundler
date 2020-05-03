@@ -1,6 +1,6 @@
 const path = require('path');
 const project = require('./aurelia_project/aurelia.json');
-// @if feat.typescript
+// @if typescript
 const tsconfig = require('./tsconfig.json');
 // @endif
 const karmaConfig = project.unitTestRunner;
@@ -17,11 +17,11 @@ let entryBundle = appSrc.splice(entryIndex, 1)[0];
 let sourceMaps = [{pattern:'scripts/**/*.js.map', included: false}];
 let files = [entryBundle].concat(testSrc).concat(appSrc).concat(sourceMaps);
 
-// @if feat.babel
+// @if babel
 let transpilerOptions = project.transpiler.options;
 transpilerOptions.sourceMap = 'inline';
 // @endif
-// @if feat.typescript
+// @if typescript
 let compilerOptions = tsconfig.compilerOptions;
 compilerOptions.inlineSourceMap = true;
 compilerOptions.inlineSources = true;
@@ -38,10 +38,10 @@ module.exports = function(config) {
       [karmaConfig.source]: [project.transpiler.id],
       [appSrc]: ['sourcemap']
     },
-// @if feat.babel
+// @if babel
     'babelPreprocessor': { options: transpilerOptions },
 // @endif
-// @if feat.typescript
+// @if typescript
     typescriptPreprocessor: {
       typescript: require('typescript'),
       options: compilerOptions

@@ -1,11 +1,11 @@
-// @if feat.babel
+// @if babel
 import gulp from 'gulp';
 import minimatch from 'minimatch';
 import gulpWatch from 'gulp-watch';
 import debounce from 'debounce';
 import project from '../aurelia.json';
 // @endif
-// @if feat.typescript
+// @if typescript
 import * as gulp from 'gulp';
 import * as minimatch from 'minimatch';
 import * as gulpWatch from 'gulp-watch';
@@ -124,7 +124,7 @@ let refresh = debounce(() => {
   toExecute();
 }, debounceWaitTime);
 
-function log(message/* @if feat.typescript **: string/* @endif */) {
+function log(message/* @if typescript **: string/* @endif */) {
   console.log(message);
 }
 

@@ -1,7 +1,7 @@
 import {ChildRouter} from '../../src/child-router';
 
 class RouterStub {
-  // @if feat.typescript
+  // @if typescript
   routes;
 
   // @endif
@@ -33,19 +33,19 @@ describe('the Child Router module', () => {
   });
 
   it('should have a welcome route', () => {
-    expect(sut.router.routes).toContain/* @if feat.jest **Equal/* @endif */({
+    expect(sut.router.routes).toContain/* @if jest **Equal/* @endif */({
       route: ['', 'welcome'], name: 'welcome',  moduleId: './welcome', nav: true, title: 'Welcome'
     });
   });
 
   it('should have a users route', () => {
-    expect(sut.router.routes).toContain/* @if feat.jest **Equal/* @endif */({
+    expect(sut.router.routes).toContain/* @if jest **Equal/* @endif */({
       route: 'users', name: 'users', moduleId: './users', nav: true, title: 'Github Users'
     });
   });
 
   it('should have a child router route', () => {
-    expect(sut.router.routes).toContain/* @if feat.jest **Equal/* @endif */({
+    expect(sut.router.routes).toContain/* @if jest **Equal/* @endif */({
       route: 'child-router', name: 'child-router', moduleId: './child-router', nav: true, title: 'Child Router'
     });
   });

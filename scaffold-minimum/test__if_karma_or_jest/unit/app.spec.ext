@@ -1,6 +1,6 @@
 import {bootstrap} from 'aurelia-bootstrapper';
 import {StageComponent} from 'aurelia-testing';
-// @if feat.webpack
+// @if webpack
 import {PLATFORM} from 'aurelia-pal';
 // @endif
 
@@ -9,10 +9,10 @@ describe('Stage App Component', () => {
 
   beforeEach(() => {
     component = StageComponent
-      // @if feat.webpack
+      // @if webpack
       .withResources(PLATFORM.moduleName('app'))
       // @endif
-      // @if feat['cli-bundler']
+      // @if cli-bundler
       .withResources('app')
       // @endif
       .inView('<app></app>');

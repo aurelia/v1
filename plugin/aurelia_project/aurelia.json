@@ -10,27 +10,27 @@
   },
   "plugin": {
     "source": {
-      // @if feat.babel
+      // @if babel
       "js": "src/**/*.js",
       // @endif
 
-      // @if feat.typescript
+      // @if typescript
       "js": "src/**/*.ts",
       // @endif
 
-      // @if ! (feat.less || feat.sass || feat.stylus)
+      // @if ! (less || sass || stylus)
       "css": "src/**/*.css",
       // @endif
 
-      // @if feat.less
+      // @if less
       "css": "src/**/*.less",
       // @endif
 
-      // @if feat.sass
+      // @if sass
       "css": "src/**/*.scss",
       // @endif
 
-      // @if feat.stylus
+      // @if stylus
       "css": "src/**/*.styl",
       // @endif
 

@@ -1,31 +1,31 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    // @if feat['cli-bundler']
+    // @if cli-bundler
 
-    // @if feat.plugin
+    // @if plugin
     "declaration": true,
     // @endif
 
-    // @if !feat.plugin
+    // @if !plugin
     "declaration": false,
     // @endif
 
     // @endif
 
-    // @if feat.webpack
+    // @if webpack
     "module": "esnext",
     // @endif
 
-    // @if feat.cypress && feat.karma
+    // @if cypress && karma
     "types": ["jasmine"],
     // @endif
 
-    // @if feat.cypress && feat.jest && feat['cli-bundler']
+    // @if cypress && jest && cli-bundler
     "types": ["node", "jest"],
     // @endif
 
-    // @if feat.protractor && feat.jest
+    // @if protractor && jest
     "types": ["node", "jest"],
     // @endif
 
@@ -41,18 +41,18 @@
     "baseUrl": "src",
     "resolveJsonModule": true,
 
-    // @if feat.plugin
+    // @if plugin
     "paths": { "resources": [ "" ] },
     "allowJs": false,
     // @endif
 
-    // @if !feat.plugin
+    // @if !plugin
     "allowJs": true,
     // @endif
   },
   "include": [
     "src",
-    // @if feat.plugin
+    // @if plugin
     "dev-app",
     // @endif
     "test"

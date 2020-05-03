@@ -38,7 +38,7 @@ module.exports = function (config) {
      * possible values: 'dots', 'progress'
      * available reporters: https://npmjs.org/browse/keyword/karma-reporter
      */
-// @if feat.babel
+// @if babel
     reporters: [ 'mocha', 'progress', 'coverage' ],
 
     coverageReporter: {
@@ -48,7 +48,7 @@ module.exports = function (config) {
     },
 // @endif
 
-// @if feat.typescript
+// @if typescript
     reporters: [ 'mocha', 'progress', 'coverage-istanbul' ],
 
     coverageIstanbulReporter: {

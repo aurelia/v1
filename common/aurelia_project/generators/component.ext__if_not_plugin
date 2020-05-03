@@ -1,22 +1,22 @@
 import { inject } from 'aurelia-dependency-injection';
 import { Project, ProjectItem, CLIOptions, UI } from 'aurelia-cli';
-// @if feat.babel
+// @if babel
 import path from 'path';
 // @endif
-// @if feat.typescript
+// @if typescript
 import * as path from 'path';
 // @endif
 
 @inject(Project, CLIOptions, UI)
 export default class ElementGenerator {
-  // @if feat.babel
+  // @if babel
   constructor(project, options, ui) {
     this.project = project;
     this.options = options;
     this.ui = ui;
   }
   // @endif
-  // @if feat.typescript
+  // @if typescript
   constructor(private project: Project, private options: CLIOptions, private ui: UI) { }
   // @endif
 
@@ -35,10 +35,10 @@ export default class ElementGenerator {
     let className = this.project.makeClassName(name);
 
     this.project.root.add(
-      // @if feat.babel
+      // @if babel
       ProjectItem.text(path.join(subFolders, fileName + '.js'), this.generateJSSource(className)),
       // @endif
-      // @if feat.typescript
+      // @if typescript
       ProjectItem.text(path.join(subFolders, fileName + '.ts'), this.generateJSSource(className)),
       // @endif
       ProjectItem.text(path.join(subFolders, fileName + '.html'), this.generateHTMLSource(className))
@@ -50,7 +50,7 @@ export default class ElementGenerator {
 
   generateJSSource(className) {
     return `export class ${className} {
-// @if feat.typescript
+// @if typescript
   message: string;
 
 // @endif

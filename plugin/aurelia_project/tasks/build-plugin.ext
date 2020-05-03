@@ -1,8 +1,8 @@
-// @if feat.babel
+// @if babel
 import gulp from 'gulp';
 import del from 'del';
 // @endif
-// @if feat.typescript
+// @if typescript
 import * as gulp from 'gulp';
 import * as del from 'del';
 // @endif

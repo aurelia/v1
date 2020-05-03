@@ -1,8 +1,8 @@
 export class UpcaseValueConverter {
-  // @if feat.babel
+  // @if babel
   toView(value) {
   // @endif
-  /* @if feat.typescript **
+  /* @if typescript **
   toView(value: any): string {
   /* @endif */
     return typeof value === 'string' ? value.toUpperCase() : '';

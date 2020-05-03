@@ -44,7 +44,7 @@
   function patchRequireJS(files, originalLoadFn, locationPathname) {
     var IS_DEBUG = /debug\.html$/.test(locationPathname)
 
-// @if feat.requirejs
+// @if requirejs
     requirejs.load = function (context, moduleName, url) {
       url = normalizePath(url)
 
@@ -59,7 +59,7 @@
       return originalLoadFn.call(this, context, moduleName, url)
     }
 // @endif
-// @if feat.alameda
+// @if alameda
     var origNameToUrl = requirejs.nameToUrl;
     requirejs.nameToUrl = function karmaNameToUrl(moduleName) {
       let url = origNameToUrl(moduleName);

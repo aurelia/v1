@@ -1,7 +1,7 @@
 # build stage
 FROM node:lts as build-stage
 
-// @if feat.cypress || feat.protractor || feat.karma
+// @if cypress || protractor || karma
 ENV DEBIAN_FRONTEND=noninteractive
 
 #update apt-get
@@ -46,12 +46,12 @@ WORKDIR /app
 COPY ./*.json  ./
 RUN npm install
 
-// @if feat.webpack
+// @if webpack
 COPY config ./config
 // @endif
 COPY aurelia_project  ./aurelia_project
 
-// @if feat.webpack
+// @if webpack
 COPY static ./static
 // @endif
 
@@ -62,28 +62,28 @@ COPY *.* ./
 COPY src ./src
 
 
-// @if feat.jest || feat.karma
+// @if jest || karma
 COPY test ./test
 // @endif
 
-// @if feat.cypress
+// @if cypress
 COPY cypress ./cypress
 // @endif
 
-// @if feat.protractor
+// @if protractor
 COPY e2e ./e2e
 // @endif
 
-// @if feat["cli-bundler"] && feat["dotnet-core"]
+// @if cli-bundler && dotnet-core
 COPY wwwroot ./wwwroot
 // @endif
 
-// @if feat.jest || feat.karma
+// @if jest || karma
 # RUN UNIT TESTS
 RUN au test
 // @endif
 
-// @if feat.cypress || feat.protractor
+// @if cypress || protractor
 # RUN E2E TESTS
 RUN npm run e2e:headless
 // @endif
@@ -97,23 +97,23 @@ FROM nginx:alpine as production-stage
 COPY nginx.conf /etc/nginx/nginx.conf
 WORKDIR /usr/share/nginx/html
 
-// @if feat.webpack && !feat["dotnet-core"]
+// @if webpack && !dotnet-core
 COPY --from=publish-stage /app/dist/ .
 // @endif
 
-// @if feat.webpack && feat["dotnet-core"]
+// @if webpack && dotnet-core
 COPY --from=publish-stage /app/wwwroot/dist/ .
 // @endif
 
-// @if feat["cli-bundler"] && feat["dotnet-core"]
+// @if cli-bundler && dotnet-core
 COPY --from=publish-stage /app/wwwroot/ .
 // @endif
 
-// @if feat["cli-bundler"] && !feat["dotnet-core"]
+// @if cli-bundler && !dotnet-core
 COPY --from=publish-stage /app/scripts/ ./scripts/
 COPY --from=publish-stage /app/index.html/ .
 // @endif
-// @if feat['scaffold-navigation'] && feat["cli-bundler"] && !feat["dotnet-core"]
+// @if scaffold-navigation && cli-bundler && !dotnet-core
 COPY --from=publish-stage /app/@fortawesome/ ./@fortawesome/
 // @endif
 

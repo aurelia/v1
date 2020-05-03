@@ -1,11 +1,11 @@
 {
   "devDependencies": {
-    // @if feat['dotnet-core']
+    // @if dotnet-core
     "aspnet-webpack": "",
     "webpack-hot-middleware": "",
     // @endif
 
-    // @if feat.babel
+    // @if babel
     "babel-eslint": "",
     "eslint": "",
     "babel-loader": "",
@@ -17,7 +17,7 @@
     "@babel/register": "",
     // @endif
 
-    // @if feat.typescript
+    // @if typescript
     "ts-loader": "",
     "ts-node": "",
     "@types/node": "",
@@ -26,25 +26,25 @@
     "typescript": "",
     // @endif
 
-    // @if feat.less
+    // @if less
     "less-loader": "",
     "less": "",
     // @endif
 
-    // @if feat['postcss-basic'] || feat['postcss-typical']
+    // @if postcss-basic || postcss-typical
     "postcss-loader": "",
     "autoprefixer": "",
     // @endif
-    // @if feat['postcss-typical']
+    // @if postcss-typical
     "cssnano": "",
     // @endif
 
-    // @if feat.sass
+    // @if sass
     "sass-loader": "",
     "sass": "",
     // @endif
 
-    // @if feat.stylus
+    // @if stylus
     "stylus-loader": "",
     "stylus": "",
     // @endif
@@ -74,11 +74,11 @@
     "build": "webpack --env.production --extractCss",
     "build:dev": "webpack --extractCss",
     "analyze": "webpack --env.production --analyze",
-    // @if feat['dotnet-core']
+    // @if dotnet-core
     "start": "webpack-dev-server --extractCss"
     // @endif
 
-    // @if feat.web
+    // @if web
     "start": "webpack-dev-server --extractCss"
     // @endif
   }

@@ -4,7 +4,7 @@
     "e2e:headless": "au protractor --start --headless"
   },
   "devDependencies": {
-    // @if feat.typescript
+    // @if typescript
     "ts-node": "",
     "@types/jasmine": "",
     // @endif

@@ -1,8 +1,8 @@
 import { NPM } from 'aurelia-cli';
-// @if feat.babel
+// @if babel
 import kill from 'tree-kill';
 // @endif
-// @if feat.typescript
+// @if typescript
 import * as kill from 'tree-kill';
 // @endif
 import { platform } from '../aurelia.json';

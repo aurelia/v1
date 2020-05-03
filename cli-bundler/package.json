@@ -1,15 +1,15 @@
 {
   "devDependencies": {
-    // @if feat.requirejs
+    // @if requirejs
     "requirejs": "",
     // @endif
-    // @if feat.alameda
+    // @if alameda
     "alameda": "",
     // @endif
-    // @if feat.requirejs || feat.alameda
+    // @if requirejs || alameda
     "text": "",
     // @endif
-    // @if feat.systemjs
+    // @if systemjs
     "systemjs": "",
     "systemjs-plugin-text": "",
     // @endif
@@ -17,7 +17,7 @@
     "babel-eslint": "",
     "gulp-eslint": "",
 
-    // @if feat.babel
+    // @if babel
     "@babel/plugin-proposal-decorators": "",
     "@babel/plugin-proposal-class-properties": "",
     "@babel/preset-env": "",
@@ -27,7 +27,7 @@
     "gulp-cache": "",
     // @endif
 
-    // @if feat.typescript
+    // @if typescript
     "gulp-typescript": "",
     "typescript": "",
     "@types/node": "",
@@ -35,28 +35,28 @@
     "@typescript-eslint/parser": "",
     // @endif
 
-    // @if feat.less
+    // @if less
     "gulp-less": "",
     // @endif
 
-    // @if feat['postcss-basic'] || feat['postcss-typical']
+    // @if postcss-basic || postcss-typical
     "gulp-postcss": "",
     "autoprefixer": "",
     // @endif
-    // @if feat['postcss-typical']
+    // @if postcss-typical
     "cssnano": "",
     "postcss-url": "",
     // @endif
 
-    // @if feat.sass
+    // @if sass
     "gulp-dart-sass": "",
     // @endif
 
-    // @if feat.stylus
+    // @if stylus
     "gulp-stylus": "",
     // @endif
 
-    // @if feat['htmlmin-min'] || feat['htmlmin-max']
+    // @if htmlmin-min || htmlmin-max
     "gulp-htmlmin": "",
     // @endif
 

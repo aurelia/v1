@@ -1,7 +1,7 @@
-// @if feat.karma
+// @if karma
 import {UpcaseValueConverter} from 'resources/value-converters/upcase';
 // @endif
-// @if feat.jest
+// @if jest
 import {UpcaseValueConverter} from '../../../src/value-converters/upcase';
 // @endif
 
