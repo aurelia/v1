@@ -4,7 +4,7 @@
 
 _Work In Progress_
 
-The scaffolding repo for Aurelia 1 used by the [makes](https://makes.js.org) tool to create new Aurelia 2 projects.
+The scaffolding repo for Aurelia 1 used by the [makes](https://makes.js.org) tool to create new Aurelia 1 projects.
 
 ## Create an Aurelia 1 project
 
