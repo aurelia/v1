@@ -1,0 +1,34 @@
+{
+  "name": "aurelia2-new",
+  "private": true,
+  "version": "0.2.0",
+  "description": "This package.json file is not needed by 'makes'. We use package.json to setup our tests and changelog.",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^3.8.1",
+    "cross-env": "^7.0.2",
+    "cross-spawn": "^7.0.2",
+    "del": "^5.1.0",
+    "glob": "^7.1.6",
+    "makes": "^1.3.1",
+    "npm-check-updates": "^4.1.2",
+    "puppeteer": "^3.0.2",
+    "semver": "^7.3.2",
+    "standard-changelog": "^2.0.21",
+    "vinyl": "^2.2.0"
+  },
+  "scripts": {
+    "check-upgrade": "node check-upgrade.js",
+    "test": "ava \"__test__/**/*\"",
+    "test:e2e": "ava --timeout 300000 -v e2e-test.js",
+    "preversion": "npm test",
+    "version": "standard-changelog && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags"
+  },
+  "ava": {
+    "files": [
+      "__test__/**/*",
+      "e2e-test.js"
+    ]
+  }
+}
