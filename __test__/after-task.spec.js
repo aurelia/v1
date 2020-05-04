@@ -108,7 +108,7 @@ test('"after" task installs deps, and prints summary', async t => {
 
   t.is(printOut,
     '\nNext time, you can try to create similar project in silent mode:\n' +
-    ' npx makes aurelia new-project-name -s a,b-c \n\n' +
+    ' npx makes aurelia/v1 new-project-name -s a,b-c \n\n' +
     'Get Started\n' +
     'cd my-app\n' +
     'npm start\n\n'
@@ -146,7 +146,7 @@ test('"after" task installs deps, and prints summary in here mode', async t => {
 
   t.is(printOut,
     '\nNext time, you can try to create similar project in silent mode:\n' +
-    ' npx makes aurelia new-project-name --here -s a,b-c \n\n' +
+    ' npx makes aurelia/v1 new-project-name --here -s a,b-c \n\n' +
     'Get Started\n' +
     'npm start\n\n'
   );
