@@ -164,6 +164,7 @@ module.exports = [
     }]
   },
   {
+    if: '!plugin',
     message: 'Which features do you want to scaffold into your project?',
     choices: [{
       value: 'scaffold-minimum',
