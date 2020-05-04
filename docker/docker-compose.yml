@@ -1,8 +1,8 @@
 version: "3.7"
 
 services:
-  /* @echo projectName */:
-    image: /* @echo projectName */:0.1.0
+  /* @echo name */:
+    image: /* @echo name */:0.1.0
     build:
       context: . # relative to docker-compose.yml
       dockerfile: Dockerfile

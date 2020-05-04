@@ -1,5 +1,5 @@
 {
-  "name": "/* @echo projectName */",
+  "name": "/* @echo name */",
   "type": "project:application",
   "paths": {
     "root": "src",
