@@ -81,25 +81,18 @@ function instructionsForSkippedFiles(properties, features, targetDir) {
         }
       });
 
-      if (!text) {
+      if (!all) {
         cb();
         return;
       }
 
       const instFileName = 'instructions.txt';
-      logger.warn('Manual changes are necessary:\n');
-      console.log(text + '\n');
-      logger.info(`If you would like to do this at a later time, we've written these instructions to a file called '${instFileName}' in the project directory for you.\n`);
-
-      const cwd = process.cwd();
-      const base = path.join(cwd, targetDir);
-      const instFile = new Vinyl({
-        cwd,
-        base,
-        path: path.join(base, instFileName),
-        contents: Buffer.from(text)
-      });
-      cb(null, instFile);
+      console.warn('Manual changes are necessary:\n');
+      console.log(all + '\n');
+      console.info(`If you would like to do this at a later time, we've written these instructions to a file called '${instFileName}' in the project directory for you.\n`);
+      // Avoid using Vinyl file, in order to have zero dependencies.
+      fs.writeFileSync(path.join(process.cwd(), targetDir, instFileName), all);
+      cb();
     }
   });
 }
