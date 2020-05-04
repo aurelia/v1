@@ -9,7 +9,7 @@ module.exports = [
   {
     message: 'Which bundler would you like to use?',
     choices: [
-      {value: 'webpack', title: 'Webpack', hint: 'A powerful and popular bundler for modern JavaScript apps.'},
+      {if: '!plugin', value: 'webpack', title: 'Webpack', hint: 'A powerful and popular bundler for modern JavaScript apps.'},
       {value: 'cli-bundler', title: "CLI's built-in bundler with an AMD module loader", hint: 'Provides similar capabilities but with much simpler configuration.'}
     ]
   },
