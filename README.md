@@ -1,6 +1,6 @@
 # Aurelia 1 scaffolding skeleton
 
-[![Build Status](https://travis-ci.com/aurelia/au1.svg?branch=master)](https://travis-ci.com/aurelia/au1)
+[![Build Status](https://travis-ci.com/aurelia/v1.svg?branch=master)](https://travis-ci.com/aurelia/v1)
 
 _Work In Progress_
 
@@ -12,10 +12,10 @@ First, ensure that you have Node.js v8.9.0 or above installed on your system. Ne
 a tool distributed as part of Node.js, we'll create a new Aurelia 1 app. At a command prompt, run the following command:
 
 ```bash
-npx makes aurelia/au1
+npx makes aurelia/v1
 ```
 
-This will cause `npx` to download the `makes` tool, along with the `aurelia/au1` scaffold from this repo, which it will use
+This will cause `npx` to download the `makes` tool, along with the `aurelia/v1` scaffold from this repo, which it will use
 to guide you through creating your project.
 
 ## Aurelia CLI
@@ -26,7 +26,7 @@ Aurelia CLI v2.0.0+ uses this repo to create new user app. When users run
 au1 new
 ```
 
-It calls `npx makes aurelia/au1` to perform the scaffolding.
+It calls `npx makes aurelia/v1` to perform the scaffolding.
 
 ## Status
 
