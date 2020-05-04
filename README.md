@@ -1,6 +1,4 @@
-# Aurelia 1 scaffolding skeleton
-
-[![Build Status](https://travis-ci.com/aurelia/v1.svg?branch=master)](https://travis-ci.com/aurelia/v1)
+# Aurelia 1 scaffolding skeleton ![CI](https://github.com/aurelia/v1/workflows/CI/badge.svg)
 
 _Work In Progress_ (Note ready. Converting aurelia-cli inner skeleton to here...)
 
