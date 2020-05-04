@@ -1,18 +1,34 @@
 const test = require('ava');
 const before = require('../before');
 
-test('"before" task does nothing in unattended mode', async t => {
+test.serial('"before" task does nothing in unattended mode', async t => {
   const prompts = {
     select() {
       t.fail('should not call me');
     }
   };
 
-  const result = await before({unattended: true, prompts});
+  const result = await before({unattended: true, prompts, preselectedFeatures: ['a', 'b']});
   t.is(result, undefined);
 });
 
-test('"before" task can select default-esnext preset', async t => {
+test.serial('"before" task adds "plugin" to preselected features in unattended mode with --plugin', async t => {
+  const prompts = {
+    select() {
+      t.fail('should not call me');
+    }
+  };
+
+  const oldArgv = process.argv;
+  process.argv = ['node', 'makes', 'aurelia/au1', '--plugin', '-s', 'a,b'];
+  const result = await before({unattended: true, prompts, preselectedFeatures: ['a', 'b']});
+  t.deepEqual(result, {
+    preselectedFeatures: ['a', 'b', 'plugin']
+  });
+  process.argv = oldArgv;
+});
+
+test.serial('"before" task can select default-esnext preset', async t => {
   const prompts = {
     select(opts) {
       t.truthy(opts.choices.find(c => c.value === 'default-esnext'));
@@ -27,7 +43,7 @@ test('"before" task can select default-esnext preset', async t => {
   });
 });
 
-test('"before" task can select default-typescript preset', async t => {
+test.serial('"before" task can select default-typescript preset', async t => {
   const prompts = {
     select(opts) {
       t.truthy(opts.choices.find(c => c.value === 'default-typescript'));
@@ -44,7 +60,7 @@ test('"before" task can select default-typescript preset', async t => {
   });
 });
 
-test('"before" task can select default-esnext-plugin preset', async t => {
+test.serial('"before" task can select default-esnext-plugin preset', async t => {
   const prompts = {
     select(opts) {
       t.truthy(opts.choices.find(c => c.value === 'default-esnext-plugin'));
@@ -59,7 +75,7 @@ test('"before" task can select default-esnext-plugin preset', async t => {
   });
 });
 
-test('"before" task can select default-typescript-plugin preset', async t => {
+test.serial('"before" task can select default-typescript-plugin preset', async t => {
   const prompts = {
     select(opts) {
       t.truthy(opts.choices.find(c => c.value === 'default-typescript-plugin'));
@@ -76,7 +92,7 @@ test('"before" task can select default-typescript-plugin preset', async t => {
   });
 });
 
-test('"before" task can select no preset', async t => {
+test.serial('"before" task can select no preset', async t => {
   const prompts = {
     select(opts) {
       t.truthy(opts.choices.find(c => c.value === undefined));
@@ -90,7 +106,7 @@ test('"before" task can select no preset', async t => {
   t.is(result, undefined);
 });
 
-test('"before" task cannot select default-esnext preset with --plugin', async t => {
+test.serial('"before" task cannot select default-esnext preset with --plugin', async t => {
   const prompts = {
     select(opts) {
       t.falsy(opts.choices.find(c => c.value === 'default-esnext'));
@@ -100,11 +116,11 @@ test('"before" task cannot select default-esnext preset with --plugin', async t 
 
   const oldArgv = process.argv;
   process.argv = ['node', 'makes', 'aurelia/au1', '--plugin'];
-  const result = await before({unattended: false, prompts});
+  await before({unattended: false, prompts});
   process.argv = oldArgv;
 });
 
-test('"before" task cannot select default-typescript preset with --plugin', async t => {
+test.serial('"before" task cannot select default-typescript preset with --plugin', async t => {
   const prompts = {
     select(opts) {
       t.falsy(opts.choices.find(c => c.value === 'default-typescript'));
@@ -114,11 +130,11 @@ test('"before" task cannot select default-typescript preset with --plugin', asyn
 
   const oldArgv = process.argv;
   process.argv = ['node', 'makes', 'aurelia/au1', '--plugin'];
-  const result = await before({unattended: false, prompts});
+  await before({unattended: false, prompts});
   process.argv = oldArgv;
 });
 
-test('"before" task can select default-esnext-plugin preset with --plugin', async t => {
+test.serial('"before" task can select default-esnext-plugin preset with --plugin', async t => {
   const prompts = {
     select(opts) {
       t.truthy(opts.choices.find(c => c.value === 'default-esnext-plugin'));
@@ -138,7 +154,7 @@ test('"before" task can select default-esnext-plugin preset with --plugin', asyn
   process.argv = oldArgv;
 });
 
-test('"before" task can select default-typescript-plugin preset with --plugin', async t => {
+test.serial('"before" task can select default-typescript-plugin preset with --plugin', async t => {
   const prompts = {
     select(opts) {
       t.truthy(opts.choices.find(c => c.value === 'default-typescript-plugin'));
@@ -159,7 +175,7 @@ test('"before" task can select default-typescript-plugin preset with --plugin', 
   process.argv = oldArgv;
 });
 
-test('"before" task can not select no preset with --plugin', async t => {
+test.serial('"before" task can not select no preset with --plugin', async t => {
   const prompts = {
     select(opts) {
       t.falsy(opts.choices.find(c => c.value === undefined));
@@ -171,12 +187,11 @@ test('"before" task can not select no preset with --plugin', async t => {
 
   const oldArgv = process.argv;
   process.argv = ['node', 'makes', 'aurelia/au1', '-p'];
-
-  const result = await before({unattended: false, prompts});
+  await before({unattended: false, prompts});
   process.argv = oldArgv;
 });
 
-test('"before" task can select custom plugin with --plugin', async t => {
+test.serial('"before" task can select custom plugin with --plugin', async t => {
   const prompts = {
     select(opts) {
       t.truthy(opts.choices.find(c => c.value === 'custom-plugin'));
@@ -196,4 +211,3 @@ test('"before" task can select custom plugin with --plugin', async t => {
   });
   process.argv = oldArgv;
 });
-
