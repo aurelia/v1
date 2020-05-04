@@ -6,7 +6,7 @@ import rename from 'gulp-rename';
 import cache from 'gulp-cache';
 import project from '../aurelia.json';
 import fs from 'fs';
-import through from 'through2';
+import {Transform} from 'stream';
 import { CLIOptions, build, Configuration } from 'aurelia-cli';
 // @if plugin
 import * as gulpSourcemaps from 'gulp-sourcemaps';
@@ -21,11 +21,14 @@ function configureEnvironment() {
       since: gulp.lastRun(configureEnvironment)
     })
     .pipe(rename('environment.js'))
-    .pipe(through.obj(function (file, _, cb) {
-      // https://github.com/aurelia/cli/issues/1031
-      fs.unlink(`${project.paths.root}/${file.relative}`, function () {
-        cb(null, file);
-      });
+    .pipe(new Transform({
+      objectMode: true,
+      transform: function (file, _, cb) {
+        // https://github.com/aurelia/cli/issues/1031
+        fs.unlink(`${project.paths.root}/${file.relative}`, function () {
+          cb(null, file);
+        });
+      }
     }))
     .pipe(gulp.dest(project.paths.root));
 }
