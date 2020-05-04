@@ -7,7 +7,6 @@ const PRESETS = {
   'default-typescript-plugin': ['plugin', 'typescript', 'jest', 'vscode'],
 };
 
-
 module.exports = async function({unattended, prompts, preselectedFeatures}) {
   // Support "au new --plugin"
   const argv = process.argv.slice(2);
