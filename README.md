@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/aurelia/v1.svg?branch=master)](https://travis-ci.com/aurelia/v1)
 
-_Work In Progress_
+_Work In Progress_ (Note ready. Converting aurelia-cli inner skeleton to here...)
 
 The scaffolding repo for Aurelia 1 used by the [makes](https://makes.js.org) tool to create new Aurelia 1 projects.
 
@@ -27,11 +27,6 @@ au1 new
 ```
 
 It calls `npx makes aurelia/v1` to perform the scaffolding.
-
-## Status
-
-Note ready. Converting aurelia-cli inner skeleton to here...
-
 
 ## License
 
