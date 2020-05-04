@@ -39,11 +39,12 @@ async function checkFile(file) {
         upgrade => {
           Object.keys(upgrade).forEach(name => {
             const version = upgrade[name];
-            const major = semver.minVersion(version).major;
-            if (major > semver.minVersion(deps[name]).major) {
+            // const major = semver.minVersion(version).major;
+            console.log(`${name} ${deps[name]} ==> ${version}`);
+            // if (major > semver.minVersion(deps[name]).major) {
               // Only highlight major upgrade
-              console.log(`${name} ${deps[name]} ==> ^${major}.0.0 (latest is ${version})`);
-            }
+              // console.log(`${name} ${deps[name]} ==> ^${major}.0.0 (latest is ${version})`);
+            // }
           });
           resolve();
         },

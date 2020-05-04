@@ -4,7 +4,7 @@
     "requirejs": "^2.3.6",
     // @endif
     // @if alameda
-    "alameda": "^1.2.1",
+    "alameda": "^1.4.0",
     // @endif
     // @if requirejs || alameda
     "text": "requirejs/text",
@@ -29,7 +29,7 @@
 
     // @if postcss-basic || postcss-typical
     "gulp-postcss": "^8.0.0",
-    "autoprefixer": "^9.7.4",
+    "autoprefixer": "^9.7.6",
     // @endif
     // @if postcss-typical
     "cssnano": "^4.1.10",
@@ -37,7 +37,7 @@
     // @endif
 
     // @if sass
-    "gulp-dart-sass": "^1.0.0",
+    "gulp-dart-sass": "^1.0.2",
     // @endif
 
     // @if stylus
