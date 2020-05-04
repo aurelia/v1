@@ -4,6 +4,8 @@ _Work In Progress_ (Note ready. Converting aurelia-cli inner skeleton to here...
 
 The scaffolding repo for Aurelia 1 used by the [makes](https://makes.js.org) tool to create new Aurelia 1 projects.
 
+Extracted from original aurelia-cli skeleton folder.
+
 ## Create an Aurelia 1 project
 
 First, ensure that you have Node.js v8.9.0 or above installed on your system. Next, using [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b),
