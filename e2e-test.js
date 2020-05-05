@@ -288,8 +288,11 @@ skeletons.forEach((features, i) => {
         t.pass(message);
 
         try {
-          console.log('-- take screenshot');
-          await takeScreenshot(url, path.join(folder, appName + '.png'));
+          if (!process.env.GITHUB_ACTIONS) {
+            // FIXME: something wrong with github actions + puppeteer
+            console.log('-- take screenshot');
+            await takeScreenshot(url, path.join(folder, appName + '.png'));
+          }
 
           console.log('-- npm run e2e --if-present');
           await run(`npm run e2e --if-present`);
@@ -309,8 +312,8 @@ skeletons.forEach((features, i) => {
       }
     );
 
-    // console.log('-- remove folder ' + appName);
-    // process.chdir(folder);
-    // await del(appFolder);
+    console.log('-- remove folder ' + appName);
+    process.chdir(folder);
+    await del(appFolder);
   });
 });
