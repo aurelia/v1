@@ -35,5 +35,13 @@ node_modules
 /src/environment.js
 /src/environment.ts
 /dist
+// @if jest
 /test/coverage-jest
+// @endif
+// @if karma
 /test/coverage-karma
+// @endif
+// @if cypress
+/cypress/videos
+/cypress/screenshots
+// @endif
