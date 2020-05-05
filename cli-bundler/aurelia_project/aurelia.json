@@ -147,6 +147,9 @@
       {
         "name": "vendor-bundle.js",
         "prepend": [
+          // @if scaffold-navigation
+          "node_modules/whatwg-fetch/dist/fetch.umd.js",
+          // @endif
           "node_modules/promise-polyfill/dist/polyfill.min.js",
           // @if requirejs
           "node_modules/requirejs/require.js"
@@ -179,6 +182,16 @@
         ]
       }
     ],
+    // @if scaffold-navigation
+    "copyFiles": {
+      // @if web
+      "node_modules/@fortawesome/fontawesome-free/webfonts/*": "@fortawesome/fontawesome-free/webfonts",
+      // @endif
+      // @if dotnet-core
+      "node_modules/@fortawesome/fontawesome-free/webfonts/*": "wwwroot/@fortawesome/fontawesome-free/webfonts",
+      // @endif
+    },
+    // @endif
     "loader": {
       // @if requirejs || alameda
       "type": "require",
