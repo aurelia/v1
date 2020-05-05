@@ -295,7 +295,7 @@ skeletons.forEach((features, i) => {
           await run(`npm run e2e --if-present`);
           kill();
         } catch (e) {
-          t.fail(e);
+          t.fail(e.message);
           kill();
         }
       },

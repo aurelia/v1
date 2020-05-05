@@ -26,12 +26,14 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
       - run: npm install
-      - run: xvfb-run -a npm run test:e2e
+      - run: xvfb-run -a -s '-screen 0 1024x768x24' npm run test:e2e
         if: runner.os == 'Linux'
         env:
           TARGET_FEATURES: ${{ matrix.target_features }}
+          TARGET_CLI: aurelia/cli#rm-skeleton
       - run: npm run test:e2e
         if: runner.os != 'Linux'
         env:
           TARGET_FEATURES: ${{ matrix.target_features }}
+          TARGET_CLI: aurelia/cli#rm-skeleton
 
