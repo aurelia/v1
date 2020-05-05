@@ -79,120 +79,116 @@ async function takeScreenshot(url, filePath) {
   await browser.close();
 }
 
+const targetCLI = (process.env.TARGET_CLI || null);
+
 const targetFeatures = (process.env.TARGET_FEATURES || '').toLowerCase().split(',').filter(p => p);
 if (targetFeatures.length) {
   console.log('Target features: ', targetFeatures);
 }
-const bundlers = ['webpack', 'cli-bundler'];
-const transpilers = ['babel', 'typescript'];
-const cssProcessors = ['css', 'sass', 'less', 'stylus'];
-const testFrameworks = ['jest', 'karma'];
-const e2eFrameworks = ['cypress'];
+
+function patchPackageJson(appFolder, targetCLI) {
+  if (!targetCLI) return;
+  const packageJsonPath = path.join(appFolder, 'package.json');
+  const packageJson = fs.readFileSync(packageJsonPath, 'utf8')
+    .replace(/"aurelia-cli": "(.+?)"/, '"aurelia-cli": "' + targetCLI + '"');
+  console.log('-- patch package.json to use "aurelia-cli": "' + targetCLI + '"');
+  fs.writeFileSync(packageJsonPath, packageJson);
+}
 
 function getServerRegex(features) {
   if (features.includes('webpack')) return /Project is running at (\S+)/;
   return /Application Available At: (\S+)/;
 }
 
-const skeletons = [];
-bundlers.forEach(bundler => {
-  transpilers.forEach(transpiler => {
-    cssProcessors.forEach(cssProcessor => {
-      testFrameworks.forEach(testFramework => {
-        e2eFrameworks.forEach(e2eFramework => {
-          const features = [bundler, transpiler, cssMode, cssProcessor, testFramework, e2eFramework].filter(p => p);
-          if (targetFeatures.length === 0 || targetFeatures.every(f => features.includes(f))) {
-            skeletons.push(features);
-          }
-        })
-      });
-    });
-  });
-});
+// The 72 skeletons copied from aurelia-cli.
+// This does not cover all possible combinations.
+const skeletons = [
+  'cli-bundler sass htmlmin-min jest dotnet-core protractor scaffold-navigation',
+  'cli-bundler less htmlmin-min jest protractor',
+  'cli-bundler karma dotnet-core protractor',
+  'cli-bundler karma postcss-typical protractor vscode',
+  'cli-bundler typescript jest dotnet-core protractor scaffold-navigation',
+  'cli-bundler htmlmin-max typescript jest protractor',
+  'cli-bundler typescript karma dotnet-core protractor',
+  'cli-bundler typescript karma protractor scaffold-navigation',
 
-// const projectDefs = [
-//   'cli-bundler sass htmlmin-min jest dotnet-core protractor scaffold-navigation',
-//   'cli-bundler less htmlmin-min jest protractor',
-//   'cli-bundler karma dotnet-core protractor',
-//   'cli-bundler karma postcss-typical protractor vscode',
-//   'cli-bundler typescript jest dotnet-core protractor scaffold-navigation',
-//   'cli-bundler htmlmin-max typescript jest protractor',
-//   'cli-bundler typescript karma dotnet-core protractor',
-//   'cli-bundler typescript karma protractor scaffold-navigation',
+  'cli-bundler stylus jest dotnet-core cypress scaffold-navigation',
+  'cli-bundler htmlmin-max jest cypress',
+  'cli-bundler htmlmin-min karma dotnet-core cypress scaffold-navigation',
+  'cli-bundler less htmlmin-min postcss-typical postcss-basic karma cypress scaffold-navigation',
+  'cli-bundler typescript jest dotnet-core cypress',
+  'cli-bundler typescript jest cypress',
+  'cli-bundler typescript karma dotnet-core cypress scaffold-navigation vscode',
+  'cli-bundler sass htmlmin-max typescript karma cypress',
 
-//   'cli-bundler stylus jest dotnet-core cypress scaffold-navigation',
-//   'cli-bundler htmlmin-max jest cypress',
-//   'cli-bundler htmlmin-min karma dotnet-core cypress scaffold-navigation',
-//   'cli-bundler less htmlmin-min postcss-typical postcss-basic karma cypress scaffold-navigation',
-//   'cli-bundler typescript jest dotnet-core cypress',
-//   'cli-bundler typescript jest cypress',
-//   'cli-bundler typescript karma dotnet-core cypress scaffold-navigation vscode',
-//   'cli-bundler sass htmlmin-max typescript karma cypress',
+  'cli-bundler alameda jest dotnet-core protractor',
+  'cli-bundler alameda jest protractor scaffold-navigation',
+  'cli-bundler alameda htmlmin-max karma dotnet-core protractor',
+  'cli-bundler alameda karma protractor',
+  'cli-bundler alameda htmlmin-min typescript jest dotnet-core protractor',
+  'cli-bundler alameda htmlmin-min typescript jest protractor',
+  'cli-bundler alameda typescript postcss-basic karma dotnet-core protractor',
+  'cli-bundler alameda typescript karma protractor',
 
-//   'cli-bundler alameda jest dotnet-core protractor',
-//   'cli-bundler alameda jest protractor scaffold-navigation',
-//   'cli-bundler alameda htmlmin-max karma dotnet-core protractor',
-//   'cli-bundler alameda karma protractor',
-//   'cli-bundler alameda htmlmin-min typescript jest dotnet-core protractor',
-//   'cli-bundler alameda htmlmin-min typescript jest protractor',
-//   'cli-bundler alameda typescript postcss-basic karma dotnet-core protractor',
-//   'cli-bundler alameda typescript karma protractor',
+  'cli-bundler alameda jest dotnet-core cypress',
+  'cli-bundler alameda jest cypress',
+  'cli-bundler alameda karma dotnet-core cypress',
+  'cli-bundler alameda karma cypress scaffold-navigation',
+  'cli-bundler alameda stylus typescript jest dotnet-core cypress',
+  'cli-bundler alameda less postcss-basic typescript jest cypress',
+  'cli-bundler alameda htmlmin-min typescript karma dotnet-core cypress',
+  'cli-bundler alameda htmlmin-min typescript karma cypress',
 
-//   'cli-bundler alameda jest dotnet-core cypress',
-//   'cli-bundler alameda jest cypress',
-//   'cli-bundler alameda karma dotnet-core cypress',
-//   'cli-bundler alameda karma cypress scaffold-navigation',
-//   'cli-bundler alameda stylus typescript jest dotnet-core cypress',
-//   'cli-bundler alameda less postcss-basic typescript jest cypress',
-//   'cli-bundler alameda htmlmin-min typescript karma dotnet-core cypress',
-//   'cli-bundler alameda htmlmin-min typescript karma cypress',
+  'cli-bundler htmlmin-max systemjs jest dotnet-core protractor',
+  'cli-bundler systemjs jest protractor',
+  'cli-bundler systemjs karma dotnet-core protractor',
+  'cli-bundler systemjs htmlmin-max karma protractor',
+  'cli-bundler systemjs sass typescript jest dotnet-core protractor scaffold-navigation',
+  'cli-bundler systemjs typescript jest protractor',
+  'cli-bundler systemjs typescript karma dotnet-core protractor',
+  'cli-bundler systemjs stylus typescript karma protractor',
 
-//   'cli-bundler htmlmin-max systemjs jest dotnet-core protractor',
-//   'cli-bundler systemjs jest protractor',
-//   'cli-bundler systemjs karma dotnet-core protractor',
-//   'cli-bundler systemjs htmlmin-max karma protractor',
-//   'cli-bundler systemjs sass typescript jest dotnet-core protractor scaffold-navigation',
-//   'cli-bundler systemjs typescript jest protractor',
-//   'cli-bundler systemjs typescript karma dotnet-core protractor',
-//   'cli-bundler systemjs stylus typescript karma protractor',
+  'cli-bundler systemjs jest dotnet-core cypress',
+  'cli-bundler systemjs jest cypress',
+  'cli-bundler systemjs stylus karma dotnet-core cypress scaffold-navigation',
+  'cli-bundler systemjs sass karma postcss-typical cypress',
+  'cli-bundler systemjs typescript jest dotnet-core cypress',
+  'cli-bundler systemjs htmlmin-max typescript jest cypress',
+  'cli-bundler systemjs htmlmin-max typescript karma dotnet-core cypress',
+  'cli-bundler systemjs typescript karma cypress',
 
-//   'cli-bundler systemjs jest dotnet-core cypress',
-//   'cli-bundler systemjs jest cypress',
-//   'cli-bundler systemjs stylus karma dotnet-core cypress scaffold-navigation',
-//   'cli-bundler systemjs sass karma postcss-typical cypress',
-//   'cli-bundler systemjs typescript jest dotnet-core cypress',
-//   'cli-bundler systemjs htmlmin-max typescript jest cypress',
-//   'cli-bundler systemjs htmlmin-max typescript karma dotnet-core cypress',
-//   'cli-bundler systemjs typescript karma cypress',
+  'webpack htmlmin-min jest dotnet-core protractor vscode',
+  'webpack http2 less jest protractor scaffold-navigation',
+  'webpack htmlmin-max karma dotnet-core protractor',
+  'webpack http2 karma postcss-typical protractor',
+  'webpack sass htmlmin-min typescript jest dotnet-core protractor',
+  'webpack typescript postcss-basic jest protractor',
+  'webpack stylus htmlmin-max typescript karma dotnet-core protractor scaffold-navigation',
+  'webpack less typescript karma protractor',
 
-//   'webpack htmlmin-min jest dotnet-core protractor vscode',
-//   'webpack http2 less jest protractor scaffold-navigation',
-//   'webpack htmlmin-max karma dotnet-core protractor',
-//   'webpack http2 karma postcss-typical protractor',
-//   'webpack sass htmlmin-min typescript jest dotnet-core protractor',
-//   'webpack typescript postcss-basic jest protractor',
-//   'webpack stylus htmlmin-max typescript karma dotnet-core protractor scaffold-navigation',
-//   'webpack less typescript karma protractor',
+  'webpack stylus jest postcss-basic dotnet-core cypress',
+  'webpack htmlmin-max jest cypress',
+  'webpack karma dotnet-core cypress scaffold-navigation',
+  'webpack htmlmin-min karma cypress',
+  'webpack typescript jest dotnet-core cypress',
+  'webpack http2 htmlmin-max typescript jest cypress scaffold-navigation',
+  'webpack http2 sass typescript postcss-typical karma dotnet-core cypress scaffold-navigation vscode',
+  'webpack htmlmin-min typescript karma cypress',
 
-//   'webpack stylus jest postcss-basic dotnet-core cypress',
-//   'webpack htmlmin-max jest cypress',
-//   'webpack karma dotnet-core cypress scaffold-navigation',
-//   'webpack htmlmin-min karma cypress',
-//   'webpack typescript jest dotnet-core cypress',
-//   'webpack http2 htmlmin-max typescript jest cypress scaffold-navigation',
-//   'webpack http2 sass typescript postcss-typical karma dotnet-core cypress scaffold-navigation vscode',
-//   'webpack htmlmin-min typescript karma cypress',
+  'plugin stylus htmlmin-min jest',
+  'plugin karma postcss-typical vscode',
+  'plugin htmlmin-max typescript jest',
+  'plugin typescript karma plugin-scaffold-basic',
 
-//   'plugin stylus htmlmin-min jest',
-//   'plugin karma postcss-typical vscode',
-//   'plugin htmlmin-max typescript jest',
-//   'plugin typescript karma plugin-scaffold-basic',
-
-//   'plugin htmlmin-max jest',
-//   'plugin less htmlmin-min postcss-typical postcss-basic karma plugin-scaffold-basic',
-//   'plugin typescript jest',
-//   'plugin sass htmlmin-max typescript karma'
-// ];
+  'plugin htmlmin-max jest',
+  'plugin less htmlmin-min postcss-typical postcss-basic karma plugin-scaffold-basic',
+  'plugin typescript jest',
+  'plugin sass htmlmin-max typescript karma'
+]
+.map(s => s.split(' '))
+.filter(features =>
+  targetFeatures.length === 0 || targetFeatures.every(f => features.includes(f))
+);
 
 skeletons.forEach((features, i) => {
   const appName = features.join('-');
@@ -211,8 +207,10 @@ skeletons.forEach((features, i) => {
     t.pass('made skeleton');
     process.chdir(appFolder);
 
-    console.log('-- yarn install');
-    await run('yarn install');
+    patchPackageJson(appFolder, targetCLI);
+
+    console.log('-- yarn');
+    await run('yarn');
     t.pass('installed deps');
 
     if (hasUnitTests) {
@@ -229,10 +227,6 @@ skeletons.forEach((features, i) => {
     );
     t.pass('made dev build');
 
-    const distPath = path.join(appFolder, 'dist');
-    const compiledFiles = fs.readdirSync(distPath);
-    t.truthy(compiledFiles.length);
-
     console.log('-- npm start');
     await run('npm start',
       async (data, kill) => {
@@ -247,8 +241,8 @@ skeletons.forEach((features, i) => {
           console.log('-- take screenshot');
           await takeScreenshot(url, path.join(folder, appName + '.png'));
 
-          console.log('-- npm run test:e2e');
-          await run(`npm run test:e2e`);
+          console.log('-- npm run e2e --if-present');
+          await run(`npm run e2e --if-present`);
           kill();
         } catch (e) {
           t.fail(e);
