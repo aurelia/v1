@@ -5,6 +5,7 @@ const HOST = CLIOptions.getFlagValue('host') || aureliaConfig.platform.host;
 
 module.exports = {
   config: {
-    baseUrl: `http://${HOST}:${PORT}`
+    baseUrl: `http://${HOST}:${PORT}`,
+    video: false
   }
 };
