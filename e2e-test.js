@@ -288,11 +288,10 @@ skeletons.forEach((features, i) => {
         t.pass(message);
 
         try {
-          // if (!process.env.GITHUB_ACTIONS) {
-            // FIXME: something wrong with github actions + puppeteer
+          if (!process.env.GITHUB_ACTIONS) {
             console.log('-- take screenshot');
             await takeScreenshot(url, path.join(folder, appName + '.png'));
-          // }
+          }
 
           console.log('-- npm run e2e --if-present');
           await run(`npm run e2e --if-present`);
