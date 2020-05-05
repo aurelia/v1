@@ -219,6 +219,55 @@ skeletons.forEach((features, i) => {
       t.pass('finished unit tests');
     }
 
+    console.log('-- npx au generate attribute NewThing');
+    await run('npx au generate attribute NewThing', null,
+      (data, kill) => {
+        t.fail('au generate attribute failed: ' + data.toString());
+      }
+    );
+
+    console.log('-- npx au generate component NewThing .');
+    await run('npx au generate component NewThing .', null,
+      (data, kill) => {
+        t.fail('au generate component failed: ' + data.toString());
+      }
+    );
+
+    console.log('-- npx au generate element NewThing');
+    await run('npx au generate element NewThing', null,
+      (data, kill) => {
+        t.fail('au generate element failed: ' + data.toString());
+      }
+    );
+
+    console.log('-- npx au generate value-converter NewThing');
+    await run('npx au generate value-converter NewThing', null,
+      (data, kill) => {
+        t.fail('au generate value-converter failed: ' + data.toString());
+      }
+    );
+
+    console.log('-- npx au generate binding-behavior NewThing');
+    await run('npx au generate binding-behavior NewThing', null,
+      (data, kill) => {
+        t.fail('au generate binding-behavior failed: ' + data.toString());
+      }
+    );
+
+    console.log('-- npx au generate task NewThing');
+    await run('npx au generate task NewThing', null,
+      (data, kill) => {
+        t.fail('au generate task failed: ' + data.toString());
+      }
+    );
+
+    console.log('-- npx au generate generator NewThing');
+    await run('npx au generate generator NewThing', null,
+      (data, kill) => {
+        t.fail('au generate generator failed: ' + data.toString());
+      }
+    );
+
     console.log('-- npm run build');
     await run('npm run build', null,
       (data, kill) => {

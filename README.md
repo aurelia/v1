@@ -28,6 +28,30 @@ au1 new
 
 It calls `npx makes aurelia/v1` to perform the scaffolding.
 
+## Test
+
+Unit tests for various "makes" files.
+
+```bash
+npm test
+```
+
+E2e tests for skeletons. Run 72 skeletons, very slow.
+
+```bash
+npm run test:e2e
+```
+
+Better to run a subset.
+```bash
+npx cross-env TARGET_FEATURES=webpack,babel npm run test:e2e
+```
+
+To test with an aurelia-cli master/branch/tag/commit.
+```bash
+npx cross-env TARGET_FEATURES=webpack,babel TARGET_CLI=aurelia/cli#branch npm run test:e2e
+```
+
 ## License
 
 MIT.
