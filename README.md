@@ -1,4 +1,6 @@
-# Aurelia 1 scaffolding skeleton ![CI](https://github.com/aurelia/v1/workflows/CI/badge.svg)
+# Aurelia 1 scaffolding skeleton
+
+![CI](https://github.com/aurelia/v1/workflows/CI/badge.svg) ![E2E](https://github.com/aurelia/v1/workflows/E2E/badge.svg)
 
 _Work In Progress_ (Note ready. Converting aurelia-cli inner skeleton to here...)
 
