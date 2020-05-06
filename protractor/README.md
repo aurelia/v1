@@ -6,8 +6,6 @@ First, run `au run` and keep it running.
 
 Then run `au protractor`.
 
-To perform a test-run in interactive mode, do `au protractor`.
-
 To ask the `protractor` to start the application first and then start testing: `au protractor --headless --start`
 
 The two following flags are useful when using `--start` flag:

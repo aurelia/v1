@@ -53,6 +53,7 @@ function run(command, dataCB, errorCB) {
       process.stdout.write(data);
       if (dataCB) {
         dataCB(data, () => {
+          console.log(`-- kill "${command}"`);
           killProc(proc);
           // resolve()
         });
@@ -62,6 +63,7 @@ function run(command, dataCB, errorCB) {
       process.stderr.write(data);
       if (errorCB) {
         errorCB(data, () => {
+          console.log(`-- kill "${command}"`);
           // process.stderr.write(data);
           killProc(proc);
           // resolve();
