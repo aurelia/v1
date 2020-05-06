@@ -22,14 +22,11 @@ jobs:
           - windows-latest
           - macOS-latest
         target_features:
-          - webpack,babel
-          - webpack,typescript
+          - webpack
           - requirejs,babel
           - requirejs,typescript
-          - systemjs,babel
-          - systemjs,typescript
-          - alameda,babel
-          - alameda,typescript
+          - systemjs
+          - alameda
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node_version }}
