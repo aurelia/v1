@@ -196,7 +196,6 @@ skeletons.forEach((features, i) => {
   const appFolder = path.join(folder, appName);
   const title = `App: ${i + 1}/${skeletons.length} ${appName}`;
   const serverRegex = getServerRegex(features);
-  const hasUnitTests = !features.includes('no-unit-tests');
 
   test.serial(title, async t => {
     console.log(title);
@@ -214,11 +213,9 @@ skeletons.forEach((features, i) => {
     await run('yarn');
     t.pass('installed deps');
 
-    if (hasUnitTests) {
-      console.log('-- npm test');
-      await run('npm test');
-      t.pass('finished unit tests');
-    }
+    console.log('-- npm test');
+    await run('npm test');
+    t.pass('finished unit tests');
 
     console.log('-- npx au generate attribute NewThing');
     await run('npx au generate attribute NewThing', null,
@@ -226,6 +223,7 @@ skeletons.forEach((features, i) => {
         t.fail('au generate attribute failed: ' + data.toString());
       }
     );
+    t.pass('generated attribute');
 
     console.log('-- npx au generate component NewThing .');
     await run('npx au generate component NewThing .', null,
@@ -233,6 +231,7 @@ skeletons.forEach((features, i) => {
         t.fail('au generate component failed: ' + data.toString());
       }
     );
+    t.pass('generated component');
 
     console.log('-- npx au generate element NewThing');
     await run('npx au generate element NewThing', null,
@@ -240,6 +239,7 @@ skeletons.forEach((features, i) => {
         t.fail('au generate element failed: ' + data.toString());
       }
     );
+    t.pass('generated element');
 
     console.log('-- npx au generate value-converter NewThing');
     await run('npx au generate value-converter NewThing', null,
@@ -247,6 +247,7 @@ skeletons.forEach((features, i) => {
         t.fail('au generate value-converter failed: ' + data.toString());
       }
     );
+    t.pass('generated value-converter');
 
     console.log('-- npx au generate binding-behavior NewThing');
     await run('npx au generate binding-behavior NewThing', null,
@@ -254,6 +255,7 @@ skeletons.forEach((features, i) => {
         t.fail('au generate binding-behavior failed: ' + data.toString());
       }
     );
+    t.pass('generated binding-behavior');
 
     console.log('-- npx au generate task NewThing');
     await run('npx au generate task NewThing', null,
@@ -261,6 +263,7 @@ skeletons.forEach((features, i) => {
         t.fail('au generate task failed: ' + data.toString());
       }
     );
+    t.pass('generated task');
 
     console.log('-- npx au generate generator NewThing');
     await run('npx au generate generator NewThing', null,
@@ -268,6 +271,7 @@ skeletons.forEach((features, i) => {
         t.fail('au generate generator failed: ' + data.toString());
       }
     );
+    t.pass('generated generator');
 
     console.log('-- npm run build');
     await run('npm run build', null,
