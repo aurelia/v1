@@ -19,6 +19,18 @@ console.log('-- cleanup ' + folder);
 del.sync(folder);
 fs.mkdirSync(folder);
 
+// Somehow taskkill on windows would not send SIGTERM signal to proc,
+// The proc killed by taskkill got null signal.
+const win32Killed = new Set();
+function killProc(proc) {
+  if (process.platform === 'win32') {
+    win32Killed.add(proc.pid);
+  }
+  proc.stdin.pause();
+  kill(proc.pid);
+}
+
+
 function run(command, dataCB, errorCB) {
   const [cmd, ...args] = command.split(' ');
   return new Promise((resolve, reject) => {
@@ -30,7 +42,7 @@ function run(command, dataCB, errorCB) {
     env.NODE_ENV = 'development';
     const proc = spawn(cmd, args, {env});
     proc.on('exit', (code, signal) => {
-      if (code && signal !== 'SIGTERM') {
+      if (code && signal !== 'SIGTERM' && !win32Killed.has(proc.pid)) {
         reject(new Error(cmd + ' ' + args.join(' ') + ' process exit code: ' + code + ' signal: ' + signal));
       } else {
         resolve();
@@ -42,8 +54,7 @@ function run(command, dataCB, errorCB) {
       if (dataCB) {
         dataCB(data, () => {
           console.log(`-- kill "${command}"`);
-          kill(proc.pid);
-          // resolve()
+          killProc(proc);
         });
       }
     });
@@ -53,8 +64,7 @@ function run(command, dataCB, errorCB) {
         errorCB(data, () => {
           console.log(`-- kill "${command}"`);
           // process.stderr.write(data);
-          kill(proc.pid);
-          // resolve();
+          killProc(proc);
         });
       }
     })
