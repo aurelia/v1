@@ -59,7 +59,7 @@ function run(command, dataCB, errorCB) {
       }
     });
     proc.stderr.on('data', data => {
-      // process.stderr.write(data);
+      process.stderr.write(data);
       if (errorCB) {
         errorCB(data, () => {
           process.stderr.write(data);
