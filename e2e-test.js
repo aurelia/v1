@@ -10,19 +10,7 @@ const path = require('path');
 const del = require('del');
 const test = require('ava');
 const puppeteer = require('puppeteer');
-
-// Somehow taskkill on windows would not send SIGTERM signal to proc,
-// The proc killed by taskkill got null signal.
-const win32Killed = new Set();
-function killProc(proc) {
-  if (process.platform === 'win32') {
-    win32Killed.add(proc.pid);
-    spawn.sync('taskkill', ["/pid", proc.pid, '/f', '/t']);
-  } else {
-    proc.stdin.pause();
-    proc.kill();
-  }
-}
+const kill = require('tree-kill');
 
 const dir = __dirname;
 
@@ -42,7 +30,7 @@ function run(command, dataCB, errorCB) {
     env.NODE_ENV = 'development';
     const proc = spawn(cmd, args, {env});
     proc.on('exit', (code, signal) => {
-      if (code && signal !== 'SIGTERM' && !win32Killed.has(proc.pid)) {
+      if (code && signal !== 'SIGTERM') {
         reject(new Error(cmd + ' ' + args.join(' ') + ' process exit code: ' + code + ' signal: ' + signal));
       } else {
         resolve();
@@ -54,7 +42,7 @@ function run(command, dataCB, errorCB) {
       if (dataCB) {
         dataCB(data, () => {
           console.log(`-- kill "${command}"`);
-          killProc(proc);
+          kill(proc.pid);
           // resolve()
         });
       }
@@ -65,7 +53,7 @@ function run(command, dataCB, errorCB) {
         errorCB(data, () => {
           console.log(`-- kill "${command}"`);
           // process.stderr.write(data);
-          killProc(proc);
+          kill(proc.pid);
           // resolve();
         });
       }

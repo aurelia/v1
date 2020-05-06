@@ -16,6 +16,7 @@
     "puppeteer": "^3.0.2",
     "semver": "^7.3.2",
     "standard-changelog": "^2.0.21",
+    "tree-kill": "^1.2.2",
     "vinyl": "^2.2.0"
   },
   "scripts": {
