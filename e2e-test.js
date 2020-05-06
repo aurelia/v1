@@ -62,7 +62,7 @@ function run(command, dataCB, errorCB) {
       process.stderr.write(data);
       if (errorCB) {
         errorCB(data, () => {
-          process.stderr.write(data);
+          // process.stderr.write(data);
           killProc(proc);
           // resolve();
         });
