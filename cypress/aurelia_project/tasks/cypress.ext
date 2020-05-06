@@ -18,8 +18,15 @@ const runCypress = (cb) => {
   if (CLIOptions.hasFlag('run')) {
     cypress
       .run(config)
-      .then(results => (results.totalFailed === 0 ? cb() : cb('Run failed!')))
-      .then(shutdownAppServer)
+      .then(results => {
+        shutdownAppServer();
+        // "cypress.run" has strange behavior on Windows, preventing
+        // process to exit normally.
+        // Force process.exit to bypass Windows issue.
+        setTimeout(()=> {
+          process.exit(results.totalFailed > 0 ? 1 : 0);
+        }, 100);
+      })
       .catch(cb);
   } else {
     cypress.open(config);
