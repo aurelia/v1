@@ -32,8 +32,22 @@ node_modules
 
 # Compiled files
 /scripts
+// @if plugin
+// @if babel
+/dev-app/environment.js
+// @endif
+// @if typescript
+/dev-app/environment.ts
+// @endif
+// @endif
+// @if !plugin
+// @if babel
 /src/environment.js
+// @endif
+// @if typescript
 /src/environment.ts
+// @endif
+// @endif
 /dist
 // @if jest
 /test/coverage-jest

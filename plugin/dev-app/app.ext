@@ -1,12 +1,7 @@
 export class App {
-  // @if babel
-  message = 'from Aurelia!';
-  // @endif
-  // @if typescript
-  public message: string = 'from Aurelia!';
-  // @endif
+  /* @if typescript */public /* @endif */message = 'from Aurelia!';
 
-  clicked() {
+  clicked()/* @if typescript */: void/* @endif */ {
     // eslint-disable-next-line no-alert
     alert('A primary button click or a touch');
   }

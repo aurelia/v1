@@ -1,8 +1,3 @@
 export class App {
-  // @if babel
-  message = 'Hello World!';
-  // @endif
-  // @if typescript
-  public message = 'Hello World!';
-  // @endif
+  /* @if typescript */public /* @endif */message = 'Hello World!';
 }

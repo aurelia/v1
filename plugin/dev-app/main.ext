@@ -8,7 +8,7 @@ import {Aurelia} from 'aurelia-framework';
 // @endif
 import environment from './environment';
 
-export function configure(aurelia/* @if typescript **: Aurelia/* @endif */) {
+export function configure(aurelia/* @if typescript */: Aurelia/* @endif */)/* @if typescript */: void/* @endif */ {
   aurelia.use
     .standardConfiguration()
     // load the plugin ../src

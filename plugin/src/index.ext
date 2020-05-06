@@ -3,7 +3,7 @@ import {FrameworkConfiguration} from 'aurelia-framework';
 // @endif
 import {PLATFORM} from 'aurelia-pal';
 
-export function configure(config/* @if typescript **: FrameworkConfiguration/* @endif */) {
+export function configure(config/* @if typescript */: FrameworkConfiguration/* @endif */)/* @if typescript */: void/* @endif */ {
   config.globalResources([
     // @if plugin-scaffold-basic
     PLATFORM.moduleName('./attributes/color'),
