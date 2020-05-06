@@ -25,10 +25,6 @@
     "types": ["node", "jest"],
     // @endif
 
-    // @if protractor && jest
-    "types": ["node", "jest"],
-    // @endif
-
     "typeRoots": ["./node_modules/@types"],
 
     "removeComments": true,

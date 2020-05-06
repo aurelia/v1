@@ -138,14 +138,10 @@ module.exports = [
   },
   {
     if: '!plugin',
-    message: 'Would you like to configure integration testing?',
+    message: 'Would you like to configure e2e integration testing?',
     choices: [{
       title: 'None',
-      hint: 'Skip testing. My code is always perfect :-)'
-    }, {
-      value: 'protractor',
-      title: 'Protractor',
-      hint: 'Integration testing with Protractor.'
+      hint: 'Skip e2e testing. My code is always perfect :-)'
     }, {
       value: 'cypress',
       title: 'Cypress',
