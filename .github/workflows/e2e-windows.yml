@@ -1,4 +1,4 @@
-name: E2E
+name: E2E-Windows
 
 on:
   push:
@@ -18,9 +18,7 @@ jobs:
           # - 10
           - 12
         os:
-          - ubuntu-latest
           - windows-latest
-          - macOS-latest
         target_features:
           - webpack
           - requirejs
@@ -33,13 +31,7 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
       - run: npm install
-      - run: xvfb-run -a -s '-screen 0 1024x768x24' npm run test:e2e
-        if: runner.os == 'Linux'
-        env:
-          TARGET_FEATURES: ${{ matrix.target_features }}
-          TARGET_CLI: aurelia/cli#rm-skeleton
       - run: npm run test:e2e
-        if: runner.os != 'Linux'
         env:
           TARGET_FEATURES: ${{ matrix.target_features }}
           TARGET_CLI: aurelia/cli#rm-skeleton
