@@ -10,7 +10,7 @@ on:
 
 jobs:
   test-e2e:
-    name: ${{ matrix.target_features }} e2e with ${{ matrix.node_version }} on ${{ matrix.os }}
+    name: ${{ matrix.target_features }} with Nodejs v${{ matrix.node_version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
