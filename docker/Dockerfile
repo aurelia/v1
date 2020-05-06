@@ -1,7 +1,7 @@
 # build stage
 FROM node:lts as build-stage
 
-// @if cypress || protractor || karma
+// @if cypress || karma
 ENV DEBIAN_FRONTEND=noninteractive
 
 #update apt-get
@@ -70,10 +70,6 @@ COPY test ./test
 COPY cypress ./cypress
 // @endif
 
-// @if protractor
-COPY e2e ./e2e
-// @endif
-
 // @if cli-bundler && dotnet-core
 COPY wwwroot ./wwwroot
 // @endif
@@ -83,7 +79,7 @@ COPY wwwroot ./wwwroot
 RUN au test
 // @endif
 
-// @if cypress || protractor
+// @if cypress
 # RUN E2E TESTS
 RUN npm run e2e:headless
 // @endif
