@@ -97,7 +97,7 @@ const skeletons = [
   'cli-bundler requirejs babel stylus jest dotnet-core cypress scaffold-navigation',
   'cli-bundler requirejs babel htmlmin-max jest cypress',
   'cli-bundler requirejs babel htmlmin-min karma dotnet-core cypress scaffold-navigation',
-  'cli-bundler requirejs babel less htmlmin-min postcss-typical postcss-basic karma cypress scaffold-navigation',
+  'cli-bundler requirejs babel less htmlmin-min postcss-basic karma cypress scaffold-navigation',
   'cli-bundler requirejs typescript jest dotnet-core cypress',
   'cli-bundler requirejs typescript jest cypress',
   'cli-bundler requirejs typescript karma dotnet-core cypress scaffold-navigation vscode',
@@ -136,7 +136,7 @@ const skeletons = [
   'plugin cli-bundler requirejs typescript karma plugin-scaffold-basic',
 
   'plugin cli-bundler requirejs babel htmlmin-max jest',
-  'plugin cli-bundler requirejs babel less htmlmin-min postcss-typical postcss-basic karma plugin-scaffold-basic',
+  'plugin cli-bundler requirejs babel less htmlmin-min postcss-basic karma plugin-scaffold-basic',
   'plugin cli-bundler requirejs typescript jest',
   'plugin cli-bundler requirejs sass htmlmin-max typescript karma'
 ]
