@@ -130,15 +130,15 @@ const skeletons = [
   'webpack http2 sass typescript postcss-typical karma dotnet-core cypress scaffold-navigation vscode',
   'webpack http1 htmlmin-min typescript karma cypress',
 
-  'plugin requirejs babel stylus htmlmin-min jest',
-  'plugin requirejs babel karma postcss-typical vscode',
-  'plugin requirejs htmlmin-max typescript jest',
-  'plugin requirejs typescript karma plugin-scaffold-basic',
+  'plugin cli-bundler requirejs babel stylus htmlmin-min jest',
+  'plugin cli-bundler requirejs babel karma postcss-typical vscode',
+  'plugin cli-bundler requirejs htmlmin-max typescript jest',
+  'plugin cli-bundler requirejs typescript karma plugin-scaffold-basic',
 
-  'plugin requirejs babel htmlmin-max jest',
-  'plugin requirejs babel less htmlmin-min postcss-typical postcss-basic karma plugin-scaffold-basic',
-  'plugin requirejs typescript jest',
-  'plugin requirejs sass htmlmin-max typescript karma'
+  'plugin cli-bundler requirejs babel htmlmin-max jest',
+  'plugin cli-bundler requirejs babel less htmlmin-min postcss-typical postcss-basic karma plugin-scaffold-basic',
+  'plugin cli-bundler requirejs typescript jest',
+  'plugin cli-bundler requirejs sass htmlmin-max typescript karma'
 ]
 .map(s => s.split(' '))
 .filter(features =>
