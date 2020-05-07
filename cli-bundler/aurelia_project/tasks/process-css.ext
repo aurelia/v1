@@ -15,11 +15,9 @@ import sass from 'gulp-dart-sass';
 // @if stylus
 import stylus from 'gulp-stylus';
 // @endif
-// @if postcss-basic || postcss-typical
+// @if postcss
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
-// @endif
-// @if postcss-typical
 import cssnano from 'cssnano';
 import postcssUrl from 'postcss-url';
 // @endif
@@ -40,11 +38,9 @@ import * as sass from 'gulp-dart-sass';
 // @if stylus
 import * as stylus from 'gulp-stylus';
 // @endif
-// @if postcss-basic || postcss-typical
+// @if postcss
 import * as postcss from 'gulp-postcss';
 import * as autoprefixer from 'autoprefixer';
-// @endif
-// @if postcss-typical
 import * as cssnano from 'cssnano';
 import * as postcssUrl from 'postcss-url';
 // @endif
@@ -64,14 +60,10 @@ export default function processCSS() {
     // @if stylus
     .pipe(stylus())
     // @endif
-    // @if postcss-basic
-    .pipe(postcss([
-      autoprefixer()
-    ]))
-    // @endif
-    // @if postcss-typical
+    // @if postcss
     .pipe(postcss([
       autoprefixer(),
+      // Inline images and fonts
       postcssUrl({url: 'inline', encodeType: 'base64'}),
       cssnano()
     ]))
@@ -95,14 +87,10 @@ export function pluginCSS(dest) {
       // @if stylus
       .pipe(stylus())
       // @endif
-      // @if postcss-basic
-      .pipe(postcss([
-        autoprefixer()
-      ]))
-      // @endif
-      // @if postcss-typical
+      // @if postcss
       .pipe(postcss([
         autoprefixer(),
+        // Inline images and fonts
         postcssUrl({url: 'inline', encodeType: 'base64'}),
         cssnano()
       ]))

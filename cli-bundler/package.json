@@ -27,11 +27,9 @@
     "gulp-less": "^4.0.1",
     // @endif
 
-    // @if postcss-basic || postcss-typical
+    // @if postcss
     "gulp-postcss": "^8.0.0",
     "autoprefixer": "^9.7.6",
-    // @endif
-    // @if postcss-typical
     "cssnano": "^4.1.10",
     "postcss-url": "^8.0.0",
     // @endif

@@ -20,11 +20,9 @@
     "less": "^3.11.1",
     // @endif
 
-    // @if postcss-basic || postcss-typical
+    // @if postcss
     "postcss-loader": "^3.0.0",
     "autoprefixer": "^9.7.6",
-    // @endif
-    // @if postcss-typical
     "cssnano": "",
     // @endif
 

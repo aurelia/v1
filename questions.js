@@ -88,17 +88,13 @@ module.exports = [
       title: 'None',
       hint: 'No PostCSS processing'
     }, {
-      value: 'postcss-basic',
-      title: 'Basic',
-      hint: 'With autoprefixer'
-    }, {
-      value: 'postcss-typical',
-      title: 'Typical',
+      value: 'postcss',
+      title: 'Yes',
       hint: 'With autoprefixer, postcss-url to inline image/font resources, cssnano to minify',
       if: 'cli-bundler'
     }, {
-      value: 'postcss-typical',
-      title: 'Typical',
+      value: 'postcss',
+      title: 'Yes',
       hint: 'With autoprefixer, plus cssnano to minify',
       // don't need postcss-url for webpack, as webpack's css-loader does similar work
       if: 'webpack'
@@ -124,11 +120,11 @@ module.exports = [
     message: 'Would you like to configure e2e integration testing?',
     choices: [{
       title: 'None',
-      hint: 'Skip e2e testing. My code is always perfect :-)'
+      hint: 'Skip e2e testing.'
     }, {
       value: 'cypress',
       title: 'Cypress',
-      hint: "Integration testing with Cypress. Please note: If you've chosen a Typescript, Cypress will add webpack and ts-loader to dependencies due to limited availability of Cypress preprocessors at this point in time."
+      hint: "Integration testing with Cypress."
     }]
   },
   {
@@ -174,7 +170,7 @@ module.exports = [
     choices: [{
       title: 'No'
     }, {
-      value: 'docker', title: 'Sure, yes'
+      value: 'docker', title: 'Yes'
     }]
   }
 ];

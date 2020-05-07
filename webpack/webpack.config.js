@@ -25,13 +25,7 @@ const baseUrl = '/';
 
 const cssRules = [
   { loader: 'css-loader' },
-  // @if postcss-basic
-  {
-    loader: 'postcss-loader',
-    options: { plugins: () => [require('autoprefixer')()] }
-  }
-  // @endif
-  // @if postcss-typical
+  // @if postcss
   {
     loader: 'postcss-loader',
     options: { plugins: () => [
