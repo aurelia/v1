@@ -252,8 +252,11 @@ skeletons.forEach((features, i) => {
             await takeScreenshot(url, path.join(folder, appName + '.png'));
           }
 
-          console.log('-- npm run e2e --if-present');
-          await run(`npm run e2e --if-present`);
+          if (features.includes('cypress')) {
+            console.log('-- npm run e2e');
+            await run(`npm run e2e`);
+            t.pass('passed e2e test');
+          }
           kill();
         } catch (e) {
           t.fail(e.message);
@@ -269,6 +272,12 @@ skeletons.forEach((features, i) => {
         }
       }
     );
+
+    if (process.platform === 'linux' && features.includes('docker')) {
+      console.log('-- npm run docker:build');
+      await run(`npm run docker:build`);
+      t.pass('passed docker:build');
+    }
 
     console.log('-- remove folder ' + appName);
     process.chdir(folder);
