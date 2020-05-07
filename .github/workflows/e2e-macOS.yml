@@ -34,5 +34,5 @@ jobs:
       - run: npm run test:e2e
         env:
           TARGET_FEATURES: ${{ matrix.target_features }}
-          TARGET_CLI: aurelia/cli#rm-skeleton
+          TARGET_CLI: aurelia/cli#master
 
