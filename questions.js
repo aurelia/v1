@@ -33,19 +33,6 @@ module.exports = [
     }]
   },
   {
-    if: 'webpack',
-    message: 'Which HTTP Protocol do you wish the outputted Webpack bundle to be optimised for?',
-    choices: [{
-      value: 'http1',
-      title: 'HTTP/1.1',
-      hint: 'The legacy HTTP/1.1 protocol, max 6 parallel requests/connections.'
-    }, {
-      value: 'http2',
-      title: 'HTTP/2',
-      hint: 'The modern HTTP/2 Protocol, uses request multiplexing over a single connection.'
-    }]
-  },
-  {
     message: 'What platform are you targeting?',
     choices: [{
       value: 'web',

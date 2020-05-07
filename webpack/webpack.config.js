@@ -102,15 +102,14 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
       hidePathInfo: true, // prevents the path from being used in the filename when using maxSize
       chunks: "initial",
       // sizes are compared against source before minification
-      // @if http1
+      // This is the HTTP/1.1 optimised maxSize
       maxSize: 200000, // splits chunks if bigger than 200k, adjust as required (maxSize added in webpack v4.15)
-      // @endif
-      // @if http2
+      /* This is the HTTP/2 optimised options
       maxInitialRequests: Infinity, // Default is 3, make this unlimited if using HTTP/2
       maxAsyncRequests: Infinity, // Default is 5, make this unlimited if using HTTP/2
       minSize: 10000, // chunk is only created if it would be bigger than minSize, adjust as required
       maxSize: 40000, // splits chunks if bigger than 40k, adjust as required (maxSize added in webpack v4.15)
-      // @endif
+      */
       cacheGroups: {
         default: false, // Disable the built-in groups default & vendors (vendors is redefined below)
         // You can insert additional cacheGroup entries here if you want to split out specific modules
@@ -129,7 +128,6 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
         //   enforce: true
         // },
 
-        // @if http1
         // This is the HTTP/1.1 optimised cacheGroup configuration
         vendors: { // picks up everything from node_modules as long as the sum of node modules is larger than minSize
           test: /[\\/]node_modules[\\/]/,
@@ -154,9 +152,8 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
           reuseExistingChunk: true,
           minSize: 10000  // use smaller minSize to avoid too much potential bundle bloat due to module duplication.
         }
-        // @endif
-        // @if http2
-        // This is the HTTP/2 optimised cacheGroup configuration
+
+        /* This is the HTTP/2 optimised cacheGroup configuration
         // generic 'initial/sync' vendor node module splits: separates out larger modules
         vendorSplit: { // each node module as separate chunk file if module is bigger than minSize
           test: /[\\/]node_modules[\\/]/,
@@ -215,7 +212,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
           reuseExistingChunk: true,
           enforce: true // create chunk regardless of the size of the chunk
         }
-        // @endif
+        */
       }
     }
   },
