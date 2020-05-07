@@ -103,16 +103,13 @@ module.exports = [
   {
     message: 'Which unit test runner would you like to use?',
     choices: [{
-      title: 'None',
-      hint: 'Skip testing. My code is always perfect :-)'
+      value: 'jest',
+      title: 'Jest',
+      hint: 'Unit testing with Jest'
     }, {
       value: 'karma',
       title: 'Karma + Jasmine',
       hint: 'Unit testing with Karma and Jasmine'
-    }, {
-      value: 'jest',
-      title: 'Jest',
-      hint: 'Unit testing with Jest'
     }]
   },
   {
