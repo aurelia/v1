@@ -44,7 +44,7 @@
     "gulp-stylus": "^2.7.0",
     // @endif
 
-    // @if htmlmin-min || htmlmin-max
+    // @if htmlmin
     "gulp-htmlmin": "^5.0.1",
     // @endif
 

@@ -2,7 +2,7 @@ import {build} from 'aurelia-cli';
 // @if babel
 import gulp from 'gulp';
 import project from '../aurelia.json';
-// @if htmlmin-min || htmlmin-max
+// @if htmlmin
 import htmlmin from 'gulp-htmlmin';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
@@ -11,7 +11,7 @@ import notify from 'gulp-notify';
 // @if typescript
 import * as gulp from 'gulp';
 import * as project from '../aurelia.json';
-// @if htmlmin-min || htmlmin-max
+// @if htmlmin
 import * as htmlmin from 'gulp-htmlmin';
 import * as plumber from 'gulp-plumber';
 import * as notify from 'gulp-notify';
@@ -20,16 +20,14 @@ import * as notify from 'gulp-notify';
 
 export default function processMarkup() {
   return gulp.src(project.markupProcessor.source, {sourcemaps: true, since: gulp.lastRun(processMarkup)})
-    // @if htmlmin-min || htmlmin-max
+    // @if htmlmin
     .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
     .pipe(htmlmin({
-        // @if htmlmin-max
-        collapseInlineTagWhitespace: true,
-        collapseBooleanAttributes: true,
-        removeAttributeQuotes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        // @endif
+        // collapseInlineTagWhitespace: true,
+        // collapseBooleanAttributes: true,
+        // removeAttributeQuotes: true,
+        // removeScriptTypeAttributes: true,
+        // removeStyleLinkTypeAttributes: true,
         removeComments: true,
         collapseWhitespace: true,
         minifyCSS: true,
@@ -44,15 +42,13 @@ export default function processMarkup() {
 export function pluginMarkup(dest) {
   return function processPluginMarkup() {
     return gulp.src(project.plugin.source.html)
-      // @if htmlmin-min || htmlmin-max
+      // @if htmlmin
       .pipe(htmlmin({
-          // @if htmlmin-max
-          collapseInlineTagWhitespace: true,
-          collapseBooleanAttributes: true,
-          removeAttributeQuotes: true,
-          removeScriptTypeAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          // @endif
+          // collapseInlineTagWhitespace: true,
+          // collapseBooleanAttributes: true,
+          // removeAttributeQuotes: true,
+          // removeScriptTypeAttributes: true,
+          // removeStyleLinkTypeAttributes: true,
           removeComments: true,
           collapseWhitespace: true,
           minifyCSS: true,

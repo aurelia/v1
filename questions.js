@@ -71,13 +71,9 @@ module.exports = [
       title: 'None',
       hint: 'No markup processing'
     }, {
-      value: 'htmlmin-min',
-      title: 'Minimum Minification',
+      value: 'htmlmin',
+      title: 'Minified with htmlmin',
       hint: 'Removes comments and whitespace between block level elements such as div, blockquote, p, header, footer ...etc.'
-    }, {
-      value: 'htmlmin-max',
-      title: 'Maximum Minification',
-      hint: 'Removes comments, script & link element [type] attributes and all whitespace between all elements. Also remove attribute quotes where possible. Collapses boolean attributes.'
     }]
   },
   {

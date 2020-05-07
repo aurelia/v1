@@ -337,24 +337,18 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
     }),
     new HtmlWebpackPlugin({
       template: 'index.ejs',
-      // @if htmlmin-min
+      // @if htmlmin
       minify: production ? {
         removeComments: true,
         collapseWhitespace: true
-      } : undefined,
-      // @endif
-      // @if htmlmin-max
-      minify: production ? {
-        removeComments: true,
-        collapseWhitespace: true,
-        collapseInlineTagWhitespace: true,
-        collapseBooleanAttributes: true,
-        removeAttributeQuotes: true,
-        minifyCSS: true,
-        minifyJS: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        ignoreCustomFragments: [/\${.*?}/g]
+        // collapseInlineTagWhitespace: true,
+        // collapseBooleanAttributes: true,
+        // removeAttributeQuotes: true,
+        // minifyCSS: true,
+        // minifyJS: true,
+        // removeScriptTypeAttributes: true,
+        // removeStyleLinkTypeAttributes: true,
+        // ignoreCustomFragments: [/\${.*?}/g]
       } : undefined,
       // @endif
       metadata: {
