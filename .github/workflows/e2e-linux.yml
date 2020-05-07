@@ -22,7 +22,6 @@ jobs:
         target_features:
           - webpack
           - requirejs
-          - systemjs
           - alameda
     steps:
       - uses: actions/checkout@v2

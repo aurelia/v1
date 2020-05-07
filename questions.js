@@ -25,11 +25,6 @@ module.exports = [
       title: 'Alameda',
       hint: 'Alameda is a modern version of RequireJS using promises and native es6 features (modern browsers only).',
       if: '!plugin'
-    }, {
-      value: 'systemjs',
-      title: 'SystemJS',
-      hint: 'SystemJS is Dynamic ES module loader, the most versatile module loader for JavaScript.',
-      if: '!plugin'
     }]
   },
   {

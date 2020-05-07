@@ -152,13 +152,10 @@
           // @endif
           "node_modules/promise-polyfill/dist/polyfill.min.js",
           // @if requirejs
-          "node_modules/requirejs/require.js"
+          "node_modules/requirejs/require.js",
           // @endif
           // @if alameda
-          "node_modules/alameda/alameda.js"
-          // @endif
-          // @if systemjs
-          "node_modules/systemjs/dist/system.js"
+          "node_modules/alameda/alameda.js",
           // @endif
         ],
         "dependencies": [
@@ -169,16 +166,7 @@
             "name": "aurelia-testing",
             "env": "dev"
           },
-          // @if requirejs || alameda
-          "text",
-          // @endif
-          // @if systemjs
-          {
-            "name": "text",
-            "path": "../node_modules/systemjs-plugin-text",
-            "main": "text"
-          }
-          // @endif
+          "text"
         ]
       }
     ],
@@ -193,12 +181,7 @@
     },
     // @endif
     "loader": {
-      // @if requirejs || alameda
       "type": "require",
-      // @endif
-      // @if systemjs
-      "type": "system",
-      // @endif
       "configTarget": "vendor-bundle.js",
       "includeBundleMetadataInConfig": "auto",
       "plugins": [

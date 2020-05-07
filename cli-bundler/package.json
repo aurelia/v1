@@ -9,10 +9,6 @@
     // @if requirejs || alameda
     "text": "requirejs/text",
     // @endif
-    // @if systemjs
-    "systemjs": "^0.21.6",
-    "systemjs-plugin-text": "^0.0.11",
-    // @endif
 
     // @if babel
     "gulp-babel": "^8.0.0",
