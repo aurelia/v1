@@ -113,7 +113,7 @@ const skeletons = [
   'cli-bundler requirejs typescript karma dotnet-core cypress scaffold-navigation vscode',
   'cli-bundler requirejs sass htmlmin typescript karma cypress docker',
 
-  'cli-bundler alameda babel jest dotnet-core cypress',
+  'cli-bundler alameda babel postcss jest dotnet-core cypress',
   'cli-bundler alameda babel jest cypress docker',
   'cli-bundler alameda babel sass karma dotnet-core cypress docker',
   'cli-bundler alameda babel karma cypress scaffold-navigation',
@@ -127,7 +127,7 @@ const skeletons = [
   'webpack babel less karma dotnet-core cypress scaffold-navigation',
   'webpack babel htmlmin karma cypress docker',
   'webpack typescript jest dotnet-core cypress',
-  'webpack htmlmin typescript jest cypress scaffold-navigation',
+  'webpack htmlmin typescript postcss jest cypress scaffold-navigation',
   'webpack sass typescript postcss karma dotnet-core cypress scaffold-navigation vscode docker',
   'webpack htmlmin typescript karma cypress docker',
 
@@ -137,9 +137,9 @@ const skeletons = [
   'plugin cli-bundler requirejs typescript karma plugin-scaffold-basic',
 
   'plugin cli-bundler requirejs babel htmlmin jest',
-  'plugin cli-bundler requirejs babel less htmlmin postcss karma plugin-scaffold-basic',
+  'plugin cli-bundler requirejs babel less htmlmin karma plugin-scaffold-basic',
   'plugin cli-bundler requirejs typescript jest',
-  'plugin cli-bundler requirejs sass htmlmin typescript karma'
+  'plugin cli-bundler requirejs sass htmlmin typescript postcss karma'
 ]
 .map(s => s.split(' '))
 .filter(features =>
