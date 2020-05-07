@@ -101,7 +101,7 @@ function getServerRegex(features) {
   return /Application Available At: (\S+)/;
 }
 
-// The 72 skeletons copied from aurelia-cli.
+// The 32 skeletons copied from aurelia-cli.
 // This does not cover all possible combinations.
 const skeletons = [
   'cli-bundler requirejs babel stylus jest dotnet-core cypress scaffold-navigation docker',
@@ -252,8 +252,11 @@ skeletons.forEach((features, i) => {
             await takeScreenshot(url, path.join(folder, appName + '.png'));
           }
 
-          console.log('-- npm run e2e --if-present');
-          await run(`npm run e2e --if-present`);
+          if (features.includes('cypress')) {
+            console.log('-- npm run e2e');
+            await run(`npm run e2e`);
+            t.pass('passed e2e test');
+          }
           kill();
         } catch (e) {
           t.fail(e.message);
@@ -269,6 +272,12 @@ skeletons.forEach((features, i) => {
         }
       }
     );
+
+    if (process.platform === 'linux' && features.includes('docker')) {
+      console.log('-- npm run docker:build');
+      await run(`npm run docker:build`);
+      t.pass('passed docker:build');
+    }
 
     console.log('-- remove folder ' + appName);
     process.chdir(folder);
