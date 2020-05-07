@@ -101,7 +101,7 @@ function getServerRegex(features) {
   return /Application Available At: (\S+)/;
 }
 
-// The 72 skeletons copied from aurelia-cli.
+// The 32 skeletons copied from aurelia-cli.
 // This does not cover all possible combinations.
 const skeletons = [
   'cli-bundler requirejs babel stylus jest dotnet-core cypress scaffold-navigation docker',

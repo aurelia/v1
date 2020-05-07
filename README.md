@@ -38,7 +38,7 @@ npm test
 
 ## E2E Test
 
-E2E tests for skeletons. Run 36 skeletons, very slow. GitHub Actions runs full E2E tests for every PR or push to master.
+E2E tests for skeletons. Run 32 skeletons, very slow. GitHub Actions runs full E2E tests for every PR or push to master.
 
 ```bash
 npm run test:e2e
