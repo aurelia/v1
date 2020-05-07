@@ -58,6 +58,15 @@ npx cross-env TARGET_FEATURES=webpack,babel TARGET_CLI=aurelia/cli#branch npm ru
 npx cross-env TARGET_FEATURES=webpack,babel TARGET_CLI=your-fork/cli#branch npm run test:e2e
 ```
 
+## Local development
+
+If you forked this repo, you can try your own skeleton with:
+
+```bash
+# Try some branch or commit or tag
+npx makes your_GitHub_name/forked_repo_name#some-branch
+```
+
 ## License
 
 MIT.
