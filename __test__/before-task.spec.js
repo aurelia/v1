@@ -39,7 +39,7 @@ test.serial('"before" task can select default-esnext preset', async t => {
   const result = await before({unattended: false, prompts});
   t.deepEqual(result, {
     silentQuestions: true,
-    preselectedFeatures: ['jest', 'vscode']
+    preselectedFeatures: ['vscode']
   });
 });
 
@@ -56,7 +56,7 @@ test.serial('"before" task can select default-typescript preset', async t => {
   const result = await before({unattended: false, prompts});
   t.deepEqual(result, {
     silentQuestions: true,
-    preselectedFeatures: ['typescript', 'jest', 'vscode']
+    preselectedFeatures: ['typescript', 'vscode']
   });
 });
 
@@ -71,7 +71,7 @@ test.serial('"before" task can select default-esnext-plugin preset', async t => 
   const result = await before({unattended: false, prompts});
   t.deepEqual(result, {
     silentQuestions: true,
-    preselectedFeatures: ['plugin', 'jest', 'vscode']
+    preselectedFeatures: ['plugin', 'vscode']
   });
 });
 
@@ -88,7 +88,7 @@ test.serial('"before" task can select default-typescript-plugin preset', async t
   const result = await before({unattended: false, prompts});
   t.deepEqual(result, {
     silentQuestions: true,
-    preselectedFeatures: ['plugin', 'typescript', 'jest', 'vscode']
+    preselectedFeatures: ['plugin', 'typescript', 'vscode']
   });
 });
 
@@ -148,7 +148,7 @@ test.serial('"before" task can select default-esnext-plugin preset with --plugin
   const result = await before({unattended: false, prompts});
   t.deepEqual(result, {
     silentQuestions: true,
-    preselectedFeatures: ['plugin', 'jest', 'vscode']
+    preselectedFeatures: ['plugin', 'vscode']
   });
 
   process.argv = oldArgv;
@@ -170,7 +170,7 @@ test.serial('"before" task can select default-typescript-plugin preset with --pl
   const result = await before({unattended: false, prompts});
   t.deepEqual(result, {
     silentQuestions: true,
-    preselectedFeatures: ['plugin', 'typescript', 'jest', 'vscode']
+    preselectedFeatures: ['plugin', 'typescript', 'vscode']
   });
   process.argv = oldArgv;
 });
