@@ -2,8 +2,6 @@
 
 ![CI](https://github.com/aurelia/v1/workflows/CI/badge.svg) ![E2E-Linux](https://github.com/aurelia/v1/workflows/E2E-Linux/badge.svg) ![E2E-Windows](https://github.com/aurelia/v1/workflows/E2E-Windows/badge.svg) ![E2E-macOS](https://github.com/aurelia/v1/workflows/E2E-macOS/badge.svg)
 
-_Work In Progress_ (Note ready. Converting aurelia-cli inner skeleton to here...)
-
 The scaffolding repo for Aurelia 1 used by the [makes](https://makes.js.org) tool to create new Aurelia 1 projects.
 
 Extracted from original aurelia-cli skeleton folder.
@@ -38,20 +36,26 @@ Unit tests for various "makes" files.
 npm test
 ```
 
-E2e tests for skeletons. Run 72 skeletons, very slow.
+## E2E Test
+
+E2E tests for skeletons. Run 36 skeletons, very slow. GitHub Actions runs full E2E tests for every PR or push to master.
 
 ```bash
 npm run test:e2e
 ```
 
-Better to run a subset.
+When developing a new feature, better to check a subset of E2E tests locally.
 ```bash
 npx cross-env TARGET_FEATURES=webpack,babel npm run test:e2e
 ```
 
-To test with an aurelia-cli master/branch/tag/commit.
+When developing a new feature for [aurelia-cli](https://github.com/aurelia/cli), it's recommended to check against these E2E tests with targeted aurelia-cli master/branch/tag/commit.
 ```bash
 npx cross-env TARGET_FEATURES=webpack,babel TARGET_CLI=aurelia/cli#branch npm run test:e2e
+```
+
+```bash
+npx cross-env TARGET_FEATURES=webpack,babel TARGET_CLI=your-fork/cli#branch npm run test:e2e
 ```
 
 ## License
