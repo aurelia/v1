@@ -21,7 +21,8 @@ jobs:
           - ubuntu-latest
         target_features:
           - webpack
-          - requirejs
+          - requirejs,babel
+          - requirejs,typescript
           - alameda
     steps:
       - uses: actions/checkout@v2
