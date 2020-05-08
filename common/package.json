@@ -40,9 +40,9 @@
 
     // @if typescript
     "typescript": "^3.8.3",
-    "@types/node": "^13.13.4",
-    "@typescript-eslint/eslint-plugin": "",
-    "@typescript-eslint/parser": "^2.30.0",
+    "@types/node": "^13.13.5",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
     // @endif
   },
   // @if postcss || babel
