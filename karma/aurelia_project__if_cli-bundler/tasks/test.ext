@@ -8,8 +8,7 @@ import * as path from 'path';
 // @endif
 import {Server as Karma} from 'karma';
 import {CLIOptions} from 'aurelia-cli';
-import build from './build';
-import watch from './watch';
+import build, {watchPaths} from './build';
 
 let karma = done => {
   new Karma({
@@ -24,7 +23,7 @@ if (CLIOptions.hasFlag('watch')) {
   unit = gulp.series(
     build,
     gulp.parallel(
-      done => { watch(); done(); },
+      () => { gulp.watch(watchPaths, build) },
       karma
     )
   );

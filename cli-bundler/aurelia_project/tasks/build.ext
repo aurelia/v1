@@ -6,13 +6,27 @@ import project from '../aurelia.json';
 import * as gulp from 'gulp';
 import * as project from '../aurelia.json';
 // @endif
+import {flatten} from 'lodash';
 import {CLIOptions, build as buildCLI} from 'aurelia-cli';
 import transpile from './transpile';
 import processMarkup from './process-markup';
 import processJson from './process-json';
 import processCSS from './process-css';
 import copyFiles from './copy-files';
-import watch from './watch';
+
+
+let watchPaths = [
+  project.transpiler.source,
+  project.markupProcessor.source,
+  project.cssProcessor.source,
+  project.jsonProcessor.source
+];
+
+if (typeof project.build.copyFiles === 'object') {
+  watchPaths.push(Object.keys(project.build.copyFiles));
+}
+
+watchPaths = flatten(watchPaths);
 
 let build = gulp.series(
   readProjectConfiguration,
@@ -29,10 +43,9 @@ let build = gulp.series(
 let main;
 
 if (CLIOptions.taskName() === 'build' && CLIOptions.hasFlag('watch')) {
-  main = gulp.series(
-    build,
-    (done) => { watch(); done(); }
-  );
+  main = function() {
+    gulp.watch(watchPaths, {ignoreInitial: false}, build);
+  };
 } else {
   main = build;
 }
@@ -45,4 +58,4 @@ function writeBundles() {
   return buildCLI.dest();
 }
 
-export { main as default };
+export { watchPaths, main as default };
