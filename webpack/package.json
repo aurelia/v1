@@ -11,12 +11,12 @@
     // @endif
 
     // @if typescript
-    "ts-loader": "^7.0.2",
+    "ts-loader": "^7.0.3",
     "@types/webpack": "^4.41.12",
     // @endif
 
     // @if less
-    "less-loader": "^6.0.0",
+    "less-loader": "^6.1.0",
     "less": "^3.11.1",
     // @endif
 
