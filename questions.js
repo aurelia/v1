@@ -1,4 +1,4 @@
-const questions = [
+module.exports = [
   {
     message: 'App or Plugin?',
     choices: [
@@ -166,15 +166,3 @@ const questions = [
     }]
   }
 ];
-
-if (process.env.CI) {
-  // Add feature "ci" when running in CI environment.
-  questions.push({
-    message: '',
-    choices: [
-      {value: 'ci', title: 'Running in CI environment'}
-    ]
-  });
-}
-
-module.exports = questions;
