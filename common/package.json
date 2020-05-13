@@ -51,7 +51,7 @@
   ],
   // @endif
   "scripts": {
-    "build": "au build",
+    "build": "au build --env prod",
     "start": "au run"
   },
   "engines": {

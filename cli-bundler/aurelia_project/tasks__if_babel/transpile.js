@@ -1,7 +1,7 @@
 import gulp from 'gulp';
+import gulpIf from 'gulp-if';
 import plumber from 'gulp-plumber';
 import babel from 'gulp-babel';
-import notify from 'gulp-notify';
 import rename from 'gulp-rename';
 import cache from 'gulp-cache';
 import project from '../aurelia.json';
@@ -47,9 +47,7 @@ function buildJavaScript() {
       sourcemaps: true,
       since: gulp.lastRun(buildJavaScript)
     })
-    .pipe(plumber({
-      errorHandler: notify.onError('Error: <%= error.message %>')
-    }))
+    .pipe(gulpIf(CLIOptions.hasFlag('watch'), plumber()))
     .pipe(transpile)
     .pipe(build.bundle());
 }
@@ -75,6 +73,7 @@ export function buildPluginJavaScript(dest, format) {
     const transpile = babel(opts);
 
     return gulp.src(project.plugin.source.js)
+      .pipe(gulpIf(CLIOptions.hasFlag('watch'), plumber()))
       .pipe(gulpSourcemaps.init())
       .pipe(transpile)
       .pipe(gulpSourcemaps.write('.', {

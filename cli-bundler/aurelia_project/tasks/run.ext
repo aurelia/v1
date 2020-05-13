@@ -14,6 +14,11 @@ import {CLIOptions} from 'aurelia-cli';
 import build from './build';
 import watch from './watch';
 
+if (!CLIOptions.hasFlag('watch')) {
+  // "au run" always runs in watch mode
+  CLIOptions.instance.args.push('--watch');
+}
+
 const bs = browserSync.create();
 
 let serve = gulp.series(
