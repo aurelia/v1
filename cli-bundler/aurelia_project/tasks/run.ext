@@ -11,7 +11,8 @@ import * as historyApiFallback from 'connect-history-api-fallback/lib';
 import * as project from '../aurelia.json';
 // @endif
 import {CLIOptions} from 'aurelia-cli';
-import build, {watchPaths} from './build';
+import build from './build';
+import watch from './watch';
 
 const bs = browserSync.create();
 
@@ -56,11 +57,10 @@ function reload() {
   bs.reload();
 }
 
-function watch() {
-  gulp.watch(watchPaths, gulp.series(build, reload));
-}
-
-const run = gulp.series(serve, watch);
+const run = gulp.series(
+  serve,
+  done => { watch(reload); done(); }
+);
 
 const shutdownAppServer = () => {
   bs.exit();
