@@ -1,11 +1,11 @@
-import {build} from 'aurelia-cli';
+import {CLIOptions, build} from 'aurelia-cli';
 // @if babel
 import gulp from 'gulp';
 import project from '../aurelia.json';
 // @if htmlmin
 import htmlmin from 'gulp-htmlmin';
+import gulpIf from 'gulp-if';
 import plumber from 'gulp-plumber';
-import notify from 'gulp-notify';
 // @endif
 // @endif
 // @if typescript
@@ -13,15 +13,15 @@ import * as gulp from 'gulp';
 import * as project from '../aurelia.json';
 // @if htmlmin
 import * as htmlmin from 'gulp-htmlmin';
+import * as gulpIf from 'gulp-if';
 import * as plumber from 'gulp-plumber';
-import * as notify from 'gulp-notify';
 // @endif
 // @endif
 
 export default function processMarkup() {
   return gulp.src(project.markupProcessor.source, {sourcemaps: true, since: gulp.lastRun(processMarkup)})
     // @if htmlmin
-    .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+    .pipe(gulpIf(CLIOptions.hasFlag('watch'), plumber()))
     .pipe(htmlmin({
         // collapseInlineTagWhitespace: true,
         // collapseBooleanAttributes: true,
@@ -43,6 +43,7 @@ export function pluginMarkup(dest) {
   return function processPluginMarkup() {
     return gulp.src(project.plugin.source.html)
       // @if htmlmin
+      .pipe(gulpIf(CLIOptions.hasFlag('watch'), plumber()))
       .pipe(htmlmin({
           // collapseInlineTagWhitespace: true,
           // collapseBooleanAttributes: true,

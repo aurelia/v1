@@ -1,6 +1,6 @@
 import * as gulp from 'gulp';
+import * as gulpIf from 'gulp-if';
 import * as plumber from 'gulp-plumber';
-import * as notify from 'gulp-notify';
 import * as rename from 'gulp-rename';
 import * as ts from 'gulp-typescript';
 import * as project from '../aurelia.json';
@@ -36,7 +36,7 @@ function buildTypeScript() {
       sourcemaps: true,
       since: gulp.lastRun(buildTypeScript)
     }))
-    .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
+    .pipe(gulpIf(CLIOptions.hasFlag('watch'), plumber()))
     .pipe(typescriptCompiler())
     .pipe(build.bundle());
 }
@@ -57,6 +57,7 @@ export function buildPluginJavaScript(dest, format) {
 
     return gulp.src(project.transpiler.dtsSource)
       .pipe(gulp.src(project.plugin.source.js))
+      .pipe(gulpIf(CLIOptions.hasFlag('watch'), plumber()))
       .pipe(gulpSourcemaps.init())
       .pipe(typescriptCompiler())
       .pipe(gulpSourcemaps.write('.', { includeContent: false, sourceRoot: '../../src/' }))

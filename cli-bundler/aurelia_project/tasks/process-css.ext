@@ -1,10 +1,10 @@
-import {build} from 'aurelia-cli';
+import {CLIOptions, build} from 'aurelia-cli';
 // @if babel
 import gulp from 'gulp';
 import project from '../aurelia.json';
 // @if less || stylus
+import gulpIf from 'gulp-if';
 import plumber from 'gulp-plumber';
-import notify from 'gulp-notify';
 // @endif
 // @if less
 import less from 'gulp-less';
@@ -26,8 +26,8 @@ import postcssUrl from 'postcss-url';
 import * as gulp from 'gulp';
 import * as project from '../aurelia.json';
 // @if less || stylus
+import * as gulpIf from 'gulp-if';
 import * as plumber from 'gulp-plumber';
-import * as notify from 'gulp-notify';
 // @endif
 // @if less
 import * as less from 'gulp-less';
@@ -49,13 +49,13 @@ import * as postcssUrl from 'postcss-url';
 export default function processCSS() {
   return gulp.src(project.cssProcessor.source, {sourcemaps: true/* @if !less && !sass && !stylus */, since: gulp.lastRun(processCSS)/* @endif */})
     // @if less || stylus
-    .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
+    .pipe(gulpIf(CLIOptions.hasFlag('watch'), plumber()))
     // @endif
     // @if less
     .pipe(less())
     // @endif
     // @if sass
-    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(CLIOptions.hasFlag('watch') ? sass.sync().on('error', sass.logError) : sass.sync())
     // @endif
     // @if stylus
     .pipe(stylus())
@@ -76,13 +76,13 @@ export function pluginCSS(dest) {
   return function processPluginCSS() {
     return gulp.src(project.plugin.source.css)
       // @if less || stylus
-      .pipe(plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }))
+      .pipe(gulpIf(CLIOptions.hasFlag('watch'), plumber()))
       // @endif
       // @if less
       .pipe(less())
       // @endif
       // @if sass
-      .pipe(sass.sync().on('error', sass.logError))
+      .pipe(CLIOptions.hasFlag('watch') ? sass.sync().on('error', sass.logError) : sass.sync())
       // @endif
       // @if stylus
       .pipe(stylus())
