@@ -12,6 +12,7 @@ const test = require('ava');
 const puppeteer = require('puppeteer');
 const kill = require('tree-kill');
 
+const isWin32 = process.platform === 'win32';
 const dir = __dirname;
 
 const folder = path.join(dir, 'test-skeletons');
@@ -23,7 +24,7 @@ fs.mkdirSync(folder);
 // The proc killed by taskkill got null signal.
 const win32Killed = new Set();
 function killProc(proc) {
-  if (process.platform === 'win32') {
+  if (isWin32) {
     win32Killed.add(proc.pid);
   }
   proc.stdin.pause();
@@ -43,7 +44,7 @@ function run(command, dataCB, errorCB) {
     const proc = spawn(cmd, args, {env});
     proc.on('exit', (code, signal) => {
       if (code && signal !== 'SIGTERM' && !win32Killed.has(proc.pid)) {
-        if (process.platform === 'win32' && args[1] === 'test:e2e' && code === 3221226356) {
+        if (isWin32 && args[1] === 'test:e2e' && code === 3221226356) {
           // There is random cypress ELIFECYCLE (3221226356) issue on Windows.
           // Probably related to
           // https://github.com/cypress-io/cypress/issues/5143
@@ -71,7 +72,6 @@ function run(command, dataCB, errorCB) {
       if (errorCB) {
         errorCB(data, () => {
           console.log(`-- kill "${command}"`);
-          // process.stderr.write(data);
           killProc(proc);
         });
       }
@@ -106,7 +106,7 @@ function patchPackageJson(appFolder, targetCLI) {
 
 function getServerRegex(features) {
   if (features.includes('webpack')) return /Project is running at (\S+)/;
-  return /Application Available At: (\S+)/;
+  return /Dev server is started at: (\S+)/;
 }
 
 // The 32 skeletons copied from aurelia-cli.
@@ -250,9 +250,7 @@ skeletons.forEach((features, i) => {
         const m = data.toString().match(serverRegex);
         if (!m) return;
         const url = m[1];
-        const message = 'Dev server is started at ' + url;
-        console.log(message);
-        t.pass(message);
+        t.pass(m[0]);
 
         try {
           if (!process.env.GITHUB_ACTIONS) {

@@ -43,10 +43,10 @@ function cleanArgs(args) {
   return cleaned;
 }
 
-const shutdownAppServer = () => {
+const shutdownDevServer = () => {
   if (npm && npm.proc) {
     kill(npm.proc.pid);
   }
 };
 
-export { run as default, shutdownAppServer };
+export { run as default, shutdownDevServer };

@@ -42,8 +42,14 @@
     "gulp-htmlmin": "^5.0.1",
     // @endif
 
-    "browser-sync": "^2.26.7",
+    "connect": "^3.7.0",
     "connect-history-api-fallback": "^1.6.0",
+    "connect-injector": "^0.4.4",
+    "serve-static": "^1.14.1",
+    "socket.io": "^2.3.0",
+    "open": "^7.0.4",
+    "server-destroy": "^1.0.1",
+
     "debounce": "^1.2.0",
     "gulp-plumber": "^1.2.1",
     "gulp-rename": "^2.0.0",
