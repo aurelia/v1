@@ -8,10 +8,10 @@ import * as config from '../../cypress.config';
 // @endif
 import { CLIOptions } from 'aurelia-cli';
 // @if cli-bundler
-import { serve as runAppServer, shutdownAppServer } from './run';
+import { serve as runAppServer, shutdownDevServer } from './run';
 // @endif
 // @if webpack
-import { default as runAppServer, shutdownAppServer } from './run';
+import { default as runAppServer, shutdownDevServer } from './run';
 // @endif
 
 const runCypress = (cb) => {
@@ -19,7 +19,7 @@ const runCypress = (cb) => {
     cypress
       .run(config)
       .then(results => {
-        shutdownAppServer();
+        shutdownDevServer();
         // "cypress.run" has strange behavior on Windows, preventing
         // process to exit normally.
         // Force process.exit to bypass Windows issue.
