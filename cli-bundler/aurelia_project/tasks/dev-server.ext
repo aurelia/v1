@@ -82,15 +82,15 @@ export function run({
   const url = `http${https ? 's' : ''}://${host}:${port}`;
   console.log(`Dev server is started at: ${url}`);
   if (open) _open(url);
-};
+}
 
 export function reload() {
   io && io.emit('reload');
-};
+}
 
 export function destroy() {
   server && server.destroy();
-};
+}
 
 // An example of self-signed certificate.
 // Expires: Tuesday, 29 January 2030
