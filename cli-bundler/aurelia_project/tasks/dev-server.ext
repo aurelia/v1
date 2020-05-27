@@ -80,7 +80,7 @@ export function run({
   server.listen(port);
   enableDestroy(server);
   const url = `http${https ? 's' : ''}://${host}:${port}`;
-  console.log(`Dev server is started at: ${url}`);
+  console.log(`\x1b[36m\nDev server is started at: ${url}\n\x1b[0m`);
   if (open) _open(url);
 }
 
