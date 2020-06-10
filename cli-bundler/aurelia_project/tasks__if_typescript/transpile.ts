@@ -28,7 +28,8 @@ function configureEnvironment() {
 
 function buildTypeScript() {
   const typescriptCompiler = ts.createProject('tsconfig.json', {
-    typescript: require('typescript')
+    typescript: require('typescript'),
+    noEmitOnError: true
   });
 
   return gulp.src(project.transpiler.dtsSource)
