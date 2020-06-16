@@ -1,5 +1,7 @@
 {
   "devDependencies": {
+    "del": "^5.1.0",
+
     // @if requirejs
     "requirejs": "^2.3.6",
     // @endif

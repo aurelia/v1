@@ -19,7 +19,6 @@
     "src"
   ],
   "devDependencies": {
-    "del": "^5.1.0",
     "gulp-sourcemaps": "^2.6.5"
   }
 }
