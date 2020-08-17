@@ -147,6 +147,9 @@
       {
         "name": "vendor-bundle.js",
         "prepend": [
+          // @if babel
+          "node_modules/regenerator-runtime/runtime.js",
+          // @endif
           // @if scaffold-navigation
           "node_modules/whatwg-fetch/dist/fetch.umd.js",
           // @endif
