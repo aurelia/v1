@@ -354,8 +354,11 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
       filename: production ? 'css/[name].[contenthash].bundle.css' : 'css/[name].[hash].bundle.css',
       chunkFilename: production ? 'css/[name].[contenthash].chunk.css' : 'css/[name].[hash].chunk.css'
     })),
-    ...when(!tests, new CopyWebpackPlugin([
-      { from: 'static', to: outDir, ignore: ['.*'] }])), // ignore dot (hidden) files
+    ...when(!tests, new CopyWebpackPlugin({
+      patterns: [
+        { from: 'static', to: outDir, globOptions: { ignore: ['.*'] } }
+      ]
+    })), // ignore dot (hidden) files
     ...when(analyze, new BundleAnalyzerPlugin()),
     /**
      * Note that the usage of following plugin cleans the webpack output directory before build.
