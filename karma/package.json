@@ -1,16 +1,16 @@
 {
   "devDependencies": {
-    "jasmine-core": "^3.5.0",
-    "karma": "^5.0.5",
+    "jasmine-core": "^3.6.0",
+    "karma": "^5.1.1",
     "karma-chrome-launcher": "^3.1.0",
-    "karma-jasmine": "^3.1.1",
+    "karma-jasmine": "^4.0.1",
     "karma-sourcemap-loader": "^0.3.7",
 
     // @if webpack
-    "karma-coverage": "^2.0.2",
+    "karma-coverage": "^2.0.3",
     "karma-mocha-reporter": "^2.2.5",
     "karma-webpack": "^4.0.2",
-    "karma-coverage-istanbul-reporter": "^2.1.1",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
     "jest-jasmine2": "^23.6.0",
     "jest-matchers": "^20.0.3",
     // @endif
@@ -21,7 +21,7 @@
 
     // @if typescript
     "karma-typescript-preprocessor": "^0.4.0",
-    "@types/jasmine": "^3.5.10",
+    "@types/jasmine": "^3.5.12",
     // @endif
   },
 

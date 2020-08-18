@@ -24,8 +24,12 @@ const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 const baseUrl = '/';
 
 const cssRules = [
-  { loader: 'css-loader' },
-  // @if postcss
+  {
+    loader: 'css-loader',
+    options: {
+      esModule: false
+    }
+  }/* @if postcss */,
   {
     loader: 'postcss-loader',
     options: { plugins: () => [
@@ -33,7 +37,7 @@ const cssRules = [
       require('cssnano')()
     ] }
   }
-  // @endif
+  /* @endif */
 ];
 
 // @if sass

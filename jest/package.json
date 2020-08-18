@@ -1,18 +1,18 @@
 {
   "devDependencies": {
-    "jest": "^26.0.1",
-    "jest-cli": "^26.0.1",
+    "jest": "^26.4.0",
+    "jest-cli": "^26.4.0",
     "jest-transform-stub": "^2.0.0",
     "aurelia-loader-nodejs": "^1.1.0",
     "aurelia-pal-nodejs": "^2.0.0",
 
     // @if babel
-    "babel-jest": "^26.0.1",
+    "babel-jest": "^26.3.0",
     // @endif
 
     // @if typescript
-    "ts-jest": "^25.5.1",
-    "@types/jest": "^25.2.1",
+    "ts-jest": "^26.2.0",
+    "@types/jest": "^26.0.10",
     // @endif
   },
   "scripts": {
