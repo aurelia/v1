@@ -23,7 +23,7 @@ to guide you through creating your project.
 Aurelia CLI v2.0.0+ uses this repo to create new user app. When users run
 
 ```bash
-au1 new
+au new
 ```
 
 It calls `npx makes aurelia/v1` to perform the scaffolding.

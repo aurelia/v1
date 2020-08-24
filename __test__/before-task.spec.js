@@ -20,7 +20,7 @@ test.serial('"before" task adds "plugin" to preselected features in unattended m
   };
 
   const oldArgv = process.argv;
-  process.argv = ['node', 'makes', 'aurelia/au1', '--plugin', '-s', 'a,b'];
+  process.argv = ['node', 'makes', 'aurelia/v1', '--plugin', '-s', 'a,b'];
   const result = await before({unattended: true, prompts, preselectedFeatures: ['a', 'b']});
   t.deepEqual(result, {
     preselectedFeatures: ['a', 'b', 'plugin']
@@ -115,7 +115,7 @@ test.serial('"before" task cannot select default-esnext preset with --plugin', a
   };
 
   const oldArgv = process.argv;
-  process.argv = ['node', 'makes', 'aurelia/au1', '--plugin'];
+  process.argv = ['node', 'makes', 'aurelia/v1', '--plugin'];
   await before({unattended: false, prompts});
   process.argv = oldArgv;
 });
@@ -129,7 +129,7 @@ test.serial('"before" task cannot select default-typescript preset with --plugin
   };
 
   const oldArgv = process.argv;
-  process.argv = ['node', 'makes', 'aurelia/au1', '--plugin'];
+  process.argv = ['node', 'makes', 'aurelia/v1', '--plugin'];
   await before({unattended: false, prompts});
   process.argv = oldArgv;
 });
@@ -143,7 +143,7 @@ test.serial('"before" task can select default-esnext-plugin preset with --plugin
   };
 
   const oldArgv = process.argv;
-  process.argv = ['node', 'makes', 'aurelia/au1', '--plugin'];
+  process.argv = ['node', 'makes', 'aurelia/v1', '--plugin'];
 
   const result = await before({unattended: false, prompts});
   t.deepEqual(result, {
@@ -165,7 +165,7 @@ test.serial('"before" task can select default-typescript-plugin preset with --pl
   };
 
   const oldArgv = process.argv;
-  process.argv = ['node', 'makes', 'aurelia/au1', '-p'];
+  process.argv = ['node', 'makes', 'aurelia/v1', '-p'];
 
   const result = await before({unattended: false, prompts});
   t.deepEqual(result, {
@@ -186,7 +186,7 @@ test.serial('"before" task can not select no preset with --plugin', async t => {
   };
 
   const oldArgv = process.argv;
-  process.argv = ['node', 'makes', 'aurelia/au1', '-p'];
+  process.argv = ['node', 'makes', 'aurelia/v1', '-p'];
   await before({unattended: false, prompts});
   process.argv = oldArgv;
 });
@@ -202,7 +202,7 @@ test.serial('"before" task can select custom plugin with --plugin', async t => {
   };
 
   const oldArgv = process.argv;
-  process.argv = ['node', 'makes', 'aurelia/au1', '-p'];
+  process.argv = ['node', 'makes', 'aurelia/v1', '-p'];
 
   const result = await before({unattended: false, prompts});
   t.deepEqual(result, {
