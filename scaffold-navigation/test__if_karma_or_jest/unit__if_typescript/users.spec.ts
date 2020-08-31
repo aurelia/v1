@@ -10,7 +10,7 @@ class HttpStub {
     });
   }
   
-  configure(func) { }
+  configure(func) { /**/ }
 }
 
 function createHttpStub(): any {
@@ -20,10 +20,10 @@ function createHttpStub(): any {
 describe('the Users module', () => {
 
   it('sets fetch response to users', (done) => {
-    var http = createHttpStub(),
-        sut = new Users(<HttpClient>http),
-        itemStubs = [1],
-        itemFake = [2];
+    const http = createHttpStub(),
+      sut = new Users(<HttpClient>http),
+      itemStubs = [1],
+      itemFake = [2];
         
     http.items = itemStubs;
     

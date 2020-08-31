@@ -15,8 +15,8 @@ class RouterStub {
 }
 
 describe('the Child Router module', () => {
-  var sut;
-  var mockedRouter;
+  let sut;
+  let mockedRouter;
 
   beforeEach(() => {
     mockedRouter = new RouterStub();
