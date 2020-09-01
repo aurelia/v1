@@ -221,6 +221,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
     contentBase: outDir,
     // serve index.html for all 404 (required for push-state)
     historyApiFallback: true,
+    open: project.platform.open,
     hot: hmr || project.platform.hmr,
     port: port || project.platform.port,
     host: host
