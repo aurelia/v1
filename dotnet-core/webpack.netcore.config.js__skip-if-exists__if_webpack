@@ -1,6 +1,5 @@
 const webpackConfig = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const project = require('./aurelia_project/aurelia.json');
 var originalConfig = webpackConfig({});
 
@@ -19,11 +18,6 @@ module.exports = () => {
     }
     return x;
   });
-  config.plugins = [
-    // first clean the output directory
-    new CleanWebpackPlugin(),
-    ...config.plugins
-  ];
 
   return config;
 };
