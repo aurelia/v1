@@ -98,6 +98,9 @@ module.exports = [
   {
     message: 'Which unit test runner would you like to use?',
     choices: [{
+      title: 'None',
+      hint: 'No unit testing'
+    }, {
       value: 'jest',
       title: 'Jest',
       hint: 'Unit testing with Jest'
