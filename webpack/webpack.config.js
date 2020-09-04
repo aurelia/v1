@@ -122,7 +122,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
         //   enforce: true
         // },
         // bootstrap: { // separates bootstrap js from vendors and also bootstrap css from app css
-        //   name: 'vendor.font-awesome',
+        //   name: 'vendor.bootstrap',
         //   test:  /[\\/]node_modules[\\/]bootstrap[\\/]/,
         //   priority: 90,
         //   enforce: true
