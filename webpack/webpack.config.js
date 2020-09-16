@@ -19,6 +19,9 @@ const when = (condition, config, negativeConfig) =>
 // primary config:
 const outDir = path.resolve(__dirname, project.platform.output);
 const srcDir = path.resolve(__dirname, 'src');
+// @if babel
+const nodeModulesDir = path.resolve(__dirname, 'node_modules');
+// @endif
 const baseUrl = '';
 
 const cssRules = [
