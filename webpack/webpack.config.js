@@ -355,8 +355,8 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
     }),
     // ref: https://webpack.js.org/plugins/mini-css-extract-plugin/
     ...when(extractCss, new MiniCssExtractPlugin({ // updated to match the naming conventions for the js files
-      filename: production ? 'css/[name].[contenthash].bundle.css' : 'css/[name].[hash].bundle.css',
-      chunkFilename: production ? 'css/[name].[contenthash].chunk.css' : 'css/[name].[hash].chunk.css'
+      filename: production ? '[name].[contenthash].bundle.css' : '[name].[hash].bundle.css',
+      chunkFilename: production ? '[name].[contenthash].chunk.css' : '[name].[hash].chunk.css'
     })),
     ...when(!tests, new CopyWebpackPlugin({
       patterns: [
