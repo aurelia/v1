@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "whatwg-fetch": "^3.4.0",
+    "whatwg-fetch": "^3.4.1",
     "aurelia-fetch-client": "^1.8.2",
     "bootstrap": "^4.5.2",
     "popper.js": "^1.16.1",

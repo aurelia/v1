@@ -1,10 +1,10 @@
 {
   "devDependencies": {
     "jasmine-core": "^3.6.0",
-    "karma": "^5.1.1",
+    "karma": "^5.2.2",
     "karma-chrome-launcher": "^3.1.0",
     "karma-jasmine": "^4.0.1",
-    "karma-sourcemap-loader": "^0.3.7",
+    "karma-sourcemap-loader": "^0.3.8",
 
     // @if webpack
     "karma-coverage": "^2.0.3",
@@ -21,7 +21,7 @@
 
     // @if typescript
     "karma-typescript-preprocessor": "^0.4.0",
-    "@types/jasmine": "^3.5.12",
+    "@types/jasmine": "^3.5.14",
     // @endif
   },
 

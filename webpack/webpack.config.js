@@ -33,12 +33,15 @@ const cssRules = [
   }/* @if postcss */,
   {
     loader: 'postcss-loader',
-    options: { plugins: () => [
-      require('autoprefixer')(),
-      require('cssnano')()
-    ] }
-  }
-  /* @endif */
+    options: {
+      postcssOptions: {
+        plugins: [
+          'autoprefixer',
+          'cssnano'
+        ]
+      }
+    }
+  }/* @endif */
 ];
 
 // @if sass
