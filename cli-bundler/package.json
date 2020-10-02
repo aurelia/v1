@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "del": "^5.1.0",
+    "del": "^6.0.0",
 
     // @if requirejs
     "requirejs": "^2.3.6",
@@ -26,8 +26,9 @@
     // @endif
 
     // @if postcss
-    "gulp-postcss": "^8.0.0",
-    "autoprefixer": "^9.8.6",
+    "gulp-postcss": "^9.0.0",
+    "postcss": "^8.1.1",
+    "autoprefixer": "^10.0.1",
     "cssnano": "^4.1.10",
     "postcss-url": "^8.0.0",
     // @endif
@@ -49,7 +50,7 @@
     "connect-injector": "^0.4.4",
     "serve-static": "^1.14.1",
     "socket.io": "^2.3.0",
-    "open": "^7.2.1",
+    "open": "^7.3.0",
     "server-destroy": "^1.0.1",
 
     "debounce": "^1.2.0",
