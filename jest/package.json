@@ -11,7 +11,7 @@
     // @endif
 
     // @if typescript
-    "ts-jest": "^26.4.0",
+    "ts-jest": "^26.4.1",
     "@types/jest": "^26.0.14",
     // @endif
   },

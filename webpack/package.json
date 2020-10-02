@@ -22,8 +22,8 @@
 
     // @if postcss
     "postcss-loader": "^4.0.2",
-    "postcss": "^8.0.8",
-    "autoprefixer": "^10.0.0",
+    "postcss": "^8.1.1",
+    "autoprefixer": "^10.0.1",
     "cssnano": "^4.1.10",
     // @endif
 
@@ -33,7 +33,7 @@
     // @endif
 
     // @if stylus
-    "stylus-loader": "^3.0.2",
+    "stylus-loader": "^4.0.0",
     "stylus": "^0.54.8",
     // @endif
 
