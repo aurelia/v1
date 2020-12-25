@@ -19,6 +19,6 @@
     "src"
   ],
   "devDependencies": {
-    "gulp-sourcemaps": "^2.6.5"
+    "gulp-sourcemaps": "^3.0.0"
   }
 }

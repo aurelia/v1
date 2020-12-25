@@ -11,6 +11,7 @@ import less from 'gulp-less';
 // @endif
 // @if sass
 import sass from 'gulp-dart-sass';
+import sassPackageImporter from 'node-sass-package-importer';
 // @endif
 // @if stylus
 import stylus from 'gulp-stylus';
@@ -34,6 +35,7 @@ import * as less from 'gulp-less';
 // @endif
 // @if sass
 import * as sass from 'gulp-dart-sass';
+import * as sassPackageImporter from 'node-sass-package-importer';
 // @endif
 // @if stylus
 import * as stylus from 'gulp-stylus';
@@ -55,7 +57,13 @@ export default function processCSS() {
     .pipe(less())
     // @endif
     // @if sass
-    .pipe(CLIOptions.hasFlag('watch') ? sass.sync().on('error', sass.logError) : sass.sync())
+    .pipe(
+      // sassPackageImporter handles @import "~bootstrap"
+      // https://github.com/maoberlehner/node-sass-magic-importer/tree/master/packages/node-sass-package-importer
+      CLIOptions.hasFlag('watch') ?
+        sass.sync({importer: sassPackageImporter()}).on('error', sass.logError) :
+        sass.sync({importer: sassPackageImporter()})
+    )
     // @endif
     // @if stylus
     .pipe(stylus())
