@@ -11,41 +11,41 @@
     // @endif
 
     // @if typescript
-    "ts-loader": "^8.0.12",
-    "@types/webpack": "^4.41.25",
+    "ts-loader": "^8.0.14",
+    "@types/webpack": "^4.41.26",
     // @endif
 
     // @if less
-    "less-loader": "^7.2.0",
-    "less": "^3.12.2",
+    "less-loader": "^7.2.1",
+    "less": "^4.1.0",
     // @endif
 
     // @if postcss
     "postcss-loader": "^4.1.0",
-    "postcss": "^8.2.1",
-    "autoprefixer": "^10.1.0",
+    "postcss": "^8.2.4",
+    "autoprefixer": "^10.2.1",
     "cssnano": "^4.1.10",
     // @endif
 
     // @if sass
-    "sass-loader": "^10.1.0",
-    "sass": "^1.30.0",
+    "sass-loader": "^10.1.1",
+    "sass": "^1.32.4",
     // @endif
 
     // @if stylus
-    "stylus-loader": "^4.3.1",
+    "stylus-loader": "^4.3.3",
     "stylus": "^0.54.8",
     // @endif
 
-    "html-webpack-plugin": "^4.5.0",
+    "html-webpack-plugin": "^4.5.1",
     "copy-webpack-plugin": "^6.4.0",
-    "mini-css-extract-plugin": "^1.3.3",
+    "mini-css-extract-plugin": "^1.3.4",
     "aurelia-webpack-plugin": "^4.0.0",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server": "^3.11.2",
     "expose-loader": "^1.0.3",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",

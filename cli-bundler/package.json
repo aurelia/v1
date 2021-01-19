@@ -27,8 +27,8 @@
 
     // @if postcss
     "gulp-postcss": "^9.0.0",
-    "postcss": "^8.2.1",
-    "autoprefixer": "^10.1.0",
+    "postcss": "^8.2.4",
+    "autoprefixer": "^10.2.1",
     "cssnano": "^4.1.10",
     "postcss-url": "^10.1.1",
     // @endif
@@ -50,8 +50,8 @@
     "connect-history-api-fallback": "^1.6.0",
     "connect-injector": "^0.4.4",
     "serve-static": "^1.14.1",
-    "socket.io": "^3.0.4",
-    "open": "^7.3.0",
+    "socket.io": "^3.1.0",
+    "open": "^7.3.1",
     "server-destroy": "^1.0.1",
 
     "debounce": "^1.2.0",
