@@ -141,7 +141,7 @@
       {
         "name": "app-bundle.js",
         "source": [
-          "**/*.{js,json,css,html}"
+          "**/*"
         ]
       },
       {
