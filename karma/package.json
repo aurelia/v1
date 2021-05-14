@@ -21,7 +21,7 @@
 
     // @if typescript
     "karma-typescript-preprocessor": "^0.4.0",
-    "@types/jasmine": "^3.6.7",
+    "@types/jasmine": "^3.7.4",
     // @endif
   },
 
