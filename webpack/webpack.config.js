@@ -295,7 +295,9 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
         issuer: /\.html?$/i
       },
       // @endif
-      { test: /\.html$/i, loader: 'html-loader' },
+      // Skip minimize in production build to avoid complain on unescaped < such as
+      // <span>${ c < 5 ? c : 'many' }</span>
+      { test: /\.html$/i, loader: 'html-loader', options: { minimize: false } },
       // @if babel
       {
         test: /\.js$/i, loader: 'babel-loader', exclude: nodeModulesDir,
