@@ -8,16 +8,5 @@ module.exports = () => {
   // output files without hashes
   config.output.filename = '[name].bundle.js';
   config.plugins.splice(config.plugins.findIndex((x) => x.constructor.name === HtmlWebpackPlugin.name), 1);
-  // fix output path for .net core development
-  config.module.rules = config.module.rules.map(x => {
-    if (x.loader && (x.loader === 'url-loader' || x.loader === 'file-loader')) {
-      if (!x.options) {
-        x.options = {};
-      }
-      x.options.publicPath = project.platform.output.replace('wwwroot', '') + '/';
-    }
-    return x;
-  });
-
   return config;
 };

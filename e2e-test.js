@@ -172,8 +172,8 @@ skeletons.forEach((features, i) => {
 
     patchPackageJson(appFolder, targetCLI);
 
-    console.log('-- yarn');
-    await run('yarn');
+    console.log('-- npm i');
+    await run('npm i');
     t.pass('installed deps');
 
     console.log('-- npm test');
