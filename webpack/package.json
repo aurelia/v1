@@ -57,9 +57,9 @@
     "tree-kill": "^1.2.2"
   },
   "scripts": {
-    "build": "webpack --env.production --extractCss",
+    "build": "webpack --env production --extractCss",
     "build:dev": "webpack --extractCss",
-    "analyze": "webpack --env.production --analyze",
+    "analyze": "webpack --env production --analyze",
     // @if dotnet-core
     "start": "webpack server --extractCss"
     // @endif
