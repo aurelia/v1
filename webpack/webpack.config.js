@@ -57,7 +57,7 @@ const sassRules = [
 ];
 // @endif
 
-module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, host } = {}) => ({
+module.exports = ({ production }, {extractCss, analyze, tests, hmr, port, host }) => ({
   resolve: {
     // @if typescript
     extensions: ['.ts', '.js'],
