@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "jasmine-core": "^3.10.1",
-    "karma": "^5.2.3",
+    "karma": "^6.3.6",
     "karma-chrome-launcher": "^3.1.0",
     "karma-jasmine": "^4.0.1",
     "karma-sourcemap-loader": "^0.3.8",
@@ -9,7 +9,7 @@
     // @if webpack
     "karma-coverage": "^2.0.3",
     "karma-mocha-reporter": "^2.2.5",
-    "karma-webpack": "^4.0.2",
+    "karma-webpack": "^5.0.0",
     "karma-coverage-istanbul-reporter": "^3.0.3",
     "jest-jasmine2": "^23.6.0",
     "jest-matchers": "^20.0.3",
