@@ -6,15 +6,6 @@
     "karma-jasmine": "^4.0.1",
     "karma-sourcemap-loader": "^0.3.8",
 
-    // @if webpack
-    "karma-coverage": "^2.0.3",
-    "karma-mocha-reporter": "^2.2.5",
-    "karma-webpack": "^5.0.0",
-    "karma-coverage-istanbul-reporter": "^3.0.3",
-    "jest-jasmine2": "^23.6.0",
-    "jest-matchers": "^20.0.3",
-    // @endif
-
     // @if babel
     "karma-babel-preprocessor": "^8.0.1",
     // @endif

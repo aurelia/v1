@@ -57,7 +57,7 @@ const sassRules = [
 ];
 // @endif
 
-module.exports = ({ production }, { analyze, tests, hmr, port, host }) => ({
+module.exports = ({ production }, { analyze, hmr, port, host }) => ({
   resolve: {
     // @if typescript
     extensions: ['.ts', '.js'],
@@ -286,10 +286,7 @@ module.exports = ({ production }, { analyze, tests, hmr, port, host }) => ({
       // <span>${ c < 5 ? c : 'many' }</span>
       { test: /\.html$/i, loader: 'html-loader', options: { minimize: false } },
       // @if babel
-      {
-        test: /\.js$/i, loader: 'babel-loader', exclude: nodeModulesDir,
-        options: tests ? { sourceMap: 'inline', plugins: ['istanbul'] } : {}
-      },
+      { test: /\.js$/i, loader: 'babel-loader', exclude: nodeModulesDir },
       // @endif
       // @if typescript
       { test: /\.ts$/, loader: "ts-loader" },
@@ -303,7 +300,7 @@ module.exports = ({ production }, { analyze, tests, hmr, port, host }) => ({
     ]
   },
   plugins: [
-    ...when(!tests, new DuplicatePackageCheckerPlugin()),
+    new DuplicatePackageCheckerPlugin(),
     new AureliaPlugin(),
     // @if scaffold-navigation
     new ProvidePlugin({
@@ -342,11 +339,11 @@ module.exports = ({ production }, { analyze, tests, hmr, port, host }) => ({
       filename: production ? '[name].[contenthash].bundle.css' : '[name].[fullhash].bundle.css',
       chunkFilename: production ? '[name].[contenthash].chunk.css' : '[name].[fullhash].chunk.css'
     }),
-    ...when(!tests, new CopyWebpackPlugin({
+    new CopyWebpackPlugin({
       patterns: [
         { from: 'static', to: outDir, globOptions: { ignore: ['.*'] } }
       ]
-    })), // ignore dot (hidden) files
+    }), // ignore dot (hidden) files
     ...when(analyze, new BundleAnalyzerPlugin()),
     /**
      * Note that the usage of following plugin cleans the webpack output directory before build.

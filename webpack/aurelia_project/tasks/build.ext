@@ -15,8 +15,6 @@ function cleanArgs(args) {
       const env = args[++i].toLowerCase();
       if (env.startsWith('prod')) {
         cleaned.push('--env production');
-      } else if (env.startsWith('test')) {
-        cleaned.push('--tests');
       }
     } else {
       cleaned.push(args[i]);
