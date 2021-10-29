@@ -57,7 +57,7 @@ const sassRules = [
 ];
 // @endif
 
-module.exports = ({ production }, {extractCss, analyze, tests, hmr, port, host }) => ({
+module.exports = ({ production }, { analyze, tests, hmr, port, host }) => ({
   resolve: {
     // @if typescript
     extensions: ['.ts', '.js'],
@@ -97,7 +97,7 @@ module.exports = ({ production }, {extractCss, analyze, tests, hmr, port, host }
     runtimeChunk: true,  // separates the runtime chunk, required for long term cacheability
     // moduleIds is the replacement for HashedModuleIdsPlugin and NamedModulesPlugin deprecated in https://github.com/webpack/webpack/releases/tag/v4.16.0
     // changes module id's to use hashes be based on the relative path of the module, required for long term cacheability
-    moduleIds: 'hashed',
+    moduleIds: 'deterministic',
     // Use splitChunks to breakdown the App/Aurelia bundle down into smaller chunks
     // https://webpack.js.org/plugins/split-chunks-plugin/
     splitChunks: {
@@ -117,7 +117,7 @@ module.exports = ({ production }, {extractCss, analyze, tests, hmr, port, host }
       cacheGroups: {
         default: false, // Disable the built-in groups default & vendors (vendors is redefined below)
         // You can insert additional cacheGroup entries here if you want to split out specific modules
-        // This is required in order to split out vendor css from the app css when using --extractCss
+        // This is required in order to split out vendor css from the app css
         // For example to separate font-awesome and bootstrap:
         // fontawesome: { // separates font-awesome css from the app css (font-awesome is only css/fonts)
         //   name: 'vendor.font-awesome',
@@ -222,7 +222,6 @@ module.exports = ({ production }, {extractCss, analyze, tests, hmr, port, host }
   },
   performance: { hints: false },
   devServer: {
-    contentBase: outDir,
     // serve index.html for all 404 (required for push-state)
     historyApiFallback: true,
     open: project.platform.open,
@@ -230,22 +229,19 @@ module.exports = ({ production }, {extractCss, analyze, tests, hmr, port, host }
     port: port || project.platform.port,
     host: host
   },
-  devtool: production ? 'nosources-source-map' : 'cheap-module-eval-source-map',
+  devtool: production ? undefined : 'cheap-module-source-map',
   module: {
     rules: [
       // CSS required in JS/TS files should use the style-loader that auto-injects it into the website
       // only when the issuer is a .js/.ts file, so the loaders are not applied inside html templates
       {
         test: /\.css$/i,
-        issuer: [{ not: [{ test: /\.html$/i }] }],
-        use: extractCss ? [{
-          loader: MiniCssExtractPlugin.loader
-        }, ...cssRules
-        ] : ['style-loader', ...cssRules]
+        issuer: { not: [ /\.html$/i ] },
+        use: [ { loader: MiniCssExtractPlugin.loader }, ...cssRules ]
       },
       {
         test: /\.css$/i,
-        issuer: [{ test: /\.html$/i }],
+        issuer: /\.html$/i,
         // CSS required in templates cannot be extracted safely
         // because Aurelia would try to require it again in runtime
         use: cssRules
@@ -253,10 +249,7 @@ module.exports = ({ production }, {extractCss, analyze, tests, hmr, port, host }
       // @if less
       {
         test: /\.less$/i,
-        use: extractCss ? [{
-          loader: MiniCssExtractPlugin.loader
-        }, ...cssRules, 'less-loader'
-        ]: ['style-loader', ...cssRules, 'less-loader'],
+        use: [ { loader: MiniCssExtractPlugin.loader }, ...cssRules, 'less-loader' ],
         issuer: /\.[tj]s$/i
       },
       {
@@ -268,10 +261,7 @@ module.exports = ({ production }, {extractCss, analyze, tests, hmr, port, host }
       // @if stylus
       {
         test: /\.styl$/i,
-        use: extractCss ? [{
-          loader: MiniCssExtractPlugin.loader
-        }, ...cssRules, 'stylus-loader'
-        ]: ['style-loader', ...cssRules, 'stylus-loader'],
+        use: [ { loader: MiniCssExtractPlugin.loader }, ...cssRules, 'stylus-loader' ],
         issuer: /\.[tj]s$/i
       },
       {
@@ -283,10 +273,7 @@ module.exports = ({ production }, {extractCss, analyze, tests, hmr, port, host }
       // @if sass
       {
         test: /\.scss$/,
-        use: extractCss ? [{
-          loader: MiniCssExtractPlugin.loader
-        }, ...cssRules, ...sassRules
-        ]: ['style-loader', ...cssRules, ...sassRules],
+        use: [ { loader: MiniCssExtractPlugin.loader }, ...cssRules, ...sassRules ],
         issuer: /\.[tj]s$/i
       },
       {
@@ -312,14 +299,7 @@ module.exports = ({ production }, {extractCss, analyze, tests, hmr, port, host }
       { test: /\.(woff|woff2|ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i,  type: 'asset' },
       { test: /environment\.json$/i, use: [
         {loader: "app-settings-loader", options: {env: production ? 'production' : 'development' }},
-      ]},
-      // @if typescript
-      ...when(tests, {
-        test: /\.[jt]s$/i, loader: 'istanbul-instrumenter-loader',
-        include: srcDir, exclude: [/\.(spec|test)\.[jt]s$/i],
-        enforce: 'post', options: { esModules: true },
-      })
-      // @endif
+      ]}
     ]
   },
   plugins: [
@@ -358,10 +338,10 @@ module.exports = ({ production }, {extractCss, analyze, tests, hmr, port, host }
       }
     }),
     // ref: https://webpack.js.org/plugins/mini-css-extract-plugin/
-    ...when(extractCss, new MiniCssExtractPlugin({ // updated to match the naming conventions for the js files
+    new MiniCssExtractPlugin({ // updated to match the naming conventions for the js files
       filename: production ? '[name].[contenthash].bundle.css' : '[name].[hash].bundle.css',
       chunkFilename: production ? '[name].[contenthash].chunk.css' : '[name].[hash].chunk.css'
-    })),
+    }),
     ...when(!tests, new CopyWebpackPlugin({
       patterns: [
         { from: 'static', to: outDir, globOptions: { ignore: ['.*'] } }
