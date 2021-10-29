@@ -247,32 +247,32 @@ skeletons.forEach((features, i) => {
     t.pass('made dev build');
 
     console.log('-- npm start');
-    await run('npm start',
-      undefined,
-      async (data, kill) => {
-        const m = data.toString().match(serverRegex);
-        if (!m) return;
-        const url = m[1];
-        t.pass(m[0]);
+    const runE2e = async (data, kill) => {
+      const m = data.toString().match(serverRegex);
+      if (!m) return;
+      const url = m[1];
+      t.pass(m[0]);
 
-        try {
-          if (!process.env.GITHUB_ACTIONS) {
-            console.log('-- take screenshot');
-            await takeScreenshot(url, path.join(folder, appName + '.png'));
-          }
-
-          if (features.includes('cypress')) {
-            console.log('-- npm run e2e');
-            await run(`npm run e2e`);
-            t.pass('passed e2e test');
-          }
-          kill();
-        } catch (e) {
-          t.fail(e.message);
-          kill();
+      try {
+        if (!process.env.GITHUB_ACTIONS) {
+          console.log('-- take screenshot');
+          await takeScreenshot(url, path.join(folder, appName + '.png'));
         }
+
+        if (features.includes('cypress')) {
+          console.log('-- npm run e2e');
+          await run(`npm run e2e`);
+          t.pass('passed e2e test');
+        }
+        kill();
+      } catch (e) {
+        t.fail(e.message);
+        kill();
       }
-    );
+    };
+
+    // Webpack5 now prints Loopback: http://localhost:5000 in stderr!
+    await run('npm start', runE2e, runE2e);
 
     if (process.platform === 'linux' && features.includes('docker')) {
       console.log('-- npm run docker:build');
