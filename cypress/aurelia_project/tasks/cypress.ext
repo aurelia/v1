@@ -17,7 +17,7 @@ import { default as runAppServer, shutdownDevServer } from './run';
 const runCypress = (cb) => {
   if (CLIOptions.hasFlag('run')) {
     cypress
-      .run(config)
+      .run({ ...config, configFile: false })
       .then(results => {
         shutdownDevServer();
         // "cypress.run" has strange behavior on Windows, preventing

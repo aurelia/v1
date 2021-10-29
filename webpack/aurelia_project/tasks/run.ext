@@ -31,7 +31,12 @@ function cleanArgs(args) {
       }
     } else if (args[i] === '--host' && i < ii -1) {
       host = args[++i];
-    } else {
+    } else if (args[i].startsWith('--')){
+      // webpack 5 validates options
+      if (['--analyze', '--tests', '--hmr', '--open', '--port'].includes(args[i])) {
+        cleaned.push(args[i]);
+      }
+    } else{
       cleaned.push(args[i]);
     }
   }
