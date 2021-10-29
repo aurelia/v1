@@ -69,6 +69,8 @@ function run(command, dataCB, errorCB) {
     });
     proc.stderr.on('data', data => {
       process.stderr.write(data);
+      // Ingore webpack warning
+      if (data.includes('DeprecationWarning')) return;
       if (errorCB) {
         errorCB(data, () => {
           console.log(`-- kill "${command}"`);
