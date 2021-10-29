@@ -246,6 +246,7 @@ skeletons.forEach((features, i) => {
 
     console.log('-- npm start');
     await run('npm start',
+      undefined,
       async (data, kill) => {
         const m = data.toString().match(serverRegex);
         if (!m) return;
