@@ -105,7 +105,7 @@ function patchPackageJson(appFolder, targetCLI) {
 }
 
 function getServerRegex(features) {
-  if (features.includes('webpack')) return /Project is running at (\S+)/;
+  if (features.includes('webpack')) return /Loopback: (\S+)/;
   return /Dev server is started at: (\S+)/;
 }
 
