@@ -26,14 +26,12 @@ function cleanArgs(args) {
       const env = args[++i].toLowerCase();
       if (env.startsWith('prod')) {
         cleaned.push('--env production');
-      } else if (env.startsWith('test')) {
-        cleaned.push('--tests');
       }
     } else if (args[i] === '--host' && i < ii -1) {
       host = args[++i];
     } else if (args[i].startsWith('--')){
       // webpack 5 validates options
-      if (['--analyze', '--tests', '--hmr', '--open', '--port'].includes(args[i])) {
+      if (['--analyze', '--hmr', '--open', '--port'].includes(args[i])) {
         cleaned.push(args[i]);
       }
     } else{

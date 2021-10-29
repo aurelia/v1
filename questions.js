@@ -105,6 +105,8 @@ module.exports = [
       title: 'Jest',
       hint: 'Unit testing with Jest'
     }, {
+      // karma is too difficult for webpack v5
+      if: '!webpack',
       value: 'karma',
       title: 'Karma + Jasmine',
       hint: 'Unit testing with Karma and Jasmine'

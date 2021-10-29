@@ -134,12 +134,10 @@ const skeletons = [
 
   'webpack babel stylus jest postcss dotnet-core cypress docker',
   'webpack babel htmlmin jest cypress',
-  'webpack babel less karma dotnet-core cypress scaffold-navigation',
-  'webpack babel htmlmin karma cypress docker',
+  'webpack babel less jest dotnet-core cypress scaffold-navigation',
   'webpack typescript jest dotnet-core cypress',
   'webpack htmlmin typescript postcss jest cypress scaffold-navigation',
-  'webpack sass typescript postcss karma dotnet-core cypress scaffold-navigation vscode docker',
-  'webpack htmlmin typescript karma cypress docker',
+  'webpack sass typescript postcss jest dotnet-core cypress scaffold-navigation vscode docker',
 
   'plugin cli-bundler requirejs babel stylus htmlmin jest',
   'plugin cli-bundler requirejs babel karma postcss vscode',
