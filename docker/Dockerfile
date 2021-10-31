@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
     libnotify-dev \
     libgconf-2-4 \
     libxss1 \
+    libgbm1 \
     libasound2 \
     xvfb \
   && rm -rf /var/lib/apt/lists/*
