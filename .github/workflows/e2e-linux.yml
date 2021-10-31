@@ -37,6 +37,7 @@ jobs:
       - run: npm install
       - run: sudo apt-get update
       - run: sudo apt-get install -y libgbm-dev
+      - run: sudo apt-get install -y libgbm1
       - run: xvfb-run -a -s '-screen 0 1024x768x24' npm run test:e2e
         env:
           TARGET_FEATURES: ${{ matrix.target_features }}
