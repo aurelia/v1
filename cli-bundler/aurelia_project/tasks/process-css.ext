@@ -61,8 +61,8 @@ export default function processCSS() {
       // sassPackageImporter handles @import "~bootstrap"
       // https://github.com/maoberlehner/node-sass-magic-importer/tree/master/packages/node-sass-package-importer
       CLIOptions.hasFlag('watch') ?
-        sass.sync({importer: sassPackageImporter()}).on('error', sass.logError) :
-        sass.sync({importer: sassPackageImporter()})
+        sass.sync({quietDeps: true, importer: sassPackageImporter()}).on('error', sass.logError) :
+        sass.sync({quietDeps: true, importer: sassPackageImporter()})
     )
     // @endif
     // @if stylus
@@ -90,7 +90,11 @@ export function pluginCSS(dest) {
       .pipe(less())
       // @endif
       // @if sass
-      .pipe(CLIOptions.hasFlag('watch') ? sass.sync().on('error', sass.logError) : sass.sync())
+      .pipe(
+        CLIOptions.hasFlag('watch')
+          ? sass.sync({quietDeps: true}).on('error', sass.logError)
+          : sass.sync({quietDeps: true})
+      )
       // @endif
       // @if stylus
       .pipe(stylus())
