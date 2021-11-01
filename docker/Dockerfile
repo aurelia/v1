@@ -87,7 +87,7 @@ RUN npm run e2e:headless
 
 # build
 FROM build-stage as publish-stage
-RUN au build --env prod
+RUN npm run build
 
 # production stage
 FROM nginx:alpine as production-stage
