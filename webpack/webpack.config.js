@@ -26,10 +26,7 @@ const baseUrl = '';
 
 const cssRules = [
   {
-    loader: 'css-loader',
-    options: {
-      esModule: false
-    }
+    loader: 'css-loader'
   }/* @if postcss */,
   {
     loader: 'postcss-loader',
