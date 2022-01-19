@@ -29,7 +29,7 @@
 
     // @if sass
     "sass-loader": "^12.4.0",
-    "sass": "^1.48.0",
+    "sass": "^1.49.0",
     // @endif
 
     // @if stylus
@@ -39,7 +39,7 @@
 
     "html-webpack-plugin": "^5.5.0",
     "copy-webpack-plugin": "^10.2.0",
-    "mini-css-extract-plugin": "^2.5.0",
+    "mini-css-extract-plugin": "^2.5.2",
     "aurelia-webpack-plugin": "^5.0.3",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "clean-webpack-plugin": "^4.0.0",
