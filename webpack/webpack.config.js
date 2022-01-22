@@ -22,7 +22,7 @@ const srcDir = path.resolve(__dirname, 'src');
 // @if babel
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 // @endif
-const baseUrl = '';
+const baseUrl = '/';
 
 const cssRules = [
   {
