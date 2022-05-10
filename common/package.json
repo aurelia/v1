@@ -9,21 +9,21 @@
   "license": "MIT",
   // @if ! plugin
   "dependencies": {
-    "aurelia-bootstrapper": "^2.3.3",
+    "aurelia-bootstrapper": "^2.4.0",
     "aurelia-animator-css": "^1.0.4"
   },
   // @endif
   "devDependencies": {
     "eslint": "^8.12.0",
     "aurelia-cli": "^2.0.3",
-    "aurelia-testing": "^1.0.0",
+    "aurelia-testing": "^1.1.0",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
     "minimatch": "^5.0.1",
     "promise-polyfill": "^8.2.3",
 
     // @if plugin
-    "aurelia-bootstrapper": "^2.3.3",
+    "aurelia-bootstrapper": "^2.4.0",
     "aurelia-animator-css": "^1.0.4",
     // @endif
 
