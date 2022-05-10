@@ -306,9 +306,6 @@ module.exports = ({ production }, { analyze, hmr, port, host }) => ({
       'window.$': 'jquery'
     }),
     // @endif
-    new ModuleDependenciesPlugin({
-      'aurelia-testing': ['./compile-spy', './view-spy']
-    }),
     new HtmlWebpackPlugin({
       template: 'index.ejs',
       // @if htmlmin
