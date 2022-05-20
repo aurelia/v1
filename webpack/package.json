@@ -1,7 +1,6 @@
 {
   "devDependencies": {
     // @if dotnet-core
-    "aspnet-webpack": "^3.0.0",
     "webpack-hot-middleware": "^2.25.1",
     // @endif
 
