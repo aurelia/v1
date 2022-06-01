@@ -1,4 +1,4 @@
-import {CLIOptions, build} from 'aurelia-cli';
+import {CLIOptions, build/* @if htmlmin */, Configuration/* @endif */} from 'aurelia-cli';
 // @if babel
 import gulp from 'gulp';
 import project from '../aurelia.json';
@@ -17,12 +17,16 @@ import * as gulpIf from 'gulp-if';
 import * as plumber from 'gulp-plumber';
 // @endif
 // @endif
+// @if htmlmin
+const buildOptions = new Configuration(project.build.options);
+const minify = buildOptions.isApplicable('minify');
+// @endif
 
 export default function processMarkup() {
   return gulp.src(project.markupProcessor.source, {sourcemaps: true, since: gulp.lastRun(processMarkup)})
     // @if htmlmin
     .pipe(gulpIf(CLIOptions.hasFlag('watch'), plumber()))
-    .pipe(htmlmin({
+    .pipe(gulpIf(minify, htmlmin({
         // collapseInlineTagWhitespace: true,
         // collapseBooleanAttributes: true,
         // removeAttributeQuotes: true,
@@ -33,7 +37,7 @@ export default function processMarkup() {
         minifyCSS: true,
         minifyJS: true,
         ignoreCustomFragments: [/\${.*?}/g] // ignore interpolation expressions
-    }))
+    })))
     // @endif
     .pipe(build.bundle());
 }
@@ -44,7 +48,7 @@ export function pluginMarkup(dest) {
     return gulp.src(project.plugin.source.html)
       // @if htmlmin
       .pipe(gulpIf(CLIOptions.hasFlag('watch'), plumber()))
-      .pipe(htmlmin({
+      .pipe(gulpIf(minify, htmlmin({
           // collapseInlineTagWhitespace: true,
           // collapseBooleanAttributes: true,
           // removeAttributeQuotes: true,
@@ -55,7 +59,7 @@ export function pluginMarkup(dest) {
           minifyCSS: true,
           minifyJS: true,
           ignoreCustomFragments: [/\${.*?}/g] // ignore interpolation expressions
-      }))
+      })))
       // @endif
       .pipe(gulp.dest(dest));
   };
