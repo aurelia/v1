@@ -59,5 +59,12 @@
     "gulp-rename": "^2.0.0",
     "gulp-watch": "^5.0.1",
     "gulp-if": "^3.0.0"
+  },
+  // npm v8 feature to bypass outdated gulp deps
+  "overrides": {
+    "chokidar": "^3.0.0",
+    "glob-stream": "^7.0.0",
+    "glob-parent": "^6.0.0",
+    "micromatch": "^4.0.0"
   }
 }
