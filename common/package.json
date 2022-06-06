@@ -15,7 +15,7 @@
   // @endif
   "devDependencies": {
     "eslint": "^8.15.0",
-    "aurelia-cli": "^2.0.3",
+    "aurelia-cli": "^3.0.0",
     "aurelia-testing": "^1.1.0",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
@@ -57,5 +57,12 @@
   },
   "engines": {
     "node": ">=14.15.0"
+  },
+  // npm v8 feature to bypass outdated gulp deps
+  "overrides": {
+    "chokidar": "^3.0.0",
+    "glob-stream": "^7.0.0",
+    "glob-parent": "^6.0.0",
+    "micromatch": "^4.0.0"
   }
 }
