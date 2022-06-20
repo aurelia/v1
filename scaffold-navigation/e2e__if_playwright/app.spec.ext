@@ -1,0 +1,20 @@
+// @if typescript
+import { test, expect } from '@playwright/test';
+// @endif
+// @if babel
+const { test, expect } = require('@playwright/test');
+// @endif
+
+test.beforeEach(async ({ page }) => {
+  await page.goto('http://localhost:9000');
+});
+
+test.describe('app', () => {
+  test('should load the page and display the initial page title', async ({ page }) => {
+    await expect(page).toHaveTitle('Welcome | Aurelia');
+  });
+
+  test('should display greeting', async ({ page }) => {
+    await expect(page.locator('h2')).toHaveText('Welcome to the Aurelia Navigation App!');
+  });
+});

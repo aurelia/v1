@@ -55,7 +55,7 @@ node_modules
 // @if karma
 /test/coverage-karma
 // @endif
-// @if cypress
-/cypress/videos
-/cypress/screenshots
+// @if playwright
+/test-results
+/playwright-report
 // @endif

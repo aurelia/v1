@@ -19,6 +19,9 @@
     "test": "au test"
   },
   "jest": {
+    "testMatch": [
+      "<rootDir>/test/**/*.spec./* @if babel */js/* @endif *//* @if typescript */ts/* @endif */"
+    ],
     "moduleNameMapper": {
       // avoid aurelia-bindings v1+v2 conflict
       "^aurelia-binding$": "<rootDir>/node_modules/aurelia-binding",

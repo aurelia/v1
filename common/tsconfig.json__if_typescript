@@ -18,14 +18,6 @@
     "module": "esnext",
     // @endif
 
-    // @if cypress && karma
-    "types": ["jasmine"],
-    // @endif
-
-    // @if cypress && jest && cli-bundler
-    "types": ["node", "jest"],
-    // @endif
-
     "typeRoots": ["./node_modules/@types"],
 
     "removeComments": true,
