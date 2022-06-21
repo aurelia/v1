@@ -106,7 +106,7 @@ const config/* @if typescript */: PlaywrightTestConfig/* @endif */ = {
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'npm start',
-    port: 9000,
+    port: 5000,
   },
 };
 
