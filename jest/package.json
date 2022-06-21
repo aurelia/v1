@@ -52,13 +52,7 @@
       "^.+\\.ts$": "ts-jest",
       // @endif
     },
-    // @if babel
-    "testRegex": "\\.spec\\.js$",
-    // @endif
 
-    // @if typescript
-    "testRegex": "\\.spec\\.(ts|js)$",
-    // @endif
     "setupFiles": [
       // @if babel
       "<rootDir>/test/jest-pretest.js",
