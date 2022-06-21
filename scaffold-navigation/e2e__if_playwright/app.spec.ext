@@ -7,7 +7,7 @@ const { test, expect } = require('@playwright/test');
 
 test.beforeEach(async ({ page }) => {
   // @if web
-  await page.goto('http://localhost:9000');
+  await page.goto('http://localhost:/* @if webpack */8080/* @endif *//* @if !webpack */9000/* @endif */');
   // @endif
   // @if dotnet-core
   await page.goto('http://localhost:5000');
