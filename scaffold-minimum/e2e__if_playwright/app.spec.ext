@@ -6,7 +6,12 @@ const { test, expect } = require('@playwright/test');
 // @endif
 
 test.beforeEach(async ({ page }) => {
+  // @if web
   await page.goto('http://localhost:9000');
+  // @endif
+  // @if dotnet-core
+  await page.goto('http://localhost:5000');
+  // @endif
 });
 
 test.describe('app', () => {
