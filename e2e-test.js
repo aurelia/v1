@@ -44,14 +44,6 @@ function run(command, dataCB, errorCB) {
     const proc = spawn(cmd, args, {env});
     proc.on('exit', (code, signal) => {
       if (code && signal !== 'SIGTERM' && !win32Killed.has(proc.pid)) {
-        if (isWin32 && args[1] === 'test:e2e' && code === 3221226356) {
-          // There is random cypress ELIFECYCLE (3221226356) issue on Windows.
-          // Probably related to
-          // https://github.com/cypress-io/cypress/issues/5143
-          // https://github.com/cypress-io/cypress/pull/2011
-          resolve();
-          return;
-        }
         reject(new Error(cmd + ' ' + args.join(' ') + ' process exit code: ' + code + ' signal: ' + signal));
       } else {
         resolve();
@@ -114,30 +106,30 @@ function getServerRegex(features) {
 // The 32 skeletons copied from aurelia-cli.
 // This does not cover all possible combinations.
 const skeletons = [
-  'cli-bundler requirejs babel stylus jest dotnet-core cypress scaffold-navigation docker',
-  'cli-bundler requirejs babel htmlmin jest cypress',
-  'cli-bundler requirejs babel htmlmin karma dotnet-core cypress scaffold-navigation',
-  'cli-bundler requirejs babel less htmlmin postcss karma cypress scaffold-navigation',
-  'cli-bundler requirejs typescript jest dotnet-core cypress',
-  'cli-bundler requirejs typescript jest cypress',
-  'cli-bundler requirejs typescript karma dotnet-core cypress scaffold-navigation vscode',
-  'cli-bundler requirejs sass htmlmin typescript karma cypress docker',
+  'cli-bundler requirejs babel stylus jest dotnet-core playwright scaffold-navigation docker',
+  'cli-bundler requirejs babel htmlmin jest playwright',
+  'cli-bundler requirejs babel htmlmin karma dotnet-core playwright scaffold-navigation',
+  'cli-bundler requirejs babel less htmlmin postcss karma playwright scaffold-navigation',
+  'cli-bundler requirejs typescript jest dotnet-core playwright',
+  'cli-bundler requirejs typescript jest playwright',
+  'cli-bundler requirejs typescript karma dotnet-core playwright scaffold-navigation vscode',
+  'cli-bundler requirejs sass htmlmin typescript karma playwright docker',
 
-  'cli-bundler alameda babel postcss jest dotnet-core cypress',
-  'cli-bundler alameda babel jest cypress docker',
-  'cli-bundler alameda babel sass karma dotnet-core cypress docker',
-  'cli-bundler alameda babel karma cypress scaffold-navigation',
-  'cli-bundler alameda stylus typescript jest dotnet-core cypress',
-  'cli-bundler alameda less postcss typescript jest cypress docker',
-  'cli-bundler alameda htmlmin typescript karma dotnet-core cypress',
-  'cli-bundler alameda htmlmin typescript karma cypress',
+  'cli-bundler alameda babel postcss jest dotnet-core playwright',
+  'cli-bundler alameda babel jest playwright docker',
+  'cli-bundler alameda babel sass karma dotnet-core playwright docker',
+  'cli-bundler alameda babel karma playwright scaffold-navigation',
+  'cli-bundler alameda stylus typescript jest dotnet-core playwright',
+  'cli-bundler alameda less postcss typescript jest playwright docker',
+  'cli-bundler alameda htmlmin typescript karma dotnet-core playwright',
+  'cli-bundler alameda htmlmin typescript karma playwright',
 
-  'webpack babel stylus jest postcss dotnet-core cypress docker',
-  'webpack babel htmlmin jest cypress',
-  'webpack babel less jest dotnet-core cypress scaffold-navigation',
-  'webpack typescript jest dotnet-core cypress',
-  'webpack htmlmin typescript postcss jest cypress scaffold-navigation',
-  'webpack sass typescript postcss jest dotnet-core cypress scaffold-navigation vscode docker',
+  'webpack babel stylus jest postcss dotnet-core playwright docker',
+  'webpack babel htmlmin jest playwright',
+  'webpack babel less jest dotnet-core playwright scaffold-navigation',
+  'webpack typescript jest dotnet-core playwright',
+  'webpack htmlmin typescript postcss jest playwright scaffold-navigation',
+  'webpack sass typescript postcss jest dotnet-core playwright scaffold-navigation vscode docker',
 
   'plugin cli-bundler requirejs babel stylus htmlmin jest',
   'plugin cli-bundler requirejs babel karma postcss vscode',
@@ -256,12 +248,6 @@ skeletons.forEach((features, i) => {
           console.log('-- take screenshot');
           await takeScreenshot(url, path.join(folder, appName + '.png'));
         }
-
-        if (features.includes('cypress')) {
-          console.log('-- npm run e2e');
-          await run(`npm run e2e`);
-          t.pass('passed e2e test');
-        }
         kill();
       } catch (e) {
         t.fail(e.message);
@@ -271,6 +257,12 @@ skeletons.forEach((features, i) => {
 
     // Webpack5 now prints Loopback: http://localhost:5000 in stderr!
     await run('npm start', runE2e, runE2e);
+
+    if (features.includes('playwright')) {
+      console.log('-- npx playwright test --project chromium');
+      await run('npx playwright install --with-deps');
+      await run('npx playwright test --project chromium');
+    }
 
     if (process.platform === 'linux' && features.includes('docker')) {
       console.log('-- npm run docker:build');

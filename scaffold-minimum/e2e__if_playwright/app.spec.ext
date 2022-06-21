@@ -1,0 +1,21 @@
+// @if typescript
+import { test, expect } from '@playwright/test';
+// @endif
+// @if babel
+const { test, expect } = require('@playwright/test');
+// @endif
+
+test.beforeEach(async ({ page }) => {
+  // @if web
+  await page.goto('http://localhost:/* @if webpack */8080/* @endif *//* @if !webpack */9000/* @endif */');
+  // @endif
+  // @if dotnet-core
+  await page.goto('http://localhost:5000');
+  // @endif
+});
+
+test.describe('app', () => {
+  test('shows message', async ({ page }) => {
+    await expect(page.locator('h1')).toHaveText('Hello World!');
+  });
+});

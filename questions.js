@@ -119,9 +119,9 @@ module.exports = [
       title: 'None',
       hint: 'Skip e2e testing.'
     }, {
-      value: 'cypress',
-      title: 'Cypress',
-      hint: "Integration testing with Cypress."
+      value: 'playwright',
+      title: 'Playwright',
+      hint: "Integration testing with Playwright."
     }]
   },
   {
