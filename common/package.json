@@ -18,7 +18,7 @@
     "aurelia-cli": "^3.0.1",
     "aurelia-testing": "^1.1.0",
     "gulp": "^4.0.2",
-    "gulp-eslint": "^6.0.0",
+    "gulp-eslint-new": "^1.8.1",
     "minimatch": "^5.1.2",
     "promise-polyfill": "^8.3.0",
 
