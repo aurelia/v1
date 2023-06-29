@@ -5,6 +5,6 @@
     "bootstrap": "^4.6.1",
     "popper.js": "^1.16.1",
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "jquery": "^3.6.3"
+    "jquery": "^3.7.0"
   }
 }
