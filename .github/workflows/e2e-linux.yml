@@ -33,8 +33,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node_version }}
-      - name: Install deps for google-chrome-stable
-        run: sudo apt-get install -y libu2f-udev libvulkan1
       - run: npm install
       - run: xvfb-run -a -s '-screen 0 1024x768x24' npm run test:e2e
         env:
