@@ -26,6 +26,8 @@ RUN apt-get update && apt-get install -y \
     libgbm1 \
     libasound2 \
     xvfb \
+    libu2f-udev \
+    libvulkan1 \
   && rm -rf /var/lib/apt/lists/*
 
 # install chrome
