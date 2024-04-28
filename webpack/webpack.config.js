@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const project = require('./aurelia_project/aurelia.json');
 const { AureliaPlugin } = require('aurelia-webpack-plugin');
 // @if scaffold-navigation
@@ -90,6 +91,17 @@ module.exports = ({ production }, { analyze, hmr, port, host }) => ({
     chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[fullhash].chunk.js'
   },
   optimization: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          // Terser fast minify mode
+          // https://github.com/terser-js/terser#terser-fast-minify-mode
+          // It's a good balance on size and speed to turn off compress.
+          // Also bypass some terser bug.
+          compress: false
+        },
+      }),
+    ],
     runtimeChunk: true,  // separates the runtime chunk, required for long term cacheability
     // moduleIds is the replacement for HashedModuleIdsPlugin and NamedModulesPlugin deprecated in https://github.com/webpack/webpack/releases/tag/v4.16.0
     // changes module id's to use hashes be based on the relative path of the module, required for long term cacheability
