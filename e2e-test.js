@@ -7,17 +7,20 @@
 const spawn = require('cross-spawn');
 const fs = require('fs');
 const path = require('path');
-const del = require('del');
 const test = require('ava');
-const puppeteer = require('puppeteer');
 const kill = require('tree-kill');
 
-const isWin32 = process.platform === 'win32';
-const dir = __dirname;
+async function delay(secs) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, secs);
+  });
+}
 
-const folder = path.join(dir, 'test-skeletons');
+const isWin32 = process.platform === 'win32';
+
+const folder = path.join(__dirname, 'test-skeletons');
 console.log('-- cleanup ' + folder);
-del.sync(folder);
+fs.rmSync(folder, {recursive: true, force: true});
 fs.mkdirSync(folder);
 
 // Somehow taskkill on windows would not send SIGTERM signal to proc,
@@ -32,7 +35,7 @@ function killProc(proc) {
 }
 
 
-function run(command, dataCB, errorCB) {
+function run(command, cwd, dataCB, errorCB) {
   const [cmd, ...args] = command.split(' ');
   return new Promise((resolve, reject) => {
     const env = Object.create(process.env);
@@ -41,8 +44,9 @@ function run(command, dataCB, errorCB) {
     // need to reset NODE_ENV back to development because this whole
     // test is running in NODE_ENV=test which will affect gulp build
     env.NODE_ENV = 'development';
-    const proc = spawn(cmd, args, {env});
-    proc.on('exit', (code, signal) => {
+    const proc = spawn(cmd, args, {env, cwd});
+    proc.on('exit', async (code, signal) => {
+      await delay(1);
       if (code && signal !== 'SIGTERM' && !win32Killed.has(proc.pid)) {
         reject(new Error(cmd + ' ' + args.join(' ') + ' process exit code: ' + code + ' signal: ' + signal));
       } else {
@@ -55,31 +59,24 @@ function run(command, dataCB, errorCB) {
       if (dataCB) {
         dataCB(data, () => {
           console.log(`-- kill "${command}"`);
-          killProc(proc);
+          setTimeout(() => killProc(proc), 500);
         });
       }
     });
     proc.stderr.on('data', data => {
       process.stderr.write(data);
-      // Ingore webpack warning
-      if (data.toString().includes('DeprecationWarning')) return;
+      // Skip webpack5 deprecation warning.
+      if (data.toString().toLowerCase().includes('deprecation')) return;
+      // Skip BABEL warning (used by dumber bundler) when reading @aurelia/runtime-html
+      if (data.toString().includes('The code generator has deoptimised the styling')) return;
       if (errorCB) {
         errorCB(data, () => {
           console.log(`-- kill "${command}"`);
-          killProc(proc);
+          setTimeout(() => killProc(proc), 500);
         });
       }
     })
   });
-}
-
-async function takeScreenshot(url, filePath) {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto(url);
-  await new Promise(r => setTimeout(r, 6000));
-  await page.screenshot({path: filePath});
-  await browser.close();
 }
 
 const targetCLI = (process.env.TARGET_CLI || null);
@@ -154,26 +151,24 @@ skeletons.forEach((features, i) => {
 
   test.serial(title, async t => {
     console.log(title);
-    process.chdir(folder);
 
-    const makeCmd = `npx makes ${dir} ${appName} -s ${features.join(',')}`;
+    const makeCmd = `npx makes ${__dirname} ${appName} -s ${features.join(',')}`;
     console.log('-- ' + makeCmd);
-    await run(makeCmd);
+    await run(makeCmd, folder);
     t.pass('made skeleton');
-    process.chdir(appFolder);
 
     patchPackageJson(appFolder, targetCLI);
 
     console.log('-- npm i');
-    await run('npm i');
+    await run('npm i', appFolder);
     t.pass('installed deps');
 
     console.log('-- npm test');
-    await run('npm test');
+    await run('npm test', appFolder);
     t.pass('finished unit tests');
 
     console.log('-- npx au generate attribute NewThing');
-    await run('npx au generate attribute NewThing', null,
+    await run('npx au generate attribute NewThing', appFolder, null,
       (data, kill) => {
         t.fail('au generate attribute failed: ' + data.toString());
       }
@@ -181,7 +176,7 @@ skeletons.forEach((features, i) => {
     t.pass('generated attribute');
 
     console.log('-- npx au generate component NewThing .');
-    await run('npx au generate component NewThing .', null,
+    await run('npx au generate component NewThing .', appFolder, null,
       (data, kill) => {
         t.fail('au generate component failed: ' + data.toString());
       }
@@ -189,7 +184,7 @@ skeletons.forEach((features, i) => {
     t.pass('generated component');
 
     console.log('-- npx au generate element NewThing');
-    await run('npx au generate element NewThing', null,
+    await run('npx au generate element NewThing', appFolder, null,
       (data, kill) => {
         t.fail('au generate element failed: ' + data.toString());
       }
@@ -197,7 +192,7 @@ skeletons.forEach((features, i) => {
     t.pass('generated element');
 
     console.log('-- npx au generate value-converter NewThing');
-    await run('npx au generate value-converter NewThing', null,
+    await run('npx au generate value-converter NewThing', appFolder, null,
       (data, kill) => {
         t.fail('au generate value-converter failed: ' + data.toString());
       }
@@ -205,7 +200,7 @@ skeletons.forEach((features, i) => {
     t.pass('generated value-converter');
 
     console.log('-- npx au generate binding-behavior NewThing');
-    await run('npx au generate binding-behavior NewThing', null,
+    await run('npx au generate binding-behavior NewThing', appFolder, null,
       (data, kill) => {
         t.fail('au generate binding-behavior failed: ' + data.toString());
       }
@@ -213,7 +208,7 @@ skeletons.forEach((features, i) => {
     t.pass('generated binding-behavior');
 
     console.log('-- npx au generate task NewThing');
-    await run('npx au generate task NewThing', null,
+    await run('npx au generate task NewThing', appFolder, null,
       (data, kill) => {
         t.fail('au generate task failed: ' + data.toString());
       }
@@ -221,7 +216,7 @@ skeletons.forEach((features, i) => {
     t.pass('generated task');
 
     console.log('-- npx au generate generator NewThing');
-    await run('npx au generate generator NewThing', null,
+    await run('npx au generate generator NewThing', appFolder, null,
       (data, kill) => {
         t.fail('au generate generator failed: ' + data.toString());
       }
@@ -229,7 +224,7 @@ skeletons.forEach((features, i) => {
     t.pass('generated generator');
 
     console.log('-- npm run build');
-    await run('npm run build', null,
+    await run('npm run build', appFolder, null,
       (data, kill) => {
         t.fail('build failed: ' + data.toString());
       }
@@ -242,36 +237,25 @@ skeletons.forEach((features, i) => {
       if (!m) return;
       const url = m[1];
       t.pass(m[0]);
-
-      try {
-        if (!process.env.GITHUB_ACTIONS) {
-          console.log('-- take screenshot');
-          await takeScreenshot(url, path.join(folder, appName + '.png'));
-        }
-        kill();
-      } catch (e) {
-        t.fail(e.message);
-        kill();
-      }
+      kill();
     };
 
     // Webpack5 now prints Loopback: http://localhost:5000 in stderr!
-    await run('npm start', runE2e, runE2e);
+    await run('npm start', appFolder, runE2e, runE2e);
 
     if (features.includes('playwright')) {
       console.log('-- npx playwright test --project chromium');
-      await run('npx playwright install --with-deps');
-      await run('npx playwright test --project chromium');
+      await run('npx playwright install --with-deps', appFolder);
+      await run('npx playwright test --project chromium', appFolder);
     }
 
     if (process.platform === 'linux' && features.includes('docker')) {
       console.log('-- npm run docker:build');
-      await run(`npm run docker:build`);
+      await run(`npm run docker:build`, appFolder);
       t.pass('passed docker:build');
     }
 
     console.log('-- remove folder ' + appName);
-    process.chdir(folder);
-    await del(appFolder);
+    await fs.promises.rm(appFolder, {recursive: true});
   });
 });
