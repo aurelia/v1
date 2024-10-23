@@ -28,7 +28,7 @@ describe('primaryClick binding behavior', () => {
     }
   });
 
-  it('sets font color', done => {
+  it('sets font color', async () => {
     let hitted = false;
     function hit() { hitted = true; }
 
@@ -45,19 +45,16 @@ describe('primaryClick binding behavior', () => {
       .boundTo(model);
 
     let view;
-    component.create(bootstrap).then(() => {
-      view = component.element;
-      fireEvent(view, 'click', {button: 0});
-    }).then(delay).then(() => {
-      expect(hitted).toBe(true);
-      hitted = false;
-      fireEvent(view, 'click', {button: 1});
-    }).then(delay).then(() => {
-      expect(hitted).toBe(false);
-      done();
-    }).catch(e => {
-      fail(e);
-      done();
-    });
+    await component.create(bootstrap);
+    view = component.element;
+    fireEvent(view, 'click', {button: 0});
+    await delay();
+
+    expect(hitted).toBe(true);
+    hitted = false;
+    fireEvent(view, 'click', {button: 1});
+    await delay();
+
+    expect(hitted).toBe(false);
   });
 });
