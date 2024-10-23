@@ -3,13 +3,13 @@ import {HttpClient} from 'aurelia-fetch-client';
 
 class HttpStub {
   items: any[];
-  
+
   fetch(url) {
     return new Promise(resolve => {
       resolve({ json: () => this.items });
     });
   }
-  
+
   configure(func) { /**/ }
 }
 
@@ -18,19 +18,16 @@ function createHttpStub(): any {
 }
 
 describe('the Users module', () => {
+  it('sets fetch response to users', async () => {
+    const http = createHttpStub();
+    const sut = new Users(<HttpClient>http);
+    const itemStubs = [1];
+    const itemFake = [2];
 
-  it('sets fetch response to users', (done) => {
-    const http = createHttpStub(),
-      sut = new Users(<HttpClient>http),
-      itemStubs = [1],
-      itemFake = [2];
-        
     http.items = itemStubs;
-    
-    sut.activate().then(() => {
-      expect(sut.users).toBe(itemStubs);
-      expect(sut.users).not.toBe(itemFake);
-      done();
-    });
+
+    await sut.activate();
+    expect(sut.users).toBe(itemStubs);
+    expect(sut.users).not.toBe(itemFake);
   });
 });

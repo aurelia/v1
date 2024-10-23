@@ -9,22 +9,19 @@ class HttpStub {
     });
   }
 
-  configure(func) {
-  }
+  configure(func) { /**/ }
 }
 
 describe('the Users module', () => {
-  it('sets fetch response to users', (done) => {
+  it('sets fetch response to users', async () => {
     var http = new HttpStub();
     var sut = new Users(http);
     var itemStubs = [1];
     var itemFake = [2];
 
     http.itemStub = itemStubs;
-    sut.activate().then(() => {
-      expect(sut.users).toBe(itemStubs);
-      expect(sut.users).not.toBe(itemFake);
-      done();
-    });
+    await sut.activate();
+    expect(sut.users).toBe(itemStubs);
+    expect(sut.users).not.toBe(itemFake);
   });
 });

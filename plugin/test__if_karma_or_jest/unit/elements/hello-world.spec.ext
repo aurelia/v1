@@ -11,7 +11,7 @@ describe('hello-world element', () => {
     }
   });
 
-  it('says hello world with message', done => {
+  it('says hello world with message', async () => {
     let model = {message: 'from me'};
 
     component = StageComponent
@@ -24,13 +24,8 @@ describe('hello-world element', () => {
       .inView('<hello-world message.bind="message"></hello-world>')
       .boundTo(model);
 
-    component.create(bootstrap).then(() => {
-      const view = component.element;
-      expect(view.textContent.trim()).toBe('Hello world from me');
-      done();
-    }).catch(e => {
-      fail(e);
-      done();
-    });
+    await component.create(bootstrap);
+    const view = component.element;
+    expect(view.textContent.trim()).toBe('Hello world from me');
   });
 });

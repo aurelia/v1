@@ -11,7 +11,7 @@ describe('color attribute', () => {
     }
   });
 
-  it('sets font color', done => {
+  it('sets font color', async () => {
     let model = {color: 'green'};
 
     component = StageComponent
@@ -24,13 +24,8 @@ describe('color attribute', () => {
       .inView('<p color.bind="color"></p>')
       .boundTo(model);
 
-    component.create(bootstrap).then(() => {
-      const view = component.element;
-      expect(view.style.color).toBe('green');
-      done();
-    }).catch(e => {
-      fail(e);
-      done();
-    });
+    await component.create(bootstrap);
+    const view = component.element;
+    expect(view.style.color).toBe('green');
   });
 });
