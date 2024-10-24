@@ -2,8 +2,8 @@ import {StageComponent} from 'aurelia-testing';
 import {bootstrap} from 'aurelia-bootstrapper';
 
 function fireEvent(el, type, options) {
-  var o = options || {};
-  var e = document.createEvent('Event');
+  const o = options || {};
+  const e = document.createEvent('Event');
   e.initEvent(type, true, true);
   Object.keys(o).forEach(apply);
   el.dispatchEvent(e);
