@@ -2,7 +2,7 @@ import {Users} from '../../src/users';
 
 class HttpStub {
   fetch(url) {
-    var response = this.itemStub;
+    const response = this.itemStub;
     this.url = url;
     return new Promise((resolve) => {
       resolve({ json: () => response });
@@ -14,10 +14,10 @@ class HttpStub {
 
 describe('the Users module', () => {
   it('sets fetch response to users', async () => {
-    var http = new HttpStub();
-    var sut = new Users(http);
-    var itemStubs = [1];
-    var itemFake = [2];
+    const http = new HttpStub();
+    const sut = new Users(http);
+    const itemStubs = [1];
+    const itemFake = [2];
 
     http.itemStub = itemStubs;
     await sut.activate();
