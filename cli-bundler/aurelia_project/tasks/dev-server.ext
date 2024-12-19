@@ -16,7 +16,7 @@ import enableDestroy from 'server-destroy';
 // @endif
 // @if typescript
 import * as connect from 'connect';
-import * as _open from 'open';
+import _open from 'open';
 import * as serveStatic from 'serve-static';
 import * as http from 'http';
 import * as _https from 'https';
