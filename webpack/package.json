@@ -16,19 +16,19 @@
 
     // @if less
     "less-loader": "^12.2.0",
-    "less": "^4.2.0",
+    "less": "^4.2.1",
     // @endif
 
     // @if postcss
     "postcss-loader": "^8.1.1",
-    "postcss": "^8.4.47",
+    "postcss": "^8.4.49",
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
     // @endif
 
     // @if sass
-    "sass-loader": "^16.0.2",
-    "sass": "^1.80.4",
+    "sass-loader": "^16.0.4",
+    "sass": "^1.83.0",
     // @endif
 
     // @if stylus
@@ -38,13 +38,13 @@
 
     "html-webpack-plugin": "^5.6.3",
     "copy-webpack-plugin": "^12.0.2",
-    "mini-css-extract-plugin": "^2.9.1",
+    "mini-css-extract-plugin": "^2.9.2",
     "aurelia-webpack-plugin": "^5.0.6",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "clean-webpack-plugin": "^4.0.0",
-    "webpack": "^5.95.0",
+    "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.1.0",
+    "webpack-dev-server": "^5.2.0",
     "expose-loader": "^5.0.0",
     "style-loader": "^4.0.0",
     "css-loader": "^7.1.2",

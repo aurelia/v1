@@ -4,7 +4,7 @@
     "jest-cli": "^29.7.0",
     "jest-transform-stub": "^2.0.0",
     "aurelia-loader-nodejs": "^1.1.0",
-    "aurelia-pal-nodejs": "^2.0.0",
+    "aurelia-pal-nodejs": "^3.0.0-rc.2",
 
     // @if babel
     "babel-jest": "^29.7.0",

@@ -1,11 +1,11 @@
 // @if babel
 import gulp from 'gulp';
-import del from 'del';
+import { rm } from 'fs/promises';
 import project from '../aurelia.json';
 // @endif
 // @if typescript
 import * as gulp from 'gulp';
-import * as del from 'del';
+import { rm } from 'fs/promises';
 import * as project from '../aurelia.json';
 // @endif
 import {CLIOptions, build as buildCLI} from 'aurelia-cli';
@@ -17,7 +17,7 @@ import copyFiles from './copy-files';
 import watch from './watch';
 
 function clean() {
-  return del(project.platform.output);
+  return rm(project.platform.output, { recursive: true, force: true });
 }
 
 let build = gulp.series(
